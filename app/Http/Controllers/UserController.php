@@ -91,4 +91,19 @@ class UserController extends Controller
 
         return back()->with('status', 'Compte Pterodactyl lié (ID: ' . $id . ').');
     }
+
+    public function linkStripe(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        try {
+            $id = $this->stripe->getOrCreateCustomer($user);
+        } catch (\Throwable $e) {
+            return back()->withErrors([
+                'stripe' => 'Échec de la liaison Stripe: ' . $e->getMessage(),
+            ]);
+        }
+
+        return back()->with('status', 'Compte Stripe lié (ID: ' . $id . ').');
+    }
 }

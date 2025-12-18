@@ -100,7 +100,16 @@ class StripeService
      */
     public function getCustomerDetails(User $user): array
     {
-        $customerId = $user->stripe_customer_id ?: $this->getOrCreateCustomer($user);
+        $customerId = $user->stripe_customer_id;
+
+        if (!$customerId) {
+            return [
+                'customer' => null,
+                'subscription' => null,
+                'plan' => null,
+                'payment_method' => null,
+            ];
+        }
 
         // Récup client avec PM par défaut expandée si possible
         /** @var Customer $customer */

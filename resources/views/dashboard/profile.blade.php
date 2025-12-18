@@ -124,7 +124,7 @@
                     </div>
                 </summary>
                 <div class="mt-6 text-sm">
-                    @if(isset($billing) && is_array($billing) && isset($billing['customer']))
+                    @if(isset($billing) && is_array($billing) && isset($billing['customer']) && $billing['customer'] !== null)
                         @php($customer = $billing['customer'])
                         @php($subscription = $billing['subscription'] ?? null)
                         @php($currentPlan = $billing['plan'] ?? null)
@@ -157,21 +157,35 @@
                                 </div>
                             </div>
                         </div>
-                    @else
-                        <x-ui.alert variant="info" class="p-4">
-                            <x-heroicon-o-information-circle class="size-5" />
-                            <x-ui.alert-description class="italic">
-                                Informations Stripe indisponibles pour le moment.
-                            </x-ui.alert-description>
-                        </x-ui.alert>
-                    @endif
 
-                    <div class="mt-8 pt-4 border-t border-gray-100 flex justify-end">
-                        <x-ui.button href="{{ route('billing.overview') }}" variant="outline" size="sm">
-                            <x-heroicon-o-arrow-top-right-on-square class="size-4 mr-2" />
-                            Gérer sur le portail Stripe
-                        </x-ui.button>
-                    </div>
+                        <div class="mt-8 pt-4 border-t border-gray-100 flex justify-end">
+                            <x-ui.button href="{{ route('billing.overview') }}" variant="outline" size="sm">
+                                <x-heroicon-o-arrow-top-right-on-square class="size-4 mr-2" />
+                                Gérer sur le portail Stripe
+                            </x-ui.button>
+                        </div>
+                    @else
+                        <div class="space-y-4">
+                            <x-ui.alert variant="info" class="p-4">
+                                <x-heroicon-o-information-circle class="size-5" />
+                                <x-ui.alert-description class="italic text-sm">
+                                    Vous n'avez pas encore de compte de facturation Stripe lié.
+                                    Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
+                                </x-ui.alert-description>
+                            </x-ui.alert>
+
+                            <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">
+                                @csrf
+                                <x-ui.button type="submit">
+                                    Lier / Créer mon compte Stripe
+                                </x-ui.button>
+                            </form>
+
+                            @error('stripe')
+                                <p class="text-xs text-rose-600 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
             </details>
         </div>

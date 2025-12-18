@@ -66,6 +66,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::put('/profile/password', [UserController::class, 'updatePassword'])->name('profile.password');
     Route::post('/profile/pterodactyl/link', [UserController::class, 'linkPterodactyl'])->name('profile.pterodactyl.link');
+    Route::post('/profile/stripe/link', [UserController::class, 'linkStripe'])->name('profile.stripe.link');
     // Servers dashboard
     Route::get('/servers', [ServerController::class, 'index'])->name('servers');
     Route::get('/servers/create', [ServerController::class, 'create'])->name('servers.create');
