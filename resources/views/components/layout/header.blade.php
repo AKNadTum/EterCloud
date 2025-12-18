@@ -34,7 +34,7 @@
                             Tableau de bord
                         </a>
                         @if(auth()->user()->hasRole('admin'))
-                            <a href="{{ route('admin.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-[var(--primary)]/10 text-[var(--primary)] transition-colors text-sm font-bold">
+                            <a href="{{ route('admin.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-[var(--primary)]/10 text-[var(--primary-foreground)] transition-colors text-sm font-bold">
                                 <x-heroicon-o-shield-check class="size-4" />
                                 Administration
                             </a>

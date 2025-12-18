@@ -4,65 +4,67 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use App\Models\Location;
+use App\Services\StripeService;
+use App\Http\Requests\Admin\StorePlanRequest;
+use App\Http\Requests\Admin\UpdatePlanRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class AdminPlanController extends Controller
 {
+    protected StripeService $stripeService;
+
+    public function __construct(StripeService $stripeService)
+    {
+        $this->stripeService = $stripeService;
+    }
+
     public function index(): View
     {
-        $plans = Plan::all();
+        $plans = Plan::paginate(15);
         return view('admin.plans.index', compact('plans'));
     }
 
     public function create(): View
     {
-        return view('admin.plans.create');
+        $locations = Location::all();
+        return view('admin.plans.create', compact('locations'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StorePlanRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:plans,slug',
-            'description' => 'nullable|string',
-            'price_monthly' => 'required|numeric',
-            'stripe_id' => 'required|string',
-            'cpu' => 'required|integer',
-            'memory' => 'required|integer',
-            'disk' => 'required|integer',
-            'databases' => 'required|integer',
-            'backups' => 'required|integer',
-            'extra_ports' => 'required|integer',
-        ]);
+        $plan = Plan::create($request->validated());
 
-        Plan::create($validated);
+        if ($request->has('locations')) {
+            $plan->locations()->sync($request->input('locations'));
+        }
 
         return redirect()->route('admin.plans.index')->with('success', 'Plan créé.');
     }
 
     public function edit(Plan $plan): View
     {
-        return view('admin.plans.edit', compact('plan'));
+        $locations = Location::all();
+        $stripeDetails = null;
+        try {
+            if ($plan->price_stripe_id) {
+                $details = $this->stripeService->getPriceDetailsForPlan($plan);
+                $stripeDetails = $this->stripeService->formatPriceLabels($details);
+            }
+        } catch (\Exception $e) {
+            // Stripe ID invalide ou erreur API
+        }
+
+        return view('admin.plans.edit', compact('plan', 'locations', 'stripeDetails'));
     }
 
-    public function update(Request $request, Plan $plan): RedirectResponse
+    public function update(UpdatePlanRequest $request, Plan $plan): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price_monthly' => 'required|numeric',
-            'stripe_id' => 'required|string',
-            'cpu' => 'required|integer',
-            'memory' => 'required|integer',
-            'disk' => 'required|integer',
-            'databases' => 'required|integer',
-            'backups' => 'required|integer',
-            'extra_ports' => 'required|integer',
-        ]);
+        $plan->update($request->validated());
 
-        $plan->update($validated);
+        $plan->locations()->sync($request->input('locations', []));
 
         return redirect()->route('admin.plans.index')->with('success', 'Plan mis à jour.');
     }

@@ -31,7 +31,7 @@ class User extends Authenticatable
     /**
      * Get the role that owns the user.
      */
-    public function role()
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
@@ -50,6 +50,32 @@ class User extends Authenticatable
     public function hasRole(string $role): bool
     {
         return $this->role?->slug === $role;
+    }
+
+    /**
+     * Scope a query to only include users with a specific role.
+     */
+    public function scopeWithRole($query, string $role)
+    {
+        return $query->whereHas('role', function ($q) use ($role) {
+            $q->where('slug', $role);
+        });
+    }
+
+    /**
+     * Scope a query to only include admins.
+     */
+    public function scopeAdmin($query)
+    {
+        return $this->scopeWithRole($query, 'admin');
+    }
+
+    /**
+     * Scope a query to only include users linked to Pterodactyl.
+     */
+    public function scopeWithPterodactyl($query)
+    {
+        return $query->whereNotNull('pterodactyl_user_id')->where('pterodactyl_user_id', '>', 0);
     }
 
     /**

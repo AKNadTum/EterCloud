@@ -27,7 +27,7 @@ class Plan extends Model
         'memory' => 'integer',
     ];
 
-    public function locations()
+    public function locations(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Location::class, 'location_plan');
     }

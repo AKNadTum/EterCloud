@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Pterodactyl\PterodactylNests;
 use App\Services\ServerService;
 use App\Services\StripeService;
+use App\Http\Requests\StoreServerRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +16,6 @@ class ServerController extends Controller
         private readonly ServerService $servers,
         private readonly StripeService $stripeService,
         private readonly PterodactylNests $pteroNests,
-        private readonly \App\Services\Pterodactyl\PterodactylLocations $pteroLocations,
     ) {
     }
 
@@ -54,38 +54,32 @@ class ServerController extends Controller
             return redirect()->to(route('home') . '#plans')->with('error', 'Vous devez avoir un abonnement actif.');
         }
 
-        // Récupérer les localisations de Pterodactyl pour enrichir l'affichage
-        $pteroLocations = collect($this->pteroLocations->list()['data'] ?? []);
-        $locations = $plan->locations->map(function ($location) use ($pteroLocations) {
-            $ptero = $pteroLocations->firstWhere('attributes.id', $location->ptero_id_location);
-            if ($ptero) {
-                // On utilise le short code et le nom long (description)
-                $location->display_name = $ptero['attributes']['short'] . ' - ' . $ptero['attributes']['long'];
-            } else {
-                $location->display_name = $location->name ?? $location->ptero_id_location;
-            }
-            return $location;
-        });
-
+        $locations = $this->servers->getAvailableLocationsForPlan($plan);
         $nests = $this->pteroNests->list();
 
         return view('dashboard.servers.create', compact('plan', 'locations', 'nests'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StoreServerRequest $request): RedirectResponse
     {
         $user = $request->user();
-        $demoEnabled = $this->servers->isDemoEnabled();
+        $validated = $request->validated();
 
-        // Si l'utilisateur n'est pas lié à Pterodactyl, on ne peut que faire de la démo
+        // Mode Démo : l'utilisateur n'est pas lié à Pterodactyl
         if (!$this->servers->hasPterodactylLink($user)) {
-            if (!$demoEnabled) {
+            if (!$this->servers->isDemoEnabled()) {
                 return back()->with('status', 'Création de serveur désactivée (Liez votre compte Pterodactyl).');
             }
 
-            return $this->storeDemo($request);
+            $demo = $this->servers->createDemoServer($validated);
+            $list = (array) $request->session()->get('demo_servers', []);
+            array_unshift($list, $demo);
+            $request->session()->put('demo_servers', $list);
+
+            return redirect()->route('dashboard.servers')->with('status', 'Serveur (démo) créé.');
         }
 
+        // Mode Réel
         $details = $this->stripeService->getCustomerDetails($user);
         $plan = $details['plan'];
 
@@ -93,18 +87,9 @@ class ServerController extends Controller
             return redirect()->to(route('home') . '#plans')->with('error', 'Vous devez avoir un abonnement actif pour créer un serveur.');
         }
 
-        // Vérifier la limite de serveurs
-        $currentServers = $this->servers->listForUser($user);
-        if (count($currentServers) >= $plan->server_limit) {
+        if (!$this->servers->canCreateServer($user, $plan)) {
             return back()->with('error', "Vous avez atteint la limite de serveurs de votre plan ({$plan->server_limit}).");
         }
-
-        $validated = $request->validate([
-            'name' => 'required|string|max:80',
-            'location_id' => 'required|integer',
-            'nest_id' => 'required|integer',
-            'egg_id' => 'required|integer',
-        ]);
 
         try {
             $this->servers->createServerForUser($user, $plan, $validated);
@@ -114,31 +99,6 @@ class ServerController extends Controller
         }
     }
 
-    private function storeDemo(Request $request): RedirectResponse
-    {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:80'],
-            'description' => ['nullable', 'string', 'max:255'],
-        ]);
-
-        // Simule un serveur côté UI, stocké en session
-        $demo = [
-            'id' => 'demo-' . substr(bin2hex(random_bytes(5)), 0, 10),
-            'name' => (string) $validated['name'],
-            'description' => (string) ($validated['description'] ?? ''),
-            'identifier' => '',
-            'uuid' => '',
-            'is_demo' => true,
-        ];
-
-        $list = (array) $request->session()->get('demo_servers', []);
-        array_unshift($list, $demo);
-        $request->session()->put('demo_servers', $list);
-
-        return redirect()->route('dashboard.servers')
-            ->with('status', 'Serveur (démo) créé.');
-    }
-
     public function destroy(Request $request, string $id): RedirectResponse
     {
         if (str_starts_with($id, 'demo-')) {
@@ -146,16 +106,14 @@ class ServerController extends Controller
             $list = array_values(array_filter($list, fn ($s) => ($s['id'] ?? '') !== $id));
             $request->session()->put('demo_servers', $list);
 
-            return redirect()->route('dashboard.servers')
-                ->with('status', 'Serveur (démo) supprimé.');
+            return redirect()->route('dashboard.servers')->with('status', 'Serveur (démo) supprimé.');
         }
 
         if (str_starts_with($id, 'ptero-')) {
             $pteroId = (int) str_replace('ptero-', '', $id);
             try {
                 $this->servers->deleteServer($pteroId);
-                return redirect()->route('dashboard.servers')
-                    ->with('status', 'Le serveur a été supprimé avec succès.');
+                return redirect()->route('dashboard.servers')->with('status', 'Le serveur a été supprimé avec succès.');
             } catch (\Exception $e) {
                 return back()->with('error', 'Erreur lors de la suppression du serveur : ' . $e->getMessage());
             }

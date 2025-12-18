@@ -6,12 +6,14 @@ use App\Models\Plan;
 use App\Models\User;
 use App\Services\Pterodactyl\PterodactylNests;
 use App\Services\Pterodactyl\PterodactylServers;
+use App\Services\Pterodactyl\PterodactylLocations;
 
 class ServerService
 {
     public function __construct(
         private readonly PterodactylServers $pteroServers,
         private readonly PterodactylNests $pteroNests,
+        private readonly PterodactylLocations $pteroLocations,
         private readonly UserService $users,
     ) {
     }
@@ -25,6 +27,33 @@ class ServerService
     public function hasPterodactylLink(User $user): bool
     {
         return (int) ($user->pterodactyl_user_id ?? 0) > 0;
+    }
+
+    /**
+     * Retourne les localisations enrichies pour un plan donné.
+     */
+    public function getAvailableLocationsForPlan(Plan $plan): \Illuminate\Support\Collection
+    {
+        $pteroLocations = collect($this->pteroLocations->list()['data'] ?? []);
+        return $plan->locations->map(function ($location) use ($pteroLocations) {
+            $ptero = $pteroLocations->firstWhere('attributes.id', $location->ptero_id_location);
+            if ($ptero) {
+                // On utilise le short code et le nom long (description)
+                $location->display_name = $ptero['attributes']['short'] . ' - ' . $ptero['attributes']['long'];
+            } else {
+                $location->display_name = $location->name ?? $location->ptero_id_location;
+            }
+            return $location;
+        });
+    }
+
+    /**
+     * Vérifie si l'utilisateur peut créer un nouveau serveur selon son plan.
+     */
+    public function canCreateServer(User $user, Plan $plan): bool
+    {
+        $currentServers = $this->listForUser($user);
+        return count($currentServers) < $plan->server_limit;
     }
 
     /**
@@ -63,6 +92,21 @@ class ServerService
         ];
 
         return $this->pteroServers->create($payload);
+    }
+
+    /**
+     * Crée un serveur démo simulé en session.
+     */
+    public function createDemoServer(array $data): array
+    {
+        return [
+            'id' => 'demo-' . substr(bin2hex(random_bytes(5)), 0, 10),
+            'name' => (string) $data['name'],
+            'description' => (string) ($data['description'] ?? ''),
+            'identifier' => '',
+            'uuid' => '',
+            'is_demo' => true,
+        ];
     }
 
     /**

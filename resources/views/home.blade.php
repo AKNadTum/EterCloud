@@ -115,9 +115,8 @@
         </div>
     </section>
 
-    @isset($plans)
-        @if($plans->count() > 0)
-            <section id="plans" class="py-24 scroll-mt-24">
+    @if(isset($plans) && $plans->count() > 0)
+        <section id="plans" class="py-24 scroll-mt-24">
                 <div class="mx-auto px-4" style="max-width: 75%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Choisis ton plan</h2>
@@ -130,7 +129,7 @@
                     </div>
                     <div class="flex flex-wrap justify-center gap-6">
                         @foreach($plans as $plan)
-                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] lg:w-[calc(20%-1.5rem)] min-w-[240px] max-w-[300px]">
+                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
                                 <x-card.pricing-card
                                     :title="$plan->name"
                                     :price="$stripePrices[$plan->id]['price'] ?? null"
@@ -139,10 +138,9 @@
                                     :features="$plan->getFormattedFeatures()"
                                     :isPopular="$loop->index === 1"
                                 >
-                                    @php($canBuy = !empty($plan->price_stripe_id))
-
                                     <div class="flex flex-col gap-2">
                                         @auth
+                                            @php $canBuy = !empty($plan->price_stripe_id); @endphp
                                             @if($canBuy)
                                                 <form action="{{ route('billing.choose') }}" method="POST" class="w-full">
                                                     @csrf
@@ -156,15 +154,39 @@
                                                     Mon Dashboard
                                                 </x-ui.button>
                                             @endif
-                                        @else
+                                        @endauth
+                                        @guest
                                             <x-ui.button href="{{ route('auth.register') }}" class="w-full justify-center font-bold" variant="accent">
                                                 Commencer
                                             </x-ui.button>
-                                        @endauth
+                                        @endguest
                                     </div>
                                 </x-card.pricing-card>
                             </div>
                         @endforeach
+
+                        @php
+                            $realPlansCount = $plans->count();
+                            $customCardsToAdd = max(1, 3 - $realPlansCount);
+                        @endphp
+
+                        @for($i = 0; $i < $customCardsToAdd; $i++)
+                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
+                                <x-card.pricing-card
+                                    title="Sur mesure"
+                                    price="Sur devis"
+                                    description="Besoin d'une puissance supérieure ou d'une configuration spécifique ?"
+                                    :features="['Ressources illimitées', 'Support prioritaire 24/7', 'Infrastructure dédiée', 'SLA garanti']"
+                                    :isPopular="false"
+                                >
+                                    <div class="flex flex-col gap-2">
+                                        <x-ui.button href="mailto:contact@etercloud.fr" class="w-full justify-center font-bold" variant="outline">
+                                            Contactez-nous
+                                        </x-ui.button>
+                                    </div>
+                                </x-card.pricing-card>
+                            </div>
+                        @endfor
                     </div>
 
                     <div class="mt-16 text-center">
@@ -241,6 +263,5 @@
                     </div>
                 </div>
             </section>
-        @endif
-    @endisset
+    @endif
 @endsection

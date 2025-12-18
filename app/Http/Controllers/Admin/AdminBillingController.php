@@ -15,8 +15,8 @@ class AdminBillingController extends Controller
 
     public function index(): View
     {
-        // On pourrait lister les derniers paiements ou abonnements via Stripe
-        // Pour l'instant on fait une vue simple
-        return view('admin.billing.index');
+        $stats = $this->stripeService->getGlobalStats();
+
+        return view('admin.billing.index', compact('stats'));
     }
 }

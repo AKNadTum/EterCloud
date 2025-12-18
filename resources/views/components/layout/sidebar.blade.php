@@ -29,7 +29,7 @@
 
 <aside class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm p-4 sticky top-24">
     <div class="mb-6 px-2">
-        <h2 class="text-xs font-bold uppercase tracking-widest text-muted-foreground opacity-50">Menu Principal</h2>
+        <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500">Menu Principal</h2>
     </div>
     <nav>
         <ul class="flex flex-col gap-1">

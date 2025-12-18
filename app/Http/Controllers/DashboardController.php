@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ServerService;
+use App\Services\StripeService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -10,9 +12,33 @@ use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
-    public function index(): View
+    public function __construct(
+        private readonly ServerService $serverService,
+        private readonly StripeService $stripeService,
+    ) {
+    }
+
+    public function index(Request $request): View
     {
-        return view('dashboard.index');
+        $user = $request->user();
+        $servers = $this->serverService->listForUser($user);
+        $subscription = null;
+        $plan = null;
+
+        try {
+            $customerDetails = $this->stripeService->getCustomerDetails($user);
+            $subscription = $customerDetails['subscription'] ?? null;
+            $plan = $customerDetails['plan'] ?? null;
+        } catch (\Throwable) {
+            // Silently fail if Stripe is not reachable
+        }
+
+        return view('dashboard.index', [
+            'serversCount' => count($servers),
+            'servers' => array_slice($servers, 0, 3), // Show only top 3
+            'subscription' => $subscription,
+            'plan' => $plan,
+        ]);
     }
 
     public function profile(): View

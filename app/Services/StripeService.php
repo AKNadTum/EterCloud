@@ -274,4 +274,46 @@ class StripeService
             'period' => ($priceLabel === 'Gratuit') ? null : $periodLabel,
         ];
     }
+
+    /**
+     * Récupère des statistiques globales pour l'administration.
+     */
+    public function getGlobalStats(): array
+    {
+        return Cache::remember('stripe:global_stats', 3600, function () {
+            // 1. Nombre d'abonnements actifs
+            $activeSubsCount = $this->stripe->subscriptions->search([
+                'query' => "status:'active'",
+            ])->total_count ?? 0;
+
+            // 2. Revenus (gross volume) approximatifs sur les 30 derniers jours
+            $thirtyDaysAgo = time() - (30 * 24 * 60 * 60);
+            $recentPayments = $this->stripe->paymentIntents->all([
+                'created' => ['gte' => $thirtyDaysAgo],
+                'limit' => 100,
+            ]);
+
+            $totalCents = 0;
+            $currency = 'EUR';
+            foreach ($recentPayments->autoPagingIterator() as $pi) {
+                if ($pi->status === 'succeeded') {
+                    $totalCents += $pi->amount;
+                    $currency = strtoupper($pi->currency);
+                }
+            }
+
+            // 3. Dernières factures
+            $latestInvoices = $this->stripe->invoices->all([
+                'limit' => 5,
+                'expand' => ['data.customer'],
+            ]);
+
+            return [
+                'active_subscriptions_count' => $activeSubsCount,
+                'recent_volume' => $totalCents / 100,
+                'currency' => $currency,
+                'latest_invoices' => $latestInvoices->data,
+            ];
+        });
+    }
 }

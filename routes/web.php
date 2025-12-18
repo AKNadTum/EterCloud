@@ -119,9 +119,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::post('servers/{id}/unsuspend', [App\Http\Controllers\Admin\AdminServerController::class, 'unsuspend'])->name('servers.unsuspend');
     Route::delete('servers/{id}', [App\Http\Controllers\Admin\AdminServerController::class, 'destroy'])->name('servers.destroy');
 
-    Route::resource('nodes', App\Http\Controllers\Admin\AdminNodeController::class);
+    Route::resource('nodes', App\Http\Controllers\Admin\AdminNodeController::class)->only(['index', 'show']);
     Route::resource('locations', App\Http\Controllers\Admin\AdminLocationController::class);
     Route::resource('plans', App\Http\Controllers\Admin\AdminPlanController::class);
+    Route::resource('roles', App\Http\Controllers\Admin\AdminRoleController::class);
+    Route::resource('permissions', App\Http\Controllers\Admin\AdminPermissionController::class);
 
     Route::get('billing', [App\Http\Controllers\Admin\AdminBillingController::class, 'index'])->name('billing.index');
 });

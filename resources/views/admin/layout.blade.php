@@ -25,13 +25,17 @@
                 <!-- Main Content Area -->
                 <div class="space-y-6">
                     <!-- Topbar -->
-                    <header class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm px-6 py-4 flex items-center justify-between gap-4">
+                    <header class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm px-6 py-4 flex items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
-                            <h1 class="text-2xl font-extrabold tracking-tight">
+                            <h1 class="text-2xl font-extrabold tracking-tight text-[var(--foreground)]">
                                 @yield('title', 'Administration')
                             </h1>
                         </div>
                         <div class="flex items-center gap-4">
+                            <div class="hidden sm:flex items-center gap-3 glass px-4 py-1.5 rounded-full text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-widest border-[var(--border)]/50">
+                                <div class="size-2 rounded-full bg-[var(--primary-foreground)]"></div>
+                                Admin: {{ auth()->user()->name ?? auth()->user()->email }}
+                            </div>
                             <x-ui.button href="{{ route('dashboard.index') }}" variant="outline" size="sm" class="rounded-full">
                                 <x-heroicon-o-arrow-left class="size-4 mr-1" />
                                 Dashboard Client
