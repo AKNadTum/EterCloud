@@ -45,7 +45,7 @@
                 <ul class="space-y-2 text-sm opacity-80">
                     <li><a href="{{ route('legal.refund') }}" class="transition hover:text-[var(--accent-foreground)]">Remboursement</a></li>
                     <li><a href="/contact" class="transition hover:text-[var(--accent-foreground)]">Contact</a></li>
-                    <li><a href="mailto:support@eternom.fr" class="transition hover:text-[var(--accent-foreground)]">Email Support</a></li>
+                    <li><a href="mailto:support@etercloud.fr" class="transition hover:text-[var(--accent-foreground)]">Email Support</a></li>
                 </ul>
             </div>
         </div>

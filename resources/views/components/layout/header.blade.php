@@ -5,7 +5,7 @@
                 <div class="size-8 rounded-lg bg-[var(--accent)] flex items-center justify-center group-hover:scale-110 transition-transform">
                     <x-heroicon-o-cloud class="size-5 text-[var(--accent-foreground)]" />
                 </div>
-                <span class="font-extrabold text-xl tracking-tighter">Eternom</span>
+                <span class="font-extrabold text-xl tracking-tighter">Etercloud</span>
             </a>
         </div>
 

@@ -180,7 +180,7 @@
                 <div class="mx-auto px-4" style="max-width: 50%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Questions fréquentes</h2>
-                        <p class="mt-3 text-muted-foreground">Tout ce que tu dois savoir sur Eternom.</p>
+                        <p class="mt-3 text-muted-foreground">Tout ce que tu dois savoir sur Etercloud.</p>
                     </div>
 
                     <div class="grid gap-4">

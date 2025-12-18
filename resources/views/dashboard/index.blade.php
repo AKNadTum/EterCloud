@@ -4,7 +4,7 @@
 
 @section('dashboard')
     <div class="space-y-4">
-        <p class="text-gray-600">Bienvenue dans votre espace Eternom.</p>
+        <p class="text-gray-600">Bienvenue dans votre espace Etercloud.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="rounded-lg border border-border bg-white p-4">

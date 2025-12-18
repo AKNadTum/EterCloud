@@ -8,7 +8,7 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">1. Acceptation des conditions</h2>
-                <p>L'utilisation des services d'Eternom implique l'acceptation pleine et entière des présentes conditions générales d'utilisation. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser nos services.</p>
+                <p>L'utilisation des services d'Etercloud implique l'acceptation pleine et entière des présentes conditions générales d'utilisation. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser nos services.</p>
             </section>
 
             <section class="mb-8">
@@ -18,7 +18,7 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">3. Services et Paiements</h2>
-                <p>Eternom fournit des services d'hébergement sous forme d'abonnements ou de crédits. Les tarifs sont indiqués sur notre site. Le paiement est dû au début de chaque période. En cas de défaut de paiement, nous nous réservons le droit de suspendre ou de résilier vos services.</p>
+                <p>Etercloud fournit des services d'hébergement sous forme d'abonnements ou de crédits. Les tarifs sont indiqués sur notre site. Le paiement est dû au début de chaque période. En cas de défaut de paiement, nous nous réservons le droit de suspendre ou de résilier vos services.</p>
             </section>
 
             <section class="mb-8">
@@ -35,12 +35,12 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">5. Responsabilité et Garantie</h2>
-                <p>Eternom s'efforce de maintenir une disponibilité maximale de ses services. Cependant, nous ne pouvons garantir une absence totale d'interruptions. Eternom ne pourra être tenu responsable des pertes de données ou des pertes de revenus liées à l'utilisation de nos services. Il appartient à l'utilisateur d'effectuer ses propres sauvegardes.</p>
+                <p>Etercloud s'efforce de maintenir une disponibilité maximale de ses services. Cependant, nous ne pouvons garantir une absence totale d'interruptions. Etercloud ne pourra être tenu responsable des pertes de données ou des pertes de revenus liées à l'utilisation de nos services. Il appartient à l'utilisateur d'effectuer ses propres sauvegardes.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">6. Modification des conditions</h2>
-                <p>Eternom se réserve le droit de modifier les présentes Conditions Générales d'Utilisation à tout moment afin de s'adapter aux évolutions législatives, réglementaires ou techniques de la plateforme.</p>
+                <p>Etercloud se réserve le droit de modifier les présentes Conditions Générales d'Utilisation à tout moment afin de s'adapter aux évolutions législatives, réglementaires ou techniques de la plateforme.</p>
                 <div class="mt-4 p-4 rounded-lg bg-slate-50 border-l-4 border-[var(--primary)]">
                     <p class="font-medium mb-2">Modalités de notification :</p>
                     <ul class="list-disc pl-5 space-y-1">
