@@ -17,6 +17,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $permissions = [
             'server.delete' => 'Supprimer un serveur',
             'server.manage' => 'Gérer un serveur',
+            'admin.access' => 'Accéder au panel admin',
+            'users.manage' => 'Gérer les utilisateurs',
+            'servers.manage' => 'Gérer tous les serveurs',
+            'billing.manage' => 'Gérer la facturation',
+            'nodes.manage' => 'Gérer les nodes',
+            'locations.manage' => 'Gérer les locations',
+            'plans.manage' => 'Gérer les plans',
         ];
 
         foreach ($permissions as $slug => $name) {

@@ -33,6 +33,12 @@
                             <x-heroicon-o-squares-2x2 class="size-4 opacity-70" />
                             Tableau de bord
                         </a>
+                        @if(auth()->user()->hasRole('admin'))
+                            <a href="{{ route('admin.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-[var(--primary)]/10 text-[var(--primary)] transition-colors text-sm font-bold">
+                                <x-heroicon-o-shield-check class="size-4" />
+                                Administration
+                            </a>
+                        @endif
                         <div class="my-1 border-t border-[var(--border)]/50"></div>
                         <a href="{{ route('dashboard.profile') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
                             <x-heroicon-o-user class="size-4 opacity-70" />

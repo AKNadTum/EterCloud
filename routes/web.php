@@ -107,3 +107,22 @@ Route::post('/stripe/webhook', StripeWebhookController::class)
     ->name('stripe.webhook')
     ->withoutMiddleware([VerifyCsrfToken::class]);
 
+// Administration
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('index');
+
+    Route::resource('users', App\Http\Controllers\Admin\AdminUserController::class);
+
+    Route::get('servers', [App\Http\Controllers\Admin\AdminServerController::class, 'index'])->name('servers.index');
+    Route::get('servers/{id}', [App\Http\Controllers\Admin\AdminServerController::class, 'show'])->name('servers.show');
+    Route::post('servers/{id}/suspend', [App\Http\Controllers\Admin\AdminServerController::class, 'suspend'])->name('servers.suspend');
+    Route::post('servers/{id}/unsuspend', [App\Http\Controllers\Admin\AdminServerController::class, 'unsuspend'])->name('servers.unsuspend');
+    Route::delete('servers/{id}', [App\Http\Controllers\Admin\AdminServerController::class, 'destroy'])->name('servers.destroy');
+
+    Route::resource('nodes', App\Http\Controllers\Admin\AdminNodeController::class);
+    Route::resource('locations', App\Http\Controllers\Admin\AdminLocationController::class);
+    Route::resource('plans', App\Http\Controllers\Admin\AdminPlanController::class);
+
+    Route::get('billing', [App\Http\Controllers\Admin\AdminBillingController::class, 'index'])->name('billing.index');
+});
+
