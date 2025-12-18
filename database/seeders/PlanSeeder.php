@@ -20,10 +20,6 @@ class PlanSeeder extends Seeder
                 'price_stripe_id' => 'price_1SfTJ8BMs74rsJn7okDLUQ8q',
                 'server_limit' => 1,
                 'disk' => 5120, // 5 Go
-                'cpu' => 3,
-                'ram' => 1,
-                'backup' => 0,
-                'database' => 0,
             ],
             [
                 'name' => 'Plan Stone',
@@ -31,10 +27,6 @@ class PlanSeeder extends Seeder
                 'price_stripe_id' => 'price_1SfTR7BMs74rsJn7LjWAEvpq',
                 'server_limit' => 1,
                 'disk' => 10240, // 10 Go
-                'cpu' => 3,
-                'ram' => 1,
-                'backup' => 0,
-                'database' => 0,
             ],
             [
                 'name' => 'Plan Iron',
@@ -42,10 +34,6 @@ class PlanSeeder extends Seeder
                 'price_stripe_id' => 'price_1SfTRTBMs74rsJn725cmYYgL',
                 'server_limit' => 2,
                 'disk' => 20480, // 20 Go
-                'cpu' => 3,
-                'ram' => 1,
-                'backup' => 0,
-                'database' => 0,
             ],
             [
                 'name' => 'Plan Diamond',
@@ -53,10 +41,6 @@ class PlanSeeder extends Seeder
                 'price_stripe_id' => 'price_1SfTRmBMs74rsJn7DBwui2jZ',
                 'server_limit' => 5,
                 'disk' => 35840, // 35 Go
-                'cpu' => 3,
-                'ram' => 1,
-                'backup' => 0,
-                'database' => 0,
             ],
             [
                 'name' => 'Plan Netherite',
@@ -64,10 +48,6 @@ class PlanSeeder extends Seeder
                 'price_stripe_id' => 'price_1SfTS3BMs74rsJn78OIs71U7',
                 'server_limit' => 10,
                 'disk' => 51200, // 50 Go
-                'cpu' => 3,
-                'ram' => 1,
-                'backup' => 0,
-                'database' => 0,
             ],
         ];
 
