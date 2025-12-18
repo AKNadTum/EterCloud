@@ -2,7 +2,7 @@
 
 ## À propos
 
-EterCloud (Eternom) est une plateforme de gestion de services cloud avec intégration Stripe pour les paiements et Pterodactyl pour la gestion des ressources.
+Etercloud est une plateforme de gestion de services cloud avec intégration Stripe pour les paiements et Pterodactyl pour la gestion des ressources.
 
 ## Déploiement sur Laravel Cloud
 
@@ -24,7 +24,7 @@ EterCloud (Eternom) est une plateforme de gestion de services cloud avec intégr
 Configurez ces variables dans le dashboard Laravel Cloud :
 
 ```env
-APP_NAME=Eternom
+APP_NAME=Etercloud
 APP_ENV=production
 APP_KEY=base64:...  # Sera généré automatiquement
 APP_DEBUG=false
@@ -58,7 +58,7 @@ MAIL_HOST=...
 MAIL_PORT=587
 MAIL_USERNAME=...
 MAIL_PASSWORD=...
-MAIL_FROM_ADDRESS=noreply@eternom.fr
+MAIL_FROM_ADDRESS=noreply@etercloud.fr
 ```
 
 ### 4. Configuration du Webhook Stripe

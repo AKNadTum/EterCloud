@@ -25,7 +25,44 @@ class User extends Authenticatable
         'email',
         'password',
         'pterodactyl_user_id',
+        'role_id',
     ];
+
+    /**
+     * Get the role that owns the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Check if the user has a specific permission.
+     */
+    public function hasPermission(string $permission): bool
+    {
+        return $this->role?->permissions->contains('slug', $permission) ?? false;
+    }
+
+    /**
+     * Check if the user has a specific role.
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->role?->slug === $role;
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::creating(function ($user) {
+            if (!$user->role_id) {
+                $user->role_id = Role::where('slug', 'user')->first()?->id;
+            }
+        });
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            RolesAndPermissionsSeeder::class,
+        ]);
+
         // Create a test user without factory
         User::create([
             'first_name' => 'Test',
@@ -21,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
+            'role_id' => \App\Models\Role::where('slug', 'user')->first()?->id,
         ]);
 
         // Seed locations first, then plans (plans link to locations)

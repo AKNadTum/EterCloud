@@ -8,7 +8,7 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">1. Introduction</h2>
-                <p>Eternom s'engage à protéger la vie privée de ses utilisateurs. Cette politique explique comment nous collectons, utilisons et protégeons vos données personnelles dans le cadre de nos services d'hébergement.</p>
+                <p>Etercloud s'engage à protéger la vie privée de ses utilisateurs. Cette politique explique comment nous collectons, utilisons et protégeons vos données personnelles dans le cadre de nos services d'hébergement.</p>
             </section>
 
             <section class="mb-8">
@@ -34,7 +34,7 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">4. Partage des données</h2>
-                <p>Eternom ne vend jamais vos données personnelles. Nous partageons vos informations uniquement avec des tiers de confiance nécessaires à l'exécution de nos services :</p>
+                <p>Etercloud ne vend jamais vos données personnelles. Nous partageons vos informations uniquement avec des tiers de confiance nécessaires à l'exécution de nos services :</p>
                 <ul class="list-disc pl-5">
                     <li><strong>Stripe :</strong> Pour le traitement sécurisé des paiements.</li>
                     <li><strong>Fournisseurs d'infrastructure :</strong> Pour le provisionnement de vos serveurs.</li>
