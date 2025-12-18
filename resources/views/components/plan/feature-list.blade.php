@@ -8,7 +8,7 @@
         <span>{{ $plan->memory > 0 ? ($plan->memory / 1024) . ' GB' : 'RAM illimitée' }} RAM</span>
     </li>
     <li class="flex items-center gap-3 text-sm text-gray-600">
-        <x-heroicon-o-hard-drive class="size-4 text-[var(--primary)]" />
+        <x-heroicon-o-server-stack class="size-4 text-[var(--primary)]" />
         <span>{{ ($plan->disk / 1024) }} GB Stockage</span>
     </li>
     <li class="flex items-center gap-3 text-sm text-gray-600">
