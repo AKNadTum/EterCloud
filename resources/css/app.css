@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../../app/**/*.php';
+
+@theme {
+    /* Couleurs de Base */
+    --background: #f8fafc; /* Gris bleuâtre extrêmement clair */
+    --foreground: #0f172a; /* Bleu-noir profond pour le texte principal */
+
+    /* Primaire - Indications / Actions Standards (Bleu Pastel) */
+    --primary: #e0f2fe;
+    --primary-foreground: #0369a1;
+    --primary-hover: #bae6fd;
+
+    /* Destructive - Suppression / Danger (Rouge Pastel) */
+    --destructive: #fee2e2;
+    --destructive-foreground: #b91c1c;
+    --destructive-hover: #fecaca;
+
+    /* Secondary - Actions Neutres (Gris Pastel) */
+    --secondary: #f1f5f9;
+    --secondary-foreground: #475569;
+    --secondary-hover: #e2e8f0;
+
+    /* Success - Validation (Vert Pastel) */
+    --success: #dcfce7;
+    --success-foreground: #15803d;
+
+    /* Warning - Attention (Ambre Pastel) */
+    --warning: #fef3c7;
+    --warning-foreground: #a16207;
+
+    /* Accent - Touche de couleur alternative (Violet Pastel) */
+    --accent: #f3e8ff;
+    --accent-foreground: #7e22ce;
+    --accent-hover: #ede9fe;
+
+    /* Éléments d'interface */
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #94a3b8;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+
+    /* Contrôles de formulaire */
+    --control-background: #ffffff;
+    --control-foreground: #0f172a;
+
+    /* Liens */
+    --link: #0369a1;
+    --link-hover: #0284c7;
+
+    /* Rayon de bordure pour l'aspect doux */
+    --radius: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Ombres douces */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    * {
+        @apply border-[var(--border)];
+    }
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-sans);
+        @apply antialiased;
+    }
+}
+
+@utility glass {
+    @apply bg-white/95 backdrop-blur-md border border-white/40 shadow-[var(--shadow-sm)];
+}
+
+@utility glass-card {
+    @apply glass rounded-[var(--radius-lg)] shadow-[var(--shadow)];
+}
+
+@layer components {
+    .card-primary {
+        @apply bg-white border-[var(--primary-foreground)]/30 shadow-md shadow-[var(--primary)]/10;
+    }
+    .card-accent {
+        @apply bg-white border-[var(--accent-foreground)]/30 shadow-md shadow-[var(--accent)]/10;
+    }
+    .card-success {
+        @apply bg-white border-[var(--success-foreground)]/30 shadow-md shadow-[var(--success)]/10;
+    }
+    .card-warning {
+        @apply bg-white border-[var(--warning-foreground)]/30 shadow-md shadow-[var(--warning)]/10;
+    }
+    .card-destructive {
+        @apply bg-white border-[var(--destructive-foreground)]/30 shadow-md shadow-[var(--destructive)]/10;
+    }
+}

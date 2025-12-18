@@ -1,0 +1,65 @@
+<header class="sticky top-0 z-50 flex justify-center py-4">
+    <nav class="w-full px-4 py-2 flex items-center bg-white/95 backdrop-blur-md border border-white/40 rounded-[var(--radius-lg)] shadow-lg transition-all duration-300 mx-4" style="max-width: 65%;">
+        <div class="flex-1">
+            <a href="/" class="flex items-center gap-2 group w-fit">
+                <div class="size-8 rounded-lg bg-[var(--accent)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <x-heroicon-o-cloud class="size-5 text-[var(--accent-foreground)]" />
+                </div>
+                <span class="font-extrabold text-xl tracking-tighter">Eternom</span>
+            </a>
+        </div>
+
+        <ul class="hidden md:flex items-center gap-1">
+            <li><x-ui.button href="/" variant="ghost" class="font-medium">Accueil</x-ui.button></li>
+            <li><x-ui.button href="{{ route('home') }}#plans" variant="ghost" class="font-medium">Plans</x-ui.button></li>
+            <li><x-ui.button href="/contact" variant="ghost" class="font-medium">Contact</x-ui.button></li>
+        </ul>
+
+        <div class="flex-1 flex items-center justify-end gap-3">
+            @auth
+                <details class="group relative">
+                    <summary class="list-none cursor-pointer">
+                        <div class="flex items-center gap-2 pl-3 pr-2 py-1.5 border border-[var(--border)] rounded-full bg-[var(--control-background)] hover:bg-[var(--secondary)] transition-colors shadow-sm">
+                            <span class="text-sm font-semibold truncate max-w-[10rem]">
+                                {{ auth()->user()->name ?? auth()->user()->email }}
+                            </span>
+                            <div class="size-7 rounded-full bg-[var(--primary)] flex items-center justify-center text-[var(--primary-foreground)] text-xs font-bold">
+                                {{ strtoupper(substr(auth()->user()->name ?? auth()->user()->email, 0, 1)) }}
+                            </div>
+                        </div>
+                    </summary>
+                    <div class="absolute right-0 mt-2 w-56 bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-1 z-50 shadow-xl animate-in fade-in zoom-in-95 duration-200">
+                        <a href="{{ route('dashboard.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm font-medium">
+                            <x-heroicon-o-squares-2x2 class="size-4 opacity-70" />
+                            Tableau de bord
+                        </a>
+                        <div class="my-1 border-t border-[var(--border)]/50"></div>
+                        <a href="{{ route('dashboard.profile') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
+                            <x-heroicon-o-user class="size-4 opacity-70" />
+                            Profil
+                        </a>
+                        <a href="{{ route('dashboard.servers') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
+                            <x-heroicon-o-server-stack class="size-4 opacity-70" />
+                            Serveurs
+                        </a>
+                        <a href="{{ route('dashboard.billing') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
+                            <x-heroicon-o-credit-card class="size-4 opacity-70" />
+                            Facturation
+                        </a>
+                        <div class="my-1 border-t border-[var(--border)]/50"></div>
+                        <form method="POST" action="{{ route('auth.logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-[var(--destructive)]/10 text-[var(--destructive-foreground)] transition-colors text-sm font-medium">
+                                <x-heroicon-o-arrow-left-on-rectangle class="size-4" />
+                                Déconnexion
+                            </button>
+                        </form>
+                    </div>
+                </details>
+            @else
+                <x-ui.button href="{{ route('auth.login') }}" variant="outline" class="rounded-full px-6">Connexion</x-ui.button>
+                <x-ui.button href="{{ route('auth.register') ?? '#' }}" class="rounded-full px-6 shadow-md shadow-[var(--primary)]/20">S'inscrire</x-ui.button>
+            @endauth
+        </div>
+    </nav>
+</header>
