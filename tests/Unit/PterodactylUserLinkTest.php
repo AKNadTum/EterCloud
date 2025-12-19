@@ -150,4 +150,101 @@ class PterodactylUserLinkTest extends TestCase
             'pterodactyl_user_id' => 789,
         ]);
     }
+
+    public function test_ensure_account_fails_with_request_exception_if_validation_fails(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'fail@example.com',
+            'name' => 'Fail',
+        ]);
+
+        Http::fake([
+            'https://panel.test/api/application/users?filter%5Bemail%5D=fail%40example.com&per_page=1' => Http::response([
+                'object' => 'list',
+                'data' => [],
+            ], 200),
+            'https://panel.test/api/application/users' => Http::response([
+                'errors' => [
+                    [
+                        'code' => 'ValidationException',
+                        'detail' => 'The last name field is required.',
+                    ]
+                ]
+            ], 422),
+        ]);
+
+        $service = app(UserService::class);
+
+        $this->expectException(\Illuminate\Http\Client\RequestException::class);
+        $this->expectExceptionMessage('422');
+
+        $service->ensurePterodactylAccount($user);
+    }
+
+    public function test_ensure_account_mutes_username_on_conflict(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'conflict@example.com',
+            'name' => 'taken',
+        ]);
+
+        Http::fake([
+            'https://panel.test/api/application/users?filter%5Bemail%5D=conflict%40example.com&per_page=1' => Http::response([
+                'object' => 'list',
+                'data' => [],
+            ], 200),
+            // Première tentative : conflit de username
+            'https://panel.test/api/application/users' => Http::sequence()
+                ->push([
+                    'errors' => [
+                        [
+                            'code' => 'ValidationException',
+                            'detail' => 'The username has already been taken.',
+                        ]
+                    ]
+                ], 422)
+                // Deuxième tentative : succès (après mutation)
+                ->push([
+                    'object' => 'user',
+                    'attributes' => ['id' => 888]
+                ], 201),
+        ]);
+
+        $service = app(UserService::class);
+        $id = $service->ensurePterodactylAccount($user);
+
+        $this->assertSame(888, $id);
+    }
+
+    public function test_ensure_account_creates_with_default_names_if_missing(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'defaults@example.com',
+            'name' => 'OnlyName',
+            'first_name' => null,
+            'last_name' => null,
+        ]);
+
+        Http::fake([
+            'https://panel.test/api/application/users?filter%5Bemail%5D=defaults%40example.com&per_page=1' => Http::response([
+                'object' => 'list',
+                'data' => [],
+            ], 200),
+            'https://panel.test/api/application/users' => function ($request) {
+                $data = $request->data();
+                if ($data['first_name'] === 'OnlyName' && $data['last_name'] === '.') {
+                    return Http::response([
+                        'object' => 'user',
+                        'attributes' => ['id' => 999]
+                    ], 201);
+                }
+                return Http::response(['errors' => [['detail' => 'Invalid data']]], 422);
+            }
+        ]);
+
+        $service = app(UserService::class);
+        $id = $service->ensurePterodactylAccount($user);
+
+        $this->assertSame(999, $id);
+    }
 }

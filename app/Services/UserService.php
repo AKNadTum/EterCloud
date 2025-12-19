@@ -84,8 +84,8 @@ class UserService
                 $payload = [
                     'email' => $user->email,
                     'username' => $username,
-                    'first_name' => (string) ($user->first_name ?: ($user->name ?: '')),
-                    'last_name' => (string) ($user->last_name ?: ''),
+                    'first_name' => (string) ($user->first_name ?: ($user->name ?: 'User')),
+                    'last_name' => (string) ($user->last_name ?: '.'),
                 ];
                 if ($password !== null && $password !== '') {
                     $payload['password'] = $password;
@@ -104,10 +104,21 @@ class UserService
                         try {
                             $byEmail = $this->pteroUsers->getByEmail($user->email);
                             $foundId = (int) (($byEmail['attributes']['id'] ?? null) ?: ($byEmail['id'] ?? null));
-                            break;
+                            if ($foundId > 0) {
+                                break;
+                            }
                         } catch (\Throwable) {
-                            // username peut être le conflit: on varie le username et on réessaie
+                            // ignore: non trouvé par email
+                        }
+
+                        // Vérifier si c'est un conflit de username dans les erreurs renvoyées
+                        $bodyString = (string) json_encode($body);
+                        if (str_contains($bodyString, 'username') &&
+                            (str_contains($bodyString, 'taken') || str_contains($bodyString, 'already exists'))) {
                             $username = $this->mutateUsername($username, ++$attempts);
+                        } else {
+                            // C'est une autre erreur de validation (ex: mot de passe trop court, etc.)
+                            throw $e;
                         }
                     } else {
                         throw $e;
