@@ -36,7 +36,7 @@
         <div class="space-y-2">
             <div class="flex items-center justify-between">
                 <label for="password" class="text-sm font-medium">Mot de passe</label>
-                <a href="{{ route('auth.password.request') }}" class="text-xs opacity-80 hover:opacity-100 text-link hover:text-link-hover transition">Mot de passe oublié ?</a>
+                <a href="{{ route('password.request') }}" class="text-xs opacity-80 hover:opacity-100 text-link hover:text-link-hover transition">Mot de passe oublié ?</a>
             </div>
             <x-ui.input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required :invalid="$errors->has('password')" />
             @error('password')

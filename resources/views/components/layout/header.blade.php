@@ -39,6 +39,12 @@
                                 Administration
                             </a>
                         @endif
+                        @if(auth()->user()->hasPermission('support.access'))
+                            <a href="{{ route('support.index') }}" class="flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius)] hover:bg-blue-50 text-blue-600 transition-colors text-sm font-bold">
+                                <x-heroicon-o-chat-bubble-left-right class="size-4" />
+                                Panel Support
+                            </a>
+                        @endif
                         <div class="my-1 border-t border-[var(--border)]/50"></div>
                         <a href="{{ route('dashboard.profile') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
                             <x-heroicon-o-user class="size-4 opacity-70" />
@@ -47,6 +53,10 @@
                         <a href="{{ route('dashboard.servers') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
                             <x-heroicon-o-server-stack class="size-4 opacity-70" />
                             Serveurs
+                        </a>
+                        <a href="{{ route('dashboard.tickets.index') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
+                            <x-heroicon-o-chat-bubble-left-right class="size-4 opacity-70" />
+                            Mes Tickets Support
                         </a>
                         <a href="{{ route('dashboard.billing') }}" class="flex items-center gap-2 px-4 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm">
                             <x-heroicon-o-credit-card class="size-4 opacity-70" />

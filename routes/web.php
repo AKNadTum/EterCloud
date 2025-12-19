@@ -8,6 +8,7 @@ use App\Http\Controllers\ServerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Services\Pterodactyl\PterodactylNests;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -31,25 +32,39 @@ Route::prefix('plans')->name('plans.')->group(function () {
 });
 
 // Auth: regrouper sous le préfixe "auth"
-Route::prefix('auth')->name('auth.')->group(function () {
+Route::prefix('auth')->group(function () {
     // Pages (GET)
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('auth.register');
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
 
     // Actions (POST)
-    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    // Stub conservé pour la demande de lien de réinitialisation (non implémentée)
-    Route::post('/forgot-password', function (Request $request) {
-        return back()->with('status', 'Envoi du lien non implémenté');
-    })->name('password.email');
+    Route::post('/login', [AuthController::class, 'login'])->name('auth.login.submit');
+    Route::post('/register', [AuthController::class, 'register'])->name('auth.register.submit');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 });
 
-// Page de contact
-Route::view('/contact', 'contact')->name('contact');
+// Email Verification (Standard Laravel names)
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (\Illuminate\Foundation\Auth\EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('dashboard.index');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// Page de contact (gérée par le TicketController pour création de ticket)
+Route::get('/contact', [App\Http\Controllers\TicketController::class, 'create'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\TicketController::class, 'store'])->name('contact.submit');
 
 // Pages Légales
 Route::prefix('legal')->name('legal.')->group(function () {
@@ -77,8 +92,16 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         return redirect()->route('billing.overview');
     })->name('billing');
 
+    // Tickets dashboard
+    Route::prefix('tickets')->name('tickets.')->group(function () {
+        Route::get('/', [App\Http\Controllers\TicketController::class, 'index'])->name('index');
+        Route::get('/{ticket}', [App\Http\Controllers\TicketController::class, 'show'])->name('show');
+        Route::post('/{ticket}/reply', [App\Http\Controllers\TicketController::class, 'reply'])->name('reply');
+        Route::post('/{ticket}/reopen', [App\Http\Controllers\TicketController::class, 'reopen'])->name('reopen');
+    });
+
     // API interne pour le dashboard
-    Route::get('/api/pterodactyl/nests/{nestId}/eggs', function ($nestId, \App\Services\Pterodactyl\PterodactylNests $pteroNests) {
+    Route::get('/api/pterodactyl/nests/{nestId}/eggs', function ($nestId, PterodactylNests $pteroNests) {
         $eggs = $pteroNests->eggs($nestId);
         return collect($eggs['data'] ?? [])->map(fn($e) => [
             'id' => $e['attributes']['id'],
@@ -126,5 +149,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('permissions', App\Http\Controllers\Admin\AdminPermissionController::class);
 
     Route::get('billing', [App\Http\Controllers\Admin\AdminBillingController::class, 'index'])->name('billing.index');
+});
+
+// Panel Support
+Route::prefix('support')->name('support.')->middleware(['auth', 'support'])->group(function () {
+    Route::get('/', [App\Http\Controllers\Support\SupportDashboardController::class, 'index'])->name('index');
+    Route::get('/tickets/unassigned', [App\Http\Controllers\Support\SupportTicketController::class, 'unassigned'])->name('tickets.unassigned');
+    Route::get('/tickets/{ticket}', [App\Http\Controllers\Support\SupportTicketController::class, 'show'])->name('tickets.show');
+    Route::post('/tickets/{ticket}/reply', [App\Http\Controllers\Support\SupportTicketController::class, 'reply'])->name('tickets.reply');
+    Route::post('/tickets/{ticket}/assign', [App\Http\Controllers\Support\SupportTicketController::class, 'assign'])->name('tickets.assign');
+    Route::post('/tickets/{ticket}/close', [App\Http\Controllers\Support\SupportTicketController::class, 'close'])->name('tickets.close');
+    Route::post('/tickets/{ticket}/reopen', [App\Http\Controllers\Support\SupportTicketController::class, 'reopen'])->name('tickets.reopen');
+    Route::post('/tickets/{ticket}/suspend', [App\Http\Controllers\Support\SupportTicketController::class, 'suspend'])->name('tickets.suspend');
 });
 

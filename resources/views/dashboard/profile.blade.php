@@ -38,10 +38,23 @@
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Adresse e‑mail</label>
-                        <x-ui.input id="email" name="email" type="email" required
-                                    :invalid="$errors->has('email')"
-                                    value="{{ old('email', auth()->user()->email) }}"
-                                    class="mt-1" />
+                        <div class="mt-1 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                            <x-ui.input id="email" name="email" type="email" required
+                                        :invalid="$errors->has('email')"
+                                        value="{{ old('email', auth()->user()->email) }}"
+                                        class="flex-1 w-full" />
+                            @if(auth()->user()->hasVerifiedEmail())
+                                <x-ui.badge variant="success" size="sm" class="shrink-0 whitespace-nowrap">
+                                    <x-heroicon-s-check-circle class="size-3 mr-1" />
+                                    Vérifié
+                                </x-ui.badge>
+                            @else
+                                <x-ui.badge variant="warning" size="sm" class="shrink-0 whitespace-nowrap">
+                                    <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
+                                    Non vérifié
+                                </x-ui.badge>
+                            @endif
+                        </div>
                     </div>
                 </div>
 
@@ -51,6 +64,25 @@
                     </x-ui.button>
                 </div>
             </form>
+
+            @if (! auth()->user()->hasVerifiedEmail())
+                <div class="mt-6 p-4 rounded-lg bg-amber-50 border border-amber-200 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div class="flex items-start gap-3 text-amber-800">
+                        <x-heroicon-o-information-circle class="size-5 shrink-0 mt-0.5" />
+                        <div class="text-sm">
+                            <p class="font-bold">Votre adresse e-mail n'est pas encore vérifiée.</p>
+                            <p class="mt-1 opacity-90">Veuillez cliquer sur le lien envoyé par e-mail pour valider votre compte. Si vous ne l'avez pas reçu, vous pouvez en demander un nouveau.</p>
+                        </div>
+                    </div>
+                    <form method="POST" action="{{ route('verification.send') }}" class="mt-4">
+                        @csrf
+                        <x-ui.button type="submit" variant="outline" size="sm" class="bg-white hover:bg-amber-100 border-amber-300 text-amber-700 shadow-sm">
+                            <x-heroicon-o-paper-airplane class="size-3.5 mr-2" />
+                            Renvoyer l'e-mail de vérification
+                        </x-ui.button>
+                    </form>
+                </div>
+            @endif
         </div>
 
         <div class="rounded-lg border border-border bg-white p-4">

@@ -19,24 +19,34 @@ return new class extends Migration
 
     public function down(): void
     {
-        // On SQLite, you must drop the unique index before dropping the column
+        // On SQLite, you must drop the indexes before dropping the column
         if (Schema::hasColumn('users', 'pterodactyl_user_id')) {
-            // Try to drop the unique index first (ignore errors if it doesn't exist)
+            // Try to drop unique index
             try {
                 Schema::table('users', function (Blueprint $table) {
-                    // Default Laravel unique index name: {table}_{column}_unique
                     $table->dropUnique('users_pterodactyl_user_id_unique');
                 });
-            } catch (\Throwable $e) {
-                // Fallback: ask Laravel to infer the index name from the column
-                try {
-                    Schema::table('users', function (Blueprint $table) {
-                        $table->dropUnique(['pterodactyl_user_id']);
-                    });
-                } catch (\Throwable $e2) {
-                    // no-op
-                }
-            }
+            } catch (\Throwable $e) {}
+
+            // Try to drop plain index
+            try {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->dropIndex('users_pterodactyl_user_id_index');
+                });
+            } catch (\Throwable $e) {}
+
+            // Fallback for auto-generated names
+            try {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->dropUnique(['pterodactyl_user_id']);
+                });
+            } catch (\Throwable $e) {}
+
+            try {
+                Schema::table('users', function (Blueprint $table) {
+                    $table->dropIndex(['pterodactyl_user_id']);
+                });
+            } catch (\Throwable $e) {}
 
             // Now drop the column
             Schema::table('users', function (Blueprint $table) {

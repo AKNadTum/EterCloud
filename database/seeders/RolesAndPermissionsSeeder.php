@@ -24,6 +24,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'nodes.manage' => 'Gérer les nodes',
             'locations.manage' => 'Gérer les locations',
             'plans.manage' => 'Gérer les plans',
+            'support.access' => 'Accéder au panel support',
+            'support.assign' => 'Attribuer des tickets support',
         ];
 
         foreach ($permissions as $slug => $name) {
@@ -32,10 +34,15 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Création des rôles
         $adminRole = Role::firstOrCreate(['slug' => 'admin'], ['name' => 'Administrateur']);
+        $supportRole = Role::firstOrCreate(['slug' => 'support'], ['name' => 'Support']);
         $userRole = Role::firstOrCreate(['slug' => 'user'], ['name' => 'Utilisateur']);
 
         // Assigner toutes les permissions au rôle admin
         $adminRole->permissions()->sync(Permission::all());
+
+        // Assigner les permissions au rôle support
+        $supportPermissions = Permission::whereIn('slug', ['support.access', 'support.assign'])->get();
+        $supportRole->permissions()->sync($supportPermissions);
 
         // Le rôle user n'a pas de permissions administratives par défaut dans ce cas
     }

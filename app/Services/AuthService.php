@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,11 +17,15 @@ class AuthService
     public function register(array $data): User
     {
         // Le cast "password" => "hashed" dans le modèle User s'occupe du hash
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
+
+        event(new Registered($user));
+
+        return $user;
     }
 
     /**

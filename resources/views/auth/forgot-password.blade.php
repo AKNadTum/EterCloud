@@ -20,7 +20,7 @@
         </x-ui.alert>
     @endif
 
-    <form method="POST" action="{{ route('auth.password.email') }}" class="space-y-6" novalidate>
+    <form method="POST" action="{{ route('password.email') }}" class="space-y-6" novalidate>
         @csrf
 
         <!-- Email -->

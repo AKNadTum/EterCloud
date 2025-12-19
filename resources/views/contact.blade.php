@@ -29,62 +29,73 @@
                             <x-heroicon-o-paper-airplane class="size-32 -rotate-12" />
                         </div>
 
-                        <form method="post" action="#" class="relative space-y-8">
-                            @csrf
+                        @auth
+                            <form method="post" action="{{ route('contact.submit') }}" class="relative space-y-8">
+                                @csrf
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="space-y-3">
+                                        <label for="name" class="text-sm font-bold flex items-center gap-2">
+                                            <x-heroicon-o-user class="size-4 text-muted-foreground" />
+                                            Votre Nom
+                                        </label>
+                                        <x-ui.input id="name" name="name" :value="auth()->user()->display_name" disabled />
+                                    </div>
+                                    <div class="space-y-3">
+                                        <label for="reason" class="text-sm font-bold flex items-center gap-2">
+                                            <x-heroicon-o-chat-bubble-bottom-center-text class="size-4 text-muted-foreground" />
+                                            Raison de votre ticket
+                                        </label>
+                                        <select id="reason" name="reason" class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-4 py-3 text-sm text-[var(--control-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ring-offset-[var(--background)] transition-all" required>
+                                            <option value="" disabled selected>Sélectionnez une raison</option>
+                                            @foreach($reasons as $key => $reason)
+                                                <option value="{{ $key }}" {{ old('reason') == $key ? 'selected' : '' }}>{{ $reason['label'] }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('reason')
+                                            <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="space-y-3">
-                                    <label for="name" class="text-sm font-bold flex items-center gap-2">
-                                        <x-heroicon-o-user class="size-4 text-muted-foreground" />
-                                        Votre Nom
+                                    <label for="message" class="text-sm font-bold flex items-center gap-2">
+                                        <x-heroicon-o-pencil-square class="size-4 text-muted-foreground" />
+                                        Message
                                     </label>
-                                    <x-ui.input id="name" name="name" :value="old('name')" placeholder="Jean Dupont" required />
-                                    @error('name')
-                                        <p class="mt-1 text-xs text-[var(--destructive-foreground)]">{{ $message }}</p>
+                                    <textarea id="message" name="message" rows="6"
+                                              class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-4 py-3 text-sm text-[var(--control-foreground)] placeholder:text-[var(--muted-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ring-offset-[var(--background)] transition-all resize-none"
+                                              placeholder="Décrivez votre demande en détail...">{{ old('message') }}</textarea>
+                                    @error('message')
+                                        <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="space-y-3">
-                                    <label for="email" class="text-sm font-bold flex items-center gap-2">
-                                        <x-heroicon-o-envelope class="size-4 text-muted-foreground" />
-                                        Votre Email
-                                    </label>
-                                    <x-ui.input id="email" type="email" name="email" :value="old('email')" placeholder="jean@exemple.com" required />
-                                    @error('email')
-                                        <p class="mt-1 text-xs text-[var(--destructive-foreground)]">{{ $message }}</p>
-                                    @enderror
+
+                                <div class="pt-4">
+                                    <x-ui.button type="submit" size="lg" class="w-full md:w-auto px-12 font-bold shadow-xl shadow-[var(--primary)]/30 hover:scale-[1.02] transition-transform">
+                                        Ouvrir le ticket
+                                    </x-ui.button>
+                                </div>
+                            </form>
+                        @else
+                            <div class="relative py-12 text-center space-y-6">
+                                <div class="size-20 bg-[var(--primary)]/10 text-[var(--primary-foreground)] rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <x-heroicon-o-lock-closed class="size-10" />
+                                </div>
+                                <h3 class="text-2xl font-bold">Connexion requise</h3>
+                                <p class="text-muted-foreground max-w-md mx-auto">
+                                    Vous devez être connecté à votre compte EterCloud pour ouvrir un ticket de support et discuter avec nos agents.
+                                </p>
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                                    <x-ui.button href="{{ route('login') }}" size="lg" class="w-full sm:w-auto px-8">
+                                        Se connecter
+                                    </x-ui.button>
+                                    <x-ui.button href="{{ route('register') }}" variant="outline" size="lg" class="w-full sm:w-auto px-8">
+                                        Créer un compte
+                                    </x-ui.button>
                                 </div>
                             </div>
-
-                            <div class="space-y-3">
-                                <label for="subject" class="text-sm font-bold flex items-center gap-2">
-                                    <x-heroicon-o-chat-bubble-bottom-center-text class="size-4 text-muted-foreground" />
-                                    Sujet de votre message
-                                </label>
-                                <x-ui.input id="subject" name="subject" :value="old('subject')" placeholder="En quoi pouvons-nous vous aider ?" required />
-                                @error('subject')
-                                    <p class="mt-1 text-xs text-[var(--destructive-foreground)]">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="space-y-3">
-                                <label for="message" class="text-sm font-bold flex items-center gap-2">
-                                    <x-heroicon-o-pencil-square class="size-4 text-muted-foreground" />
-                                    Message
-                                </label>
-                                <textarea id="message" name="message" rows="6"
-                                          class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-4 py-3 text-sm text-[var(--control-foreground)] placeholder:text-[var(--muted-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ring-offset-[var(--background)] transition-all resize-none"
-                                          placeholder="Décrivez votre demande en détail...">{{ old('message') }}</textarea>
-                                @error('message')
-                                    <p class="mt-1 text-xs text-[var(--destructive-foreground)]">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="pt-4">
-                                <x-ui.button type="submit" size="lg" class="w-full md:w-auto px-12 font-bold shadow-xl shadow-[var(--primary)]/30 hover:scale-[1.02] transition-transform">
-                                    Envoyer mon message
-                                </x-ui.button>
-                            </div>
-                        </form>
+                        @endauth
                     </div>
                 </div>
 
