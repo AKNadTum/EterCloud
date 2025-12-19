@@ -84,8 +84,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::post('/profile/stripe/link', [UserController::class, 'linkStripe'])->name('profile.stripe.link');
     // Servers dashboard
     Route::get('/servers', [ServerController::class, 'index'])->name('servers');
-    Route::get('/servers/create', [ServerController::class, 'create'])->name('servers.create');
-    Route::post('/servers', [ServerController::class, 'store'])->name('servers.store');
+    Route::get('/servers/create', [ServerController::class, 'create'])->middleware('verified')->name('servers.create');
+    Route::post('/servers', [ServerController::class, 'store'])->middleware('verified')->name('servers.store');
     Route::delete('/servers/{id}', [ServerController::class, 'destroy'])->name('servers.destroy');
     // La page de facturation du dashboard redirige vers le portail Stripe
     Route::get('/billing', function () {

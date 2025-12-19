@@ -15,6 +15,7 @@ class Ticket extends Model
     const REASONS = [
         'technical_issue' => ['label' => 'Problème technique', 'priority' => 'high'],
         'billing_issue' => ['label' => 'Problème de facturation', 'priority' => 'medium'],
+        'quote_request' => ['label' => 'Demande de devis / Plan sur mesure', 'priority' => 'medium'],
         'bug_report' => ['label' => 'Signalement de bug', 'priority' => 'low'],
         'partnership' => ['label' => 'Demande de partenariat', 'priority' => 'low'],
         'other' => ['label' => 'Autre demande', 'priority' => 'medium'],

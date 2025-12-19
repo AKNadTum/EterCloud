@@ -19,23 +19,25 @@ class TicketController extends Controller
         return view('dashboard.tickets.index', compact('tickets'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $reasons = Ticket::REASONS;
-        return view('contact', compact('reasons'));
+        $preselectedReason = $request->query('reason');
+        return view('contact', compact('reasons', 'preselectedReason'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'reason' => 'required|string|in:' . implode(',', array_keys(Ticket::REASONS)),
+            'subject' => 'nullable|string|max:255',
             'message' => 'required|string',
         ]);
 
         $reason = Ticket::REASONS[$validated['reason']];
 
         $ticketData = [
-            'subject' => $reason['label'],
+            'subject' => $validated['subject'] ?: $reason['label'],
             'priority' => $reason['priority'],
             'message' => $validated['message'],
         ];

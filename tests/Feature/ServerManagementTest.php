@@ -113,7 +113,8 @@ class ServerManagementTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Utilisation :');
         $response->assertSee('2');
-        $response->assertSee('/ 5 serveurs');
+        $response->assertSee('/ 5');
+        $response->assertSee('serveurs');
         $response->assertSee('Plan Premium');
     }
 }

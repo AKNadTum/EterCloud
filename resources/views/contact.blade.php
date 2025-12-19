@@ -47,15 +47,26 @@
                                             Raison de votre ticket
                                         </label>
                                         <select id="reason" name="reason" class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-4 py-3 text-sm text-[var(--control-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ring-offset-[var(--background)] transition-all" required>
-                                            <option value="" disabled selected>Sélectionnez une raison</option>
+                                            <option value="" disabled {{ !isset($preselectedReason) ? 'selected' : '' }}>Sélectionnez une raison</option>
                                             @foreach($reasons as $key => $reason)
-                                                <option value="{{ $key }}" {{ old('reason') == $key ? 'selected' : '' }}>{{ $reason['label'] }}</option>
+                                                <option value="{{ $key }}" {{ (old('reason') ?? ($preselectedReason ?? '')) == $key ? 'selected' : '' }}>{{ $reason['label'] }}</option>
                                             @endforeach
                                         </select>
                                         @error('reason')
                                             <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <label for="subject" class="text-sm font-bold flex items-center gap-2">
+                                        <x-heroicon-o-tag class="size-4 text-muted-foreground" />
+                                        Sujet (optionnel)
+                                    </label>
+                                    <x-ui.input id="subject" name="subject" :value="old('subject')" placeholder="Laissez vide pour utiliser la raison par défaut" />
+                                    @error('subject')
+                                        <p class="mt-1 text-xs text-rose-500">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="space-y-3">
@@ -154,4 +165,29 @@
             </div>
         </div>
     </section>
+
+    @auth
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const reasonSelect = document.getElementById('reason');
+                const messageTextarea = document.getElementById('message');
+
+                const templates = {
+                    'quote_request': "Bonjour,\n\nJe souhaiterais obtenir un devis pour un plan sur mesure.\n\nVoici mes besoins :\n- CPU :\n- RAM :\n- Stockage :\n- Usage prévu :\n\nMerci d'avance.",
+                };
+
+                reasonSelect.addEventListener('change', function() {
+                    const selectedReason = this.value;
+                    if (templates[selectedReason] && messageTextarea.value.trim() === '') {
+                        messageTextarea.value = templates[selectedReason];
+                    }
+                });
+
+                // Trigger on load if reason is already selected
+                if (reasonSelect.value && templates[reasonSelect.value] && messageTextarea.value.trim() === '') {
+                    messageTextarea.value = templates[reasonSelect.value];
+                }
+            });
+        </script>
+    @endauth
 @endsection

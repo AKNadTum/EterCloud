@@ -18,6 +18,19 @@ class UserService
      */
     public function updateProfile(User $user, array $data): void
     {
+        // Si l'email est présent dans les données et qu'il est différent de l'actuel
+        if (isset($data['email']) && $data['email'] !== $user->email) {
+            $user->email_verified_at = null; // Invalide la vérification actuelle
+
+            // On remplit les données avant d'envoyer la notification pour que l'email soit à jour
+            $user->fill($data);
+            $user->save();
+
+            // Envoie le nouveau lien de vérification à la nouvelle adresse
+            $user->sendEmailVerificationNotification();
+            return;
+        }
+
         $user->fill($data);
         $user->save();
     }

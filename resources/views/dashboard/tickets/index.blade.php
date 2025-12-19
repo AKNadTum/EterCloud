@@ -46,15 +46,15 @@
                                     @php
                                         $statusColors = [
                                             'open' => 'bg-emerald-100 text-emerald-700',
-                                            'pending' => 'bg-amber-100 text-amber-700',
-                                            'user_replied' => 'bg-blue-100 text-blue-700',
+                                            'pending' => 'bg-blue-100 text-blue-700',
+                                            'user_replied' => 'bg-amber-100 text-amber-700',
                                             'closed' => 'bg-gray-100 text-gray-700',
                                             'suspended' => 'bg-purple-100 text-purple-700',
                                         ];
                                         $statusLabels = [
                                             'open' => 'Ouvert',
-                                            'pending' => 'En attente',
-                                            'user_replied' => 'Réponse client',
+                                            'pending' => 'Réponse Support',
+                                            'user_replied' => 'Attente Support',
                                             'closed' => 'Fermé',
                                             'suspended' => 'Suspendu',
                                         ];
@@ -64,14 +64,20 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="text-sm text-gray-600 capitalize">
-                                        @if($ticket->priority === 'high')
-                                            <span class="text-rose-600 font-bold">Haute</span>
-                                        @elseif($ticket->priority === 'medium')
-                                            Moyenne
-                                        @else
-                                            Basse
-                                        @endif
+                                    @php
+                                        $priorityColors = [
+                                            'high' => 'bg-rose-100 text-rose-700 border-rose-200',
+                                            'medium' => 'bg-amber-100 text-amber-700 border-amber-200',
+                                            'low' => 'bg-slate-100 text-slate-700 border-slate-200',
+                                        ];
+                                        $priorityLabels = [
+                                            'high' => 'Haute',
+                                            'medium' => 'Moyenne',
+                                            'low' => 'Basse',
+                                        ];
+                                    @endphp
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border {{ $priorityColors[$ticket->priority] ?? 'bg-gray-100 text-gray-700' }}">
+                                        {{ $priorityLabels[$ticket->priority] ?? $ticket->priority }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">

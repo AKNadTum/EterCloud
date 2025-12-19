@@ -127,9 +127,9 @@
                             <x-ui.badge variant="subtle" class="px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
                         </div>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6">
+                    <div class="flex flex-wrap justify-center gap-6 mx-auto" style="max-width: 1100px;">
                         @foreach($plans as $plan)
-                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
+                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
                                 <x-card.pricing-card
                                     :title="$plan->name"
                                     :price="$stripePrices[$plan->id]['price'] ?? null"
@@ -171,7 +171,7 @@
                         @endphp
 
                         @for($i = 0; $i < $customCardsToAdd; $i++)
-                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
+                            <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
                                 <x-card.pricing-card
                                     title="Sur mesure"
                                     price="Sur devis"
@@ -180,7 +180,7 @@
                                     :isPopular="false"
                                 >
                                     <div class="flex flex-col gap-2">
-                                        <x-ui.button href="mailto:contact@etercloud.fr" class="w-full justify-center font-bold" variant="outline">
+                                        <x-ui.button href="{{ route('contact', ['reason' => 'quote_request']) }}" class="w-full justify-center font-bold" variant="outline">
                                             Contactez-nous
                                         </x-ui.button>
                                     </div>
