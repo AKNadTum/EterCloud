@@ -18,7 +18,7 @@ COPY public/ ./public/
 RUN npm install && npm run build
 
 # Stage 3: Production image
-FROM dunglas/frankenphp:1-php8.3-alpine
+FROM dunglas/frankenphp:1-php8.4-alpine
 
 # Install system dependencies and PHP extensions
 RUN install-php-extensions \
