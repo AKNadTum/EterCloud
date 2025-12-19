@@ -1,0 +1,6 @@
+deploy:
+  - php artisan migrate --force
+  - php artisan db:seed --force --class=RolesAndPermissionsSeeder
+  - php artisan db:seed --force --class=LocationSeeder
+  - php artisan db:seed --force --class=PlanSeeder
+  - php artisan optimize

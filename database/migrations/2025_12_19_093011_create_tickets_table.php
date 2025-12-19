@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('assigned_to')->nullable()->constrained('users')->onDelete('set null');
             $table->string('subject');
-            $table->enum('status', ['open', 'pending', 'closed'])->default('open');
-            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->string('status')->default('open');
+            $table->string('priority')->default('medium');
             $table->timestamp('last_reply_at')->nullable();
             $table->timestamps();
         });
