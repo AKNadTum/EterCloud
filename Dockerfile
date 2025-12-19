@@ -1,6 +1,10 @@
-# Stage 1: PHP dependencies
-FROM composer:2.7 as vendor
+# Stage 1: PHP dependencies (using PHP 8.4 from FrankenPHP)
+FROM dunglas/frankenphp:1-php8.4-alpine AS vendor
 WORKDIR /app
+
+# Install Composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
 COPY composer.json composer.lock ./
 RUN composer install \
     --no-dev \
@@ -10,7 +14,7 @@ RUN composer install \
     --prefer-dist
 
 # Stage 2: Frontend assets
-FROM node:20-alpine as frontend
+FROM node:20-alpine AS frontend
 WORKDIR /app
 COPY package.json package-lock.json vite.config.js ./
 COPY resources/ ./resources/
