@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Drop the table if it exists without foreign keys
+        Schema::dropIfExists('ticket_messages');
+
+        // Recreate with proper foreign keys
         Schema::create('ticket_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
