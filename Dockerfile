@@ -24,6 +24,9 @@ RUN npm install && npm run build
 # Stage 3: Production image
 FROM dunglas/frankenphp:1-php8.4-alpine
 
+# Copy Composer from official image
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
 # Install system dependencies and PHP extensions
 RUN install-php-extensions \
     pcntl \
