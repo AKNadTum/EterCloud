@@ -236,7 +236,7 @@
                                 </svg>
                             </summary>
                             <div class="mt-4 text-muted-foreground leading-relaxed border-t pt-4 border-[var(--success-foreground)]/10">
-                                Le déploiement est instantané. Dès que ton plan est activé, ton serveur commence à s'installer automatiquement et est prêt à l'emploi en moins de 60 secondes.
+                                Une fois qu'on déploie un serveur, celui-ci est en ligne en quelques secondes.
                             </div>
                         </details>
                     </div>
