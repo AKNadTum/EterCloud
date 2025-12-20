@@ -49,12 +49,23 @@ class VerificationRequiredTest extends TestCase
             'databases_limit' => 1,
         ]);
 
+        $location = \App\Models\Location::create(['ptero_id_location' => 1, 'name' => 'Test']);
+        $plan->locations()->attach($location);
+
         $this->mock(\App\Services\StripeService::class, function ($mock) use ($plan) {
             $mock->shouldReceive('getCustomerDetails')->andReturn(['plan' => $plan]);
         });
 
         $this->mock(\App\Services\Pterodactyl\PterodactylNests::class, function ($mock) {
             $mock->shouldReceive('list')->andReturn(['data' => []]);
+        });
+
+        $this->mock(\App\Services\Pterodactyl\PterodactylLocations::class, function ($mock) {
+            $mock->shouldReceive('list')->andReturn(['data' => [['attributes' => ['id' => 1, 'short' => 'T1', 'long' => 'Test']]]]);
+        });
+
+        $this->mock(\App\Services\Pterodactyl\PterodactylNodes::class, function ($mock) {
+            $mock->shouldReceive('list')->andReturn(['data' => [['attributes' => ['location_id' => 1]]]]);
         });
 
         $response = $this->actingAs($user)->get(route('dashboard.servers.create'));

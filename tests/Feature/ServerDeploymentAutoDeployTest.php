@@ -5,7 +5,9 @@ namespace Tests\Feature;
 use App\Models\Location;
 use App\Models\Plan;
 use App\Models\User;
+use App\Services\Pterodactyl\PterodactylLocations;
 use App\Services\Pterodactyl\PterodactylNests;
+use App\Services\Pterodactyl\PterodactylNodes;
 use App\Services\Pterodactyl\PterodactylServers;
 use App\Services\StripeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -60,6 +62,14 @@ class ServerDeploymentAutoDeployTest extends TestCase
             $mock->shouldReceive('getEggEnvironmentDefaults')->andReturn([
                 'executable' => 'server.jar'
             ]);
+        });
+
+        $this->mock(PterodactylLocations::class, function (MockInterface $mock) {
+            $mock->shouldReceive('list')->andReturn(['data' => [['attributes' => ['id' => 10, 'short' => 'BE', 'long' => 'Belgium']]]]);
+        });
+
+        $this->mock(PterodactylNodes::class, function (MockInterface $mock) {
+            $mock->shouldReceive('list')->andReturn(['data' => [['attributes' => ['location_id' => 10]]]]);
         });
 
         // Mock PterodactylServers pour vérifier le payload

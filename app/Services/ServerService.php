@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\Pterodactyl\PterodactylNests;
 use App\Services\Pterodactyl\PterodactylServers;
 use App\Services\Pterodactyl\PterodactylLocations;
+use App\Services\Pterodactyl\PterodactylNodes;
 
 class ServerService
 {
@@ -14,6 +15,7 @@ class ServerService
         private readonly PterodactylServers $pteroServers,
         private readonly PterodactylNests $pteroNests,
         private readonly PterodactylLocations $pteroLocations,
+        private readonly PterodactylNodes $pteroNodes,
         private readonly UserService $users,
     ) {
     }
@@ -30,21 +32,31 @@ class ServerService
     }
 
     /**
-     * Retourne les localisations enrichies pour un plan donné.
+     * Retourne les localisations enrichies pour un plan donné,
+     * en filtrant celles qui n'ont aucun node sur Pterodactyl.
      */
     public function getAvailableLocationsForPlan(Plan $plan): \Illuminate\Support\Collection
     {
         $pteroLocations = collect($this->pteroLocations->list()['data'] ?? []);
-        return $plan->locations->map(function ($location) use ($pteroLocations) {
-            $ptero = $pteroLocations->firstWhere('attributes.id', $location->ptero_id_location);
-            if ($ptero) {
-                // On utilise le short code et le nom long (description)
-                $location->display_name = $ptero['attributes']['short'] . ' - ' . $ptero['attributes']['long'];
-            } else {
-                $location->display_name = $location->name ?? $location->ptero_id_location;
-            }
-            return $location;
-        });
+        $pteroNodes = collect($this->pteroNodes->list()['data'] ?? []);
+
+        // On récupère les IDs des localisations qui ont au moins un node
+        $locationIdsWithNodes = $pteroNodes->pluck('attributes.location_id')->unique();
+
+        return $plan->locations
+            ->filter(function ($location) use ($locationIdsWithNodes) {
+                return $locationIdsWithNodes->contains($location->ptero_id_location);
+            })
+            ->map(function ($location) use ($pteroLocations) {
+                $ptero = $pteroLocations->firstWhere('attributes.id', $location->ptero_id_location);
+                if ($ptero) {
+                    // On utilise le short code et le nom long (description)
+                    $location->display_name = $ptero['attributes']['short'] . ' - ' . $ptero['attributes']['long'];
+                } else {
+                    $location->display_name = $location->name ?? $location->ptero_id_location;
+                }
+                return $location;
+            });
     }
 
     /**

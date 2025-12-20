@@ -55,6 +55,11 @@ class ServerController extends Controller
         }
 
         $locations = $this->servers->getAvailableLocationsForPlan($plan);
+
+        if ($locations->isEmpty()) {
+            return redirect()->route('dashboard.servers')->with('error', 'Aucune localisation disponible pour votre offre actuellement. Veuillez contacter le support.');
+        }
+
         $nests = $this->pteroNests->list();
 
         return view('dashboard.servers.create', compact('plan', 'locations', 'nests'));
@@ -85,6 +90,15 @@ class ServerController extends Controller
 
         if (!$plan) {
             return redirect()->to(route('home') . '#plans')->with('error', 'Vous devez avoir un abonnement actif pour créer un serveur.');
+        }
+
+        $locations = $this->servers->getAvailableLocationsForPlan($plan);
+        if ($locations->isEmpty()) {
+            return redirect()->route('dashboard.servers')->with('error', 'Aucune localisation disponible pour votre offre actuellement.');
+        }
+
+        if (!$locations->pluck('ptero_id_location')->contains((int) $validated['location_id'])) {
+            return back()->with('error', 'La localisation sélectionnée n\'est pas disponible pour votre offre.');
         }
 
         if (!$this->servers->canCreateServer($user, $plan)) {
