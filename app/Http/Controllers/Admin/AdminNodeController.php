@@ -20,7 +20,10 @@ class AdminNodeController extends Controller
     public function index(Request $request): View
     {
         $page = $request->get('page', 1);
-        $nodes = $this->pteroNodes->list(['page' => $page]);
+        $nodes = $this->pteroNodes->list([
+            'page' => $page,
+            'include' => 'servers'
+        ]);
         return view('admin.nodes.index', compact('nodes'));
     }
 

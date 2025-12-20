@@ -26,7 +26,7 @@
                             {{ $attr['allocated_resources']['memory'] }} / {{ $attr['memory'] }} MB
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                            {{ $attr['servers_count'] ?? 'N/A' }}
+                            {{ $node['attributes']['relationships']['servers']['meta']['pagination']['total'] ?? 0 }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('admin.nodes.show', $attr['id']) }}" class="text-[var(--primary-foreground)] hover:underline">Détails</a>
