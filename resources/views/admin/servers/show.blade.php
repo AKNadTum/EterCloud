@@ -16,8 +16,11 @@
                 <dt class="text-sm font-medium text-[var(--muted-foreground)]">Nom</dt>
                 <dd class="text-sm text-[var(--foreground)] font-bold">{{ $server['attributes']['name'] }}</dd>
 
-                <dt class="text-sm font-medium text-[var(--muted-foreground)]">Propriétaire (User ID)</dt>
-                <dd class="text-sm text-[var(--foreground)] font-bold">{{ $server['attributes']['user'] }}</dd>
+                <dt class="text-sm font-medium text-[var(--muted-foreground)]">Propriétaire</dt>
+                <dd class="text-sm text-[var(--foreground)] font-bold">
+                    {{ $server['attributes']['relationships']['user']['attributes']['username'] ?? 'Inconnu' }}
+                    <span class="text-xs font-normal text-[var(--muted-foreground)]">(ID: {{ $server['attributes']['user'] }})</span>
+                </dd>
 
                 <dt class="text-sm font-medium text-[var(--muted-foreground)]">Node ID</dt>
                 <dd class="text-sm text-[var(--foreground)] font-bold">{{ $server['attributes']['node'] }}</dd>

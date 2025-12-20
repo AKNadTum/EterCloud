@@ -17,13 +17,13 @@ class AdminServerController extends Controller
     public function index(Request $request): View
     {
         $page = $request->get('page', 1);
-        $servers = $this->pteroServers->list(['page' => $page]);
+        $servers = $this->pteroServers->list(['page' => $page, 'include' => 'user']);
         return view('admin.servers.index', compact('servers'));
     }
 
     public function show(int $id): View
     {
-        $server = $this->pteroServers->get($id);
+        $server = $this->pteroServers->get($id, ['include' => 'user']);
         return view('admin.servers.show', compact('server'));
     }
 

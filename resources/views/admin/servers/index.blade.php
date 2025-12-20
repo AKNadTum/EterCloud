@@ -20,7 +20,9 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $attr['id'] }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{{ $attr['name'] }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $attr['user'] }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                            {{ $attr['relationships']['user']['attributes']['username'] ?? $attr['user'] }}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $attr['node'] }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('admin.servers.show', $attr['id']) }}" class="text-[var(--primary-foreground)] hover:underline mr-3">Détails</a>
