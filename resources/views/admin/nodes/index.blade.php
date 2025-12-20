@@ -26,7 +26,11 @@
                             {{ $attr['allocated_resources']['memory'] }} / {{ $attr['memory'] }} MB
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                            {{ $node['attributes']['relationships']['servers']['meta']['pagination']['total'] ?? 0 }}
+                            @php
+                                $servers = data_get($node, 'attributes.relationships.servers') ?? data_get($node, 'relationships.servers');
+                                $count = data_get($servers, 'meta.pagination.total') ?? (is_array(data_get($servers, 'data')) ? count(data_get($servers, 'data')) : 0);
+                            @endphp
+                            {{ $count }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('admin.nodes.show', $attr['id']) }}" class="text-[var(--primary-foreground)] hover:underline">Détails</a>
