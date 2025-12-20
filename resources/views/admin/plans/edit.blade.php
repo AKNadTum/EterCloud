@@ -3,11 +3,10 @@
 @section('title', 'Modifier le Plan')
 
 @section('content')
-    <x-ui.card title="Modifier le Plan" description="Configurez les ressources et les limites du plan {{ $plan->name }}." class="max-w-4xl">
-        <form action="{{ route('admin.plans.update', $plan) }}" method="POST">
-            @csrf
-            @method('PUT')
-
+    <form action="{{ route('admin.plans.update', $plan) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <x-ui.card title="Modifier le Plan" description="Configurez les ressources et les limites du plan {{ $plan->name }}." class="max-w-4xl">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="md:col-span-2">
                     <x-ui.form.group label="Nom du Plan" name="name" required>
@@ -91,6 +90,6 @@
                     </x-ui.button>
                 </div>
             </x-slot>
-        </form>
-    </x-ui.card>
+        </x-ui.card>
+    </form>
 @endsection

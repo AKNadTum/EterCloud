@@ -3,10 +3,9 @@
 @section('title', 'Nouvel Utilisateur')
 
 @section('content')
-    <x-ui.card title="Nouvel Utilisateur" description="Créez un nouveau compte utilisateur." class="max-w-2xl">
-        <form action="{{ route('admin.users.store') }}" method="POST">
-            @csrf
-
+    <form action="{{ route('admin.users.store') }}" method="POST">
+        @csrf
+        <x-ui.card title="Nouvel Utilisateur" description="Créez un nouveau compte utilisateur." class="max-w-2xl">
             <div class="space-y-4">
                 <x-ui.form.group label="Nom" name="name" required>
                     <x-ui.input type="text" name="name" id="name" value="{{ old('name') }}" required :invalid="$errors->has('name')" placeholder="Nom de l'utilisateur" />
@@ -41,6 +40,6 @@
                     </x-ui.button>
                 </div>
             </x-slot>
-        </form>
-    </x-ui.card>
+        </x-ui.card>
+    </form>
 @endsection

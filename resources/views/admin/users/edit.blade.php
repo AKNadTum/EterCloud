@@ -3,11 +3,10 @@
 @section('title', 'Modifier l\'utilisateur')
 
 @section('content')
-    <x-ui.card title="Modifier l'utilisateur" description="Mettez à jour les informations de compte de {{ $user->name }}." class="max-w-2xl">
-        <form action="{{ route('admin.users.update', $user) }}" method="POST">
-            @csrf
-            @method('PUT')
-
+    <form action="{{ route('admin.users.update', $user) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <x-ui.card title="Modifier l'utilisateur" description="Mettez à jour les informations de compte de {{ $user->name }}." class="max-w-2xl">
             <div class="space-y-4">
                 <x-ui.form.group label="Nom" name="name" required>
                     <x-ui.input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required :invalid="$errors->has('name')" />
@@ -38,6 +37,6 @@
                     </x-ui.button>
                 </div>
             </x-slot>
-        </form>
-    </x-ui.card>
+        </x-ui.card>
+    </form>
 @endsection
