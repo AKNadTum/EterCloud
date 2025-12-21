@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="pt-24 pb-12">
+        <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
                     État de l'infrastructure
@@ -22,7 +22,7 @@
             @else
                 <!-- État Global -->
                 <div class="mb-12">
-                    <div class="bg-white rounded-[var(--radius-lg)] shadow-sm border border-[var(--border)] p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="bg-[var(--control-background)] rounded-[var(--radius-lg)] shadow-sm border border-[var(--border)] p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
                             <div class="size-16 rounded-full bg-[var(--success)] flex items-center justify-center">
                                 <x-heroicon-o-check-circle class="size-10 text-[var(--success-foreground)]" />
@@ -38,7 +38,7 @@
 
                 <!-- Statistiques Globales -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
+                    <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
                         <div class="size-12 rounded-xl bg-[var(--primary)] flex items-center justify-center">
                             <x-heroicon-o-server-stack class="size-6 text-[var(--primary-foreground)]" />
                         </div>
@@ -47,7 +47,7 @@
                             <div class="text-2xl font-black">{{ $stats['total_nodes'] }}</div>
                         </div>
                     </div>
-                    <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
+                    <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
                         <div class="size-12 rounded-xl bg-[var(--accent)] flex items-center justify-center">
                             <x-heroicon-o-cpu-chip class="size-6 text-[var(--accent-foreground)]" />
                         </div>
@@ -56,7 +56,7 @@
                             <div class="text-2xl font-black">{{ $stats['total_servers'] }}</div>
                         </div>
                     </div>
-                    <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
+                    <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
                         <div class="size-12 rounded-xl bg-[var(--success)] flex items-center justify-center">
                             <x-heroicon-o-circle-stack class="size-6 text-[var(--success-foreground)]" />
                         </div>
@@ -74,7 +74,7 @@
                             <x-heroicon-o-cpu-chip class="size-5 text-[var(--primary)]" />
                             Services
                         </h2>
-                        <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] divide-y divide-[var(--border)] shadow-sm">
+                        <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] divide-y divide-[var(--border)] shadow-sm">
                             @foreach($components as $component)
                                 <div class="p-4 flex items-center justify-between">
                                     <div>
@@ -130,7 +130,7 @@
                                     $cpuPercent = !$isCpuUnlimited ? min(($cpuUsed / $cpuTotal) * 100, 100) : 0;
                                 @endphp
 
-                                <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm overflow-hidden flex flex-col">
+                                <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm overflow-hidden flex flex-col">
                                     <div class="p-5 border-b border-[var(--border)] bg-muted/20 flex items-center justify-between">
                                         <div class="flex items-center gap-3">
                                             <div class="size-8 rounded-lg bg-[var(--primary)] flex items-center justify-center border border-[var(--primary)]/30">
@@ -190,7 +190,7 @@
                         <x-heroicon-o-clock class="size-5 text-[var(--primary-foreground)]" />
                         Historique des incidents
                     </h2>
-                    <div class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-8 italic text-center text-muted-foreground text-sm font-medium shadow-sm">
+                    <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-8 italic text-center text-muted-foreground text-sm font-medium shadow-sm">
                         Aucun incident majeur n'a été signalé au cours des 90 derniers jours.
                     </div>
                 </div>

@@ -2,9 +2,9 @@
 
 @section('content')
     <!-- HERO -->
-    <section class="relative overflow-hidden py-16 md:py-24">
+    <section class="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 -mt-[88px]">
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/20 to-transparent -z-10"></div>
-        <div class="mx-auto px-4" style="max-width: 70%;">
+        <div class="mx-auto px-4" style="max-width: 85%;">
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
                 <div class="space-y-8">
                     <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10">
@@ -55,7 +55,7 @@
 
     <!-- POURQUOI NOUS -->
     <section class="py-20">
-        <div class="mx-auto px-4" style="max-width: 70%;">
+        <div class="mx-auto px-4" style="max-width: 85%;">
             <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight">Pourquoi nous ?</h2>
                 <p class="mt-3 text-muted-foreground">Une expérience d'hébergement pensée pour la simplicité.</p>
@@ -71,7 +71,7 @@
                     variant="success"
                     icon="heroicon-o-sparkles"
                     title="Gratuit & Performant"
-                    description="Une alternative à Aternos sans file d'attente. Ton serveur Minecraft gratuit avec de vraies performances."
+                    description="Une alternative à Aternos sans file d'attente."
                 />
                 <x-card.info-card
                     variant="accent"
@@ -91,23 +91,23 @@
 
     <!-- COMMENT ÇA MARCHE -->
     <section class="py-20 bg-[var(--secondary)]/30">
-        <div class="mx-auto px-4" style="max-width: 70%;">
+        <div class="mx-auto px-4" style="max-width: 85%;">
             <div class="mb-12 text-center text-balance">
                 <h2 class="text-3xl font-bold tracking-tight">Prêt en 3 étapes</h2>
                 <p class="mt-3 text-muted-foreground">Lancer ton serveur n'a jamais été aussi facile.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white border card-primary rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
+                <div class="bg-[var(--control-background)] border card-primary rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
                     <div class="size-14 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] border border-[var(--primary-foreground)]/10 flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-sm">1</div>
                     <h3 class="text-xl font-bold mb-3">Compte</h3>
                     <p class="text-sm text-muted-foreground leading-relaxed">Inscris-toi en quelques secondes, sans carte bancaire requise.</p>
                 </div>
-                <div class="bg-white border card-accent rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
+                <div class="bg-[var(--control-background)] border card-accent rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
                     <div class="size-14 rounded-2xl bg-[var(--accent)] text-[var(--accent-foreground)] border border-[var(--accent-foreground)]/10 flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-sm">2</div>
                     <h3 class="text-xl font-bold mb-3">Déploiement</h3>
                     <p class="text-sm text-muted-foreground leading-relaxed">Choisis ton plan et ton serveur se configure automatiquement.</p>
                 </div>
-                <div class="bg-white border card-success rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
+                <div class="bg-[var(--control-background)] border card-success rounded-[var(--radius-lg)] p-8 text-center transition-all duration-300 shadow-sm">
                     <div class="size-14 rounded-2xl bg-[var(--success)] text-[var(--success-foreground)] border border-[var(--success-foreground)]/10 flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-sm">3</div>
                     <h3 class="text-xl font-bold mb-3">Aventure</h3>
                     <p class="text-sm text-muted-foreground leading-relaxed">Rejoins ton serveur avec tes amis et commence à bâtir ton monde.</p>
@@ -118,7 +118,7 @@
 
     @if(isset($plans) && $plans->count() > 0)
         <section id="plans" class="py-24 scroll-mt-24">
-                <div class="mx-auto px-4" style="max-width: 80%;">
+                <div class="mx-auto px-4" style="max-width: 90%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Choisis ton plan</h2>
                         <p class="mt-3 text-muted-foreground">Une tarification transparente pour tous les besoins.</p>
@@ -128,7 +128,7 @@
                             <x-ui.badge variant="subtle" class="px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
                         </div>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6 mx-auto" style="max-width: 1155px;">
+                    <div class="flex flex-wrap justify-center gap-6 mx-auto" style="max-width: 1400px;">
                         @foreach($plans as $plan)
                             <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
                                 <x-card.pricing-card
@@ -200,14 +200,14 @@
 
             <!-- FAQ -->
             <section class="py-24 bg-[var(--secondary)]/20">
-                <div class="mx-auto px-4" style="max-width: 55%;">
+                <div class="mx-auto px-4" style="max-width: 75%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Questions fréquentes</h2>
                         <p class="mt-3 text-muted-foreground">Tout ce que tu dois savoir sur Etercloud.</p>
                     </div>
 
                     <div class="grid gap-4">
-                        <details class="group bg-white border card-primary rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                        <details class="group bg-[var(--control-background)] border card-primary rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
                             <summary class="list-none font-bold text-lg flex items-center justify-between">
                                 Pourquoi choisir EterCloud comme alternative à Aternos ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
@@ -218,7 +218,7 @@
                                 Contrairement à d'autres hébergeurs gratuits comme Aternos, EterCloud mise sur de vraies performances dès le plan gratuit. Nous garantissons une expérience <strong>sans file d'attente</strong> et <strong>sans lag</strong>, idéale pour jouer avec tes amis dans les meilleures conditions.
                             </div>
                         </details>
-                        <details class="group bg-white border card-success rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                        <details class="group bg-[var(--control-background)] border card-success rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
                             <summary class="list-none font-bold text-lg flex items-center justify-between">
                                 Le plan gratuit est-il vraiment gratuit ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
@@ -229,7 +229,7 @@
                                 Oui, absolument. Le plan gratuit est conçu pour te permettre de tester notre infrastructure sans aucun frais caché ni limite de temps. Tu peux passer à un plan supérieur à tout moment.
                             </div>
                         </details>
-                        <details class="group bg-white border card-accent rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                        <details class="group bg-[var(--control-background)] border card-accent rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
                             <summary class="list-none font-bold text-lg flex items-center justify-between">
                                 Puis-je importer mes serveurs existants ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
@@ -240,7 +240,7 @@
                                 Bien sûr ! Notre interface te permet de téléverser tes fichiers via le gestionnaire de fichiers intégré ou via SFTP. Tes mondes et configurations seront prêts en quelques minutes.
                             </div>
                         </details>
-                        <details class="group bg-white border card-success rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                        <details class="group bg-[var(--control-background)] border card-success rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
                             <summary class="list-none font-bold text-lg flex items-center justify-between">
                                 Quel est le délai de mise en ligne ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
@@ -257,8 +257,8 @@
 
             <section class="py-24 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-t from-[var(--accent)]/10 to-transparent -z-10"></div>
-                <div class="mx-auto px-4" style="max-width: 70%;">
-                    <div class="bg-white border card-accent rounded-[var(--radius-xl)] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+                <div class="mx-auto px-4" style="max-width: 85%;">
+                    <div class="bg-[var(--control-background)] border card-accent rounded-[var(--radius-xl)] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
                         <div class="absolute top-0 right-0 -mr-20 -mt-20 size-64 bg-[var(--accent)]/20 blur-3xl rounded-full"></div>
                         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 size-64 bg-[var(--primary)]/20 blur-3xl rounded-full"></div>
 
@@ -270,7 +270,7 @@
                         </p>
                         <div class="flex flex-wrap items-center justify-center gap-4">
                             <x-ui.button href="{{ route('auth.login') }}" size="lg" class="px-12 shadow-xl shadow-[var(--accent)]/20 font-bold">Créer mon compte</x-ui.button>
-                            <x-ui.button href="/contact" variant="outline" size="lg" class="px-12 font-bold bg-white/50 backdrop-blur-sm">Contactez-nous</x-ui.button>
+                            <x-ui.button href="/contact" variant="outline" size="lg" class="px-12 font-bold bg-[var(--control-background)]/50 backdrop-blur-sm">Contactez-nous</x-ui.button>
                         </div>
                     </div>
                 </div>

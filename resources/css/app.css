@@ -7,63 +7,63 @@
 @source '../../app/**/*.php';
 
 @theme {
-    /* Couleurs de Base */
-    --background: #f8fafc; /* Gris bleuâtre extrêmement clair */
-    --foreground: #0f172a; /* Bleu-noir profond pour le texte principal */
+    /* Couleurs de Base - Thème Sombre */
+    --background: #020617; /* Slate 950 */
+    --foreground: #f8fafc; /* Slate 50 */
 
-    /* Primaire - Indications / Actions Standards (Bleu Pastel) */
-    --primary: #e0f2fe;
-    --primary-foreground: #0369a1;
-    --primary-hover: #bae6fd;
+    /* Primaire - Bleu Profond */
+    --primary: #0f172a;
+    --primary-foreground: #38bdf8;
+    --primary-hover: #1e293b;
 
-    /* Destructive - Suppression / Danger (Rouge Pastel) */
-    --destructive: #fee2e2;
-    --destructive-foreground: #b91c1c;
-    --destructive-hover: #fecaca;
+    /* Destructive - Rouge Profond */
+    --destructive: #450a0a;
+    --destructive-foreground: #f87171;
+    --destructive-hover: #7f1d1d;
 
-    /* Secondary - Actions Neutres (Gris Pastel) */
-    --secondary: #f1f5f9;
-    --secondary-foreground: #475569;
-    --secondary-hover: #e2e8f0;
+    /* Secondary - Gris Profond */
+    --secondary: #1e293b;
+    --secondary-foreground: #cbd5e1;
+    --secondary-hover: #334155;
 
-    /* Success - Validation (Vert Pastel) */
-    --success: #dcfce7;
-    --success-foreground: #15803d;
+    /* Success - Vert Profond */
+    --success: #052e16;
+    --success-foreground: #4ade80;
 
-    /* Warning - Attention (Ambre Pastel) */
-    --warning: #fef3c7;
-    --warning-foreground: #a16207;
+    /* Warning - Ambre Profond */
+    --warning: #451a03;
+    --warning-foreground: #fbbf24;
 
-    /* Accent - Touche de couleur alternative (Violet Pastel) */
-    --accent: #f3e8ff;
-    --accent-foreground: #7e22ce;
-    --accent-hover: #ede9fe;
+    /* Accent - Violet Profond */
+    --accent: #2e1065;
+    --accent-foreground: #c084fc;
+    --accent-hover: #4c1d95;
 
     /* Éléments d'interface */
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #94a3b8;
-    --muted: #f8fafc;
-    --muted-foreground: #64748b;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #38bdf8;
+    --muted: #0f172a;
+    --muted-foreground: #94a3b8;
 
-    /* Contrôles de formulaire */
-    --control-background: #ffffff;
-    --control-foreground: #0f172a;
+    /* Contrôles de formulaire et Cartes */
+    --control-background: #0f172a; /* Slate 900 */
+    --control-foreground: #f1f5f9;
 
     /* Liens */
-    --link: #0369a1;
-    --link-hover: #0284c7;
+    --link: #38bdf8;
+    --link-hover: #7dd3fc;
 
     /* Rayon de bordure pour l'aspect doux */
     --radius: 0.75rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
 
-    /* Ombres douces */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    /* Ombres adaptées au sombre */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
 
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
@@ -82,7 +82,7 @@
 }
 
 @utility glass {
-    @apply bg-white/95 backdrop-blur-md border border-white/40 shadow-[var(--shadow-sm)];
+    @apply bg-slate-900/80 backdrop-blur-md border border-slate-800/50 shadow-[var(--shadow-sm)];
 }
 
 @utility glass-card {
@@ -91,18 +91,18 @@
 
 @layer components {
     .card-primary {
-        @apply bg-white border-[var(--primary-foreground)]/30 shadow-md shadow-[var(--primary)]/10;
+        @apply bg-[var(--control-background)] border-[var(--primary-foreground)]/30 shadow-md shadow-[var(--primary)]/10;
     }
     .card-accent {
-        @apply bg-white border-[var(--accent-foreground)]/30 shadow-md shadow-[var(--accent)]/10;
+        @apply bg-[var(--control-background)] border-[var(--accent-foreground)]/30 shadow-md shadow-[var(--accent)]/10;
     }
     .card-success {
-        @apply bg-white border-[var(--success-foreground)]/30 shadow-md shadow-[var(--success)]/10;
+        @apply bg-[var(--control-background)] border-[var(--success-foreground)]/30 shadow-md shadow-[var(--success)]/10;
     }
     .card-warning {
-        @apply bg-white border-[var(--warning-foreground)]/30 shadow-md shadow-[var(--warning)]/10;
+        @apply bg-[var(--control-background)] border-[var(--warning-foreground)]/30 shadow-md shadow-[var(--warning)]/10;
     }
     .card-destructive {
-        @apply bg-white border-[var(--destructive-foreground)]/30 shadow-md shadow-[var(--destructive)]/10;
+        @apply bg-[var(--control-background)] border-[var(--destructive-foreground)]/30 shadow-md shadow-[var(--destructive)]/10;
     }
 }

@@ -16,7 +16,7 @@
     };
 @endphp
 
-<div {{ $attributes->merge(['class' => "bg-white border rounded-[var(--radius-lg)] p-8 group transition-all duration-300 $variantClasses"]) }}>
+<div {{ $attributes->merge(['class' => "bg-[var(--control-background)] border rounded-[var(--radius-lg)] p-8 group transition-all duration-300 $variantClasses"]) }}>
     @if($icon)
         <div @class([
             'size-12 rounded-2xl flex items-center justify-center mb-6 transition-transform shadow-sm',

@@ -17,7 +17,7 @@
     if ($popular) {
         $cardClasses = "$cardBase card-accent shadow-lg shadow-[var(--accent)]/10 ring-1 ring-[var(--accent)]/20";
     } else {
-        $cardClasses = "$cardBase bg-white shadow-md hover:border-[var(--accent)]/40 hover:shadow-[var(--accent)]/10";
+        $cardClasses = "$cardBase bg-[var(--control-background)] shadow-md hover:border-[var(--accent)]/40 hover:shadow-[var(--accent)]/10";
     }
 @endphp
 

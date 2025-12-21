@@ -7,8 +7,8 @@
         {{-- Section Bienvenue --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h2 class="text-xl font-bold text-gray-900">Ravi de vous revoir, {{ auth()->user()->first_name ?? auth()->user()->name }} ! 👋</h2>
-                <p class="text-gray-500 mt-1">Voici un aperçu de vos services et de votre activité récente.</p>
+                <h2 class="text-xl font-bold text-[var(--foreground)]">Ravi de vous revoir, {{ auth()->user()->first_name ?? auth()->user()->name }} ! 👋</h2>
+                <p class="text-[var(--muted-foreground)] mt-1">Voici un aperçu de vos services et de votre activité récente.</p>
             </div>
             <div class="flex items-center gap-3">
                 <x-ui.button href="{{ route('dashboard.servers.create') }}" variant="primary">
@@ -53,20 +53,20 @@
         {{-- Section Serveurs Récents --}}
         <div class="space-y-4">
             <div class="flex items-center justify-between">
-                <h3 class="text-lg font-bold text-gray-900">Serveurs récents</h3>
-                <a href="{{ route('dashboard.servers') }}" class="text-sm font-medium text-blue-600 hover:underline">Voir tout</a>
+                <h3 class="text-lg font-bold text-[var(--foreground)]">Serveurs récents</h3>
+                <a href="{{ route('dashboard.servers') }}" class="text-sm font-medium text-[var(--primary-foreground)] hover:underline">Voir tout</a>
             </div>
 
             <div class="grid grid-cols-1 gap-4">
                 @forelse($servers as $server)
                     <x-server.list-item :server="$server" />
                 @empty
-                    <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl p-8 text-center">
-                        <div class="mx-auto size-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 mb-4">
+                    <div class="bg-[var(--muted)] border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
+                        <div class="mx-auto size-12 rounded-full bg-[var(--secondary)] flex items-center justify-center text-[var(--muted-foreground)] mb-4">
                             <x-heroicon-o-server class="size-6" />
                         </div>
-                        <h4 class="text-base font-semibold text-gray-900">Aucun serveur pour le moment</h4>
-                        <p class="text-sm text-gray-500 mt-1">Commencez par créer votre premier serveur de jeu en quelques clics.</p>
+                        <h4 class="text-base font-semibold text-[var(--foreground)]">Aucun serveur pour le moment</h4>
+                        <p class="text-sm text-[var(--muted-foreground)] mt-1">Commencez par créer votre premier serveur de jeu en quelques clics.</p>
                         <x-ui.button href="{{ route('dashboard.servers.create') }}" variant="primary" size="sm" class="mt-4">
                             <x-heroicon-o-plus class="size-4 mr-2" />
                             Créer un serveur

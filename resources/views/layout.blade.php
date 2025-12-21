@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,7 @@
     <x-layout.header />
 
     <main class="min-h-screen">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-6">
+        <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-24">
             @if (session('success'))
                 <x-ui.alert variant="success" dismissible="true" class="mb-6 animate-in fade-in slide-in-from-top-4 duration-500">
                     <x-heroicon-o-check-circle class="size-5" />

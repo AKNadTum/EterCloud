@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@
                 <!-- Main Content Area -->
                 <div class="space-y-6">
                     <!-- Topbar / Breadcrumbs -->
-                    <header class="bg-white border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm px-6 py-4 flex items-center justify-between gap-4">
+                    <header class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm px-6 py-4 flex items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
                             <h1 class="text-2xl font-extrabold tracking-tight">
                                 @yield('title', 'Tableau de bord')

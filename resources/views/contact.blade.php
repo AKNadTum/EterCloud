@@ -1,14 +1,14 @@
 @extends('layout')
 
 @section('content')
-    <section class="py-16 md:py-24 relative overflow-hidden">
+    <section class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden -mt-[88px]">
         <!-- Éléments de décor en arrière-plan -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
             <div class="absolute top-[-10%] left-[-10%] size-96 bg-[var(--primary)]/20 blur-[100px] rounded-full animate-pulse"></div>
             <div class="absolute bottom-[10%] right-[-5%] size-80 bg-[var(--accent)]/15 blur-[80px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
         </div>
 
-        <div class="mx-auto px-4" style="max-width: 70%;">
+        <div class="mx-auto px-4" style="max-width: 85%;">
             <div class="mb-16 text-center">
                 <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10 mb-4">
                     <span>Contact</span>
@@ -125,7 +125,7 @@
 
                         <div class="space-y-6">
                             <div class="flex items-center gap-4 group/item">
-                                <div class="size-12 rounded-2xl bg-white border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[var(--primary-foreground)]/30 group-hover/item:shadow-md transition-all">
+                                <div class="size-12 rounded-2xl bg-[var(--control-background)] border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[var(--primary-foreground)]/30 group-hover/item:shadow-md transition-all">
                                     <x-heroicon-o-envelope class="size-6 text-[var(--primary-foreground)]" />
                                 </div>
                                 <div>
@@ -134,7 +134,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 group/item">
-                                <div class="size-12 rounded-2xl bg-white border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[#5865F2]/30 group-hover/item:shadow-md transition-all">
+                                <div class="size-12 rounded-2xl bg-[var(--control-background)] border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[#5865F2]/30 group-hover/item:shadow-md transition-all">
                                     <x-heroicon-s-chat-bubble-left-right class="size-6 text-[#5865F2]" />
                                 </div>
                                 <div>
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 group/item">
-                                <div class="size-12 rounded-2xl bg-white border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[var(--warning-foreground)]/30 group-hover/item:shadow-md transition-all">
+                                <div class="size-12 rounded-2xl bg-[var(--control-background)] border border-[var(--border)] flex items-center justify-center shrink-0 group-hover/item:border-[var(--warning-foreground)]/30 group-hover/item:shadow-md transition-all">
                                     <x-heroicon-o-clock class="size-6 text-[var(--warning-foreground)]" />
                                 </div>
                                 <div>
@@ -154,10 +154,10 @@
                         </div>
                     </div>
 
-                    <div class="glass-card p-8 bg-gradient-to-br from-white to-[var(--secondary)]/50 border-none shadow-inner">
+                    <div class="glass-card p-8 bg-gradient-to-br from-[var(--control-background)] to-[var(--secondary)]/50 border-none shadow-inner">
                         <h3 class="font-bold mb-3">Besoin d'un plan ?</h3>
                         <p class="text-sm text-muted-foreground mb-6 leading-relaxed">Explorez nos offres d'hébergement performantes pour tous vos projets.</p>
-                        <x-ui.button href="{{ route('home') }}#plans" variant="outline" class="w-full justify-center font-bold bg-white/50 backdrop-blur-sm border-[var(--primary-foreground)]/20 hover:bg-white transition-colors">
+                        <x-ui.button href="{{ route('home') }}#plans" variant="outline" class="w-full justify-center font-bold bg-[var(--control-background)]/50 backdrop-blur-sm border-[var(--primary-foreground)]/20 hover:bg-[var(--control-background)] transition-colors">
                             Voir les tarifs
                         </x-ui.button>
                     </div>
