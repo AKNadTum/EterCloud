@@ -8,14 +8,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
                 <div class="space-y-8">
                     <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10">
-                        <span>Hébergement Minecraft</span>
+                        <span>Hébergement Minecraft Gratuit</span>
                     </div>
                     <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-                        Ton serveur <span class="text-[var(--accent-foreground)]">Minecraft</span> prêt en un instant
+                        Hébergement <span class="text-[var(--accent-foreground)]">Minecraft Gratuit</span> : Performance & Simplicité
                     </h1>
                     <p class="text-base md:text-lg max-w-2xl text-muted-foreground leading-relaxed">
-                        Crée ton monde, ajoute des plugins ou des mods et joue sans compromis.
-                        Profite d'une interface élégante et de performances optimales dès le premier plan gratuit.
+                        Découvrez la meilleure <strong>alternative à Aternos</strong>.
+                        Un plan gratuit avec de vraies performances en phase de lancement : <strong>sans file d'attente</strong> et <strong>sans lag</strong>.
+                        Crée ton serveur Minecraft gratuit avec des performances optimales dès maintenant.
                     </p>
                     <div class="flex flex-wrap items-center gap-4">
                         <x-ui.button href="{{ route('auth.login') }}" size="lg" class="shadow-lg shadow-[var(--primary)]/20 px-10">Commencer</x-ui.button>
@@ -69,8 +70,8 @@
                 <x-card.info-card
                     variant="success"
                     icon="heroicon-o-sparkles"
-                    title="Gratuit"
-                    description="Démarre ton aventure sans dépenser un centime. Sans engagement."
+                    title="Gratuit & Performant"
+                    description="Une alternative à Aternos sans file d'attente. Ton serveur Minecraft gratuit avec de vraies performances."
                 />
                 <x-card.info-card
                     variant="accent"
@@ -208,12 +209,23 @@
                     <div class="grid gap-4">
                         <details class="group bg-white border card-primary rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
                             <summary class="list-none font-bold text-lg flex items-center justify-between">
-                                Le plan gratuit est-il vraiment gratuit ?
+                                Pourquoi choisir EterCloud comme alternative à Aternos ?
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </summary>
                             <div class="mt-4 text-muted-foreground leading-relaxed border-t pt-4 border-[var(--primary-foreground)]/10">
+                                Contrairement à d'autres hébergeurs gratuits comme Aternos, EterCloud mise sur de vraies performances dès le plan gratuit. Nous garantissons une expérience <strong>sans file d'attente</strong> et <strong>sans lag</strong>, idéale pour jouer avec tes amis dans les meilleures conditions.
+                            </div>
+                        </details>
+                        <details class="group bg-white border card-success rounded-[var(--radius-lg)] p-6 cursor-pointer overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                            <summary class="list-none font-bold text-lg flex items-center justify-between">
+                                Le plan gratuit est-il vraiment gratuit ?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 transition-transform group-open:rotate-45">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </summary>
+                            <div class="mt-4 text-muted-foreground leading-relaxed border-t pt-4 border-[var(--success-foreground)]/10">
                                 Oui, absolument. Le plan gratuit est conçu pour te permettre de tester notre infrastructure sans aucun frais caché ni limite de temps. Tu peux passer à un plan supérieur à tout moment.
                             </div>
                         </details>

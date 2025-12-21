@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'ERROR_APP_NAME') }}</title>
+    <title>{{ $title ?? config('app.name', 'EterCloud') }} - Hébergement Minecraft Gratuit & Alternative Aternos</title>
+    <meta name="description" content="Découvrez EterCloud, le meilleur hébergement Minecraft gratuit. Une alternative à Aternos avec de vraies performances, sans file d'attente et sans lag.">
+    <meta name="keywords" content="hébergement minecraft gratuit, alternative aternos, serveur minecraft gratuit performances, hébergeur minecraft, serveur minecraft gratuit">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
