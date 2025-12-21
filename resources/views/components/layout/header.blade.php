@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-50 flex justify-center py-4">
-    <nav class="w-full px-4 py-2 flex items-center bg-white/95 backdrop-blur-md border border-white/40 rounded-[var(--radius-lg)] shadow-lg transition-all duration-300 mx-4" style="max-width: 65%;">
+    <nav class="w-full px-4 py-2 flex items-center bg-[var(--background)]/95 backdrop-blur-md border border-[var(--border)] rounded-[var(--radius-lg)] shadow-lg transition-all duration-300 mx-4" style="max-width: 70%;">
         <div class="flex-1">
             <a href="/" class="flex items-center gap-2 group w-fit">
                 <div class="size-8 rounded-lg bg-[var(--accent)] flex items-center justify-center group-hover:scale-110 transition-transform">

@@ -4,7 +4,7 @@
     <!-- HERO -->
     <section class="relative overflow-hidden py-16 md:py-24">
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/20 to-transparent -z-10"></div>
-        <div class="mx-auto px-4" style="max-width: 65%;">
+        <div class="mx-auto px-4" style="max-width: 70%;">
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
                 <div class="space-y-8">
                     <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10">
@@ -55,7 +55,7 @@
 
     <!-- POURQUOI NOUS -->
     <section class="py-20">
-        <div class="mx-auto px-4" style="max-width: 65%;">
+        <div class="mx-auto px-4" style="max-width: 70%;">
             <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight">Pourquoi nous ?</h2>
                 <p class="mt-3 text-muted-foreground">Une expérience d'hébergement pensée pour la simplicité.</p>
@@ -91,7 +91,7 @@
 
     <!-- COMMENT ÇA MARCHE -->
     <section class="py-20 bg-[var(--secondary)]/30">
-        <div class="mx-auto px-4" style="max-width: 65%;">
+        <div class="mx-auto px-4" style="max-width: 70%;">
             <div class="mb-12 text-center text-balance">
                 <h2 class="text-3xl font-bold tracking-tight">Prêt en 3 étapes</h2>
                 <p class="mt-3 text-muted-foreground">Lancer ton serveur n'a jamais été aussi facile.</p>
@@ -118,7 +118,7 @@
 
     @if(isset($plans) && $plans->count() > 0)
         <section id="plans" class="py-24 scroll-mt-24">
-                <div class="mx-auto px-4" style="max-width: 75%;">
+                <div class="mx-auto px-4" style="max-width: 80%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Choisis ton plan</h2>
                         <p class="mt-3 text-muted-foreground">Une tarification transparente pour tous les besoins.</p>
@@ -128,7 +128,7 @@
                             <x-ui.badge variant="subtle" class="px-3 py-1 text-[10px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
                         </div>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-6 mx-auto" style="max-width: 1100px;">
+                    <div class="flex flex-wrap justify-center gap-6 mx-auto" style="max-width: 1155px;">
                         @foreach($plans as $plan)
                             <div class="w-full sm:w-[calc(50%-1.5rem)] md:w-[calc(33.33%-1.5rem)] min-w-[240px] max-w-[300px]">
                                 <x-card.pricing-card
@@ -200,7 +200,7 @@
 
             <!-- FAQ -->
             <section class="py-24 bg-[var(--secondary)]/20">
-                <div class="mx-auto px-4" style="max-width: 50%;">
+                <div class="mx-auto px-4" style="max-width: 55%;">
                     <div class="mb-12 text-center">
                         <h2 class="text-3xl font-bold tracking-tight">Questions fréquentes</h2>
                         <p class="mt-3 text-muted-foreground">Tout ce que tu dois savoir sur Etercloud.</p>
@@ -257,7 +257,7 @@
 
             <section class="py-24 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-t from-[var(--accent)]/10 to-transparent -z-10"></div>
-                <div class="mx-auto px-4" style="max-width: 65%;">
+                <div class="mx-auto px-4" style="max-width: 70%;">
                     <div class="bg-white border card-accent rounded-[var(--radius-xl)] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
                         <div class="absolute top-0 right-0 -mr-20 -mt-20 size-64 bg-[var(--accent)]/20 blur-3xl rounded-full"></div>
                         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 size-64 bg-[var(--primary)]/20 blur-3xl rounded-full"></div>

@@ -8,7 +8,7 @@
             <div class="absolute bottom-[10%] right-[-5%] size-80 bg-[var(--accent)]/15 blur-[80px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
         </div>
 
-        <div class="mx-auto px-4" style="max-width: 65%;">
+        <div class="mx-auto px-4" style="max-width: 70%;">
             <div class="mb-16 text-center">
                 <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10 mb-4">
                     <span>Contact</span>
