@@ -1,40 +1,109 @@
 @extends('layout')
 
 @section('content')
-<div class="py-12">
+<div class="py-12 bg-[var(--background)]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-slate max-w-none">
-            <h1 class="text-3xl font-bold mb-8">Mentions Légales</h1>
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center size-16 rounded-2xl bg-[var(--primary)] text-[var(--primary-foreground)] mb-4 shadow-sm">
+                <x-heroicon-o-scale class="size-8" />
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                Mentions Légales
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Informations obligatoires concernant l'éditeur et l'hébergeur du site.
+            </p>
+        </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">1. Éditeur du site</h2>
-                <p>Le site <strong>Etercloud</strong> est édité par la société <strong>Eternom</strong>, dont le siège social est situé rue de l'Ardoise, Houyet, Belgique.</p>
-            </section>
+        <div class="grid gap-8">
+            <!-- 1. Éditeur du site -->
+            <div class="glass-card p-8">
+                <div class="flex items-start gap-4">
+                    <div class="shrink-0 size-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+                        <x-heroicon-o-building-office class="size-6" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-3">1. Éditeur du site</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Le site <strong>Etercloud</strong> est édité par la société <strong>Eternom</strong>,
+                            dont le siège social est situé rue de l'Ardoise, Houyet, Belgique.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">2. Directeur de la publication</h2>
-                <p>Le Directeur de la publication est <strong>Alexandre Ernotte</strong>.</p>
-            </section>
+            <!-- 2. Directeur de la publication -->
+            <div class="glass-card p-8">
+                <div class="flex items-start gap-4">
+                    <div class="shrink-0 size-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+                        <x-heroicon-o-user-circle class="size-6" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-3">2. Directeur de la publication</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Le Directeur de la publication est <strong>Alexandre Ernotte</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">3. Hébergement</h2>
-                <p>Le site est hébergé par la société <strong>Laravel Cloud</strong>.</p>
-            </section>
+            <!-- 3. Hébergement -->
+            <div class="glass-card p-8">
+                <div class="flex items-start gap-4">
+                    <div class="shrink-0 size-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-600">
+                        <x-heroicon-o-cloud class="size-6" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-3">3. Hébergement</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            Le site est hébergé par la société <strong>Laravel Cloud</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">4. Propriété intellectuelle</h2>
-                <p>L'ensemble du contenu de ce site (textes, images, logos, icônes) est la propriété exclusive de <strong>Eternom</strong> ou de ses partenaires. Toute reproduction, représentation, modification ou adaptation de tout ou partie du site est strictement interdite sans autorisation écrite préalable.</p>
-            </section>
+            <!-- 4. Propriété intellectuelle -->
+            <div class="glass-card p-8">
+                <div class="flex items-start gap-4">
+                    <div class="shrink-0 size-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                        <x-heroicon-o-shield-check class="size-6" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-3">4. Propriété intellectuelle</h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            L'ensemble du contenu de ce site (textes, images, logos, icônes) est la propriété exclusive de
+                            <strong>Eternom</strong> ou de ses partenaires. Toute reproduction, représentation, modification ou
+                            adaptation de tout ou partie du site est strictement interdite sans autorisation écrite préalable.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">5. Contact</h2>
-                <p>Pour toute question ou réclamation, vous pouvez nous contacter :</p>
-                <ul class="list-disc pl-5">
-                    <li>Par email : <a href="mailto:eternom@icloud.com" class="text-[var(--primary-foreground)] hover:underline font-medium">eternom@icloud.com</a></li>
-                </ul>
-            </section>
+            <!-- 5. Contact -->
+            <div class="glass-card p-8">
+                <div class="flex items-start gap-4">
+                    <div class="shrink-0 size-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary-foreground)]">
+                        <x-heroicon-o-envelope class="size-6" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-3">5. Contact</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Pour toute question ou réclamation, vous pouvez nous contacter :
+                        </p>
+                        <a href="mailto:eternom@icloud.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium hover:bg-[var(--primary-hover)] transition-colors">
+                            <x-heroicon-o-envelope class="size-4" />
+                            eternom@icloud.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <p class="text-sm text-gray-500 mt-12 pt-6 border-t">Dernière mise à jour : {{ date('d/m/Y') }}</p>
+        <div class="mt-12 text-center">
+            <p class="text-sm text-gray-400">
+                Dernière mise à jour : {{ date('d/m/Y') }}
+            </p>
         </div>
     </div>
 </div>

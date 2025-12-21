@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/status', [StatusController::class, 'index'])->name('status');
 
 // Alias sans préfixe pour compatibilité (tests / URLs directes)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

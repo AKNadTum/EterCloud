@@ -130,7 +130,7 @@
                                 </div>
                                 <div>
                                     <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Email</p>
-                                    <p class="text-sm font-semibold">support@etercloud.fr</p>
+                                    <p class="text-sm font-semibold">eternom@icloud.com</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4 group/item">

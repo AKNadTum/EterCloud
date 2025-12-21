@@ -1,58 +1,141 @@
 @extends('layout')
 
 @section('content')
-<div class="py-12">
+<div class="py-12 bg-[var(--background)]">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-slate max-w-none">
-            <h1 class="text-3xl font-bold mb-8">Conditions Générales d'Utilisation</h1>
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center size-16 rounded-2xl bg-amber-50 text-amber-600 mb-4 shadow-sm border border-amber-100">
+                <x-heroicon-o-document-text class="size-8" />
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                Conditions Générales d'Utilisation
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Les règles et engagements pour l'utilisation de nos services.
+            </p>
+        </div>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">1. Acceptation des conditions</h2>
-                <p>L'utilisation des services d'Etercloud implique l'acceptation pleine et entière des présentes conditions générales d'utilisation. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser nos services.</p>
-            </section>
+        <div class="glass-card overflow-hidden">
+            <div class="p-8 sm:p-12 space-y-12">
+                <!-- 1. Acceptation -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600">
+                            <x-heroicon-o-check-badge class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">1. Acceptation des conditions</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed pl-11">
+                        L'utilisation des services d'Etercloud implique l'acceptation pleine et entière des présentes conditions générales d'utilisation. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser nos services.
+                    </p>
+                </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">2. Création de compte</h2>
-                <p>Pour utiliser nos services, vous devez créer un compte. Vous êtes responsable de la confidentialité de vos identifiants et de toutes les activités effectuées sous votre compte. Vous devez nous informer immédiatement de toute utilisation non autorisée de votre compte.</p>
-            </section>
+                <!-- 2. Création de compte -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                            <x-heroicon-o-user-plus class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">2. Création de compte</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed pl-11">
+                        Pour utiliser nos services, vous devez créer un compte. Vous êtes responsable de la confidentialité de vos identifiants et de toutes les activités effectuées sous votre compte.
+                    </p>
+                </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">3. Services et Paiements</h2>
-                <p>Etercloud fournit des services d'hébergement sous forme d'abonnements ou de crédits. Les tarifs sont indiqués sur notre site. Le paiement est dû au début de chaque période. En cas de défaut de paiement, nous nous réservons le droit de suspendre ou de résilier vos services.</p>
-            </section>
+                <!-- 3. Services et Paiements -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-green-50 flex items-center justify-center text-green-600">
+                            <x-heroicon-o-credit-card class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">3. Services et Paiements</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed pl-11">
+                        Etercloud fournit des services d'hébergement sous forme d'abonnements ou de crédits. Les tarifs sont indiqués sur notre site. Le paiement est dû au début de chaque période.
+                    </p>
+                </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">4. Utilisation acceptable</h2>
-                <p>Il est strictement interdit d'utiliser nos serveurs pour :</p>
-                <ul class="list-disc pl-5">
-                    <li>Des activités illégales (hacking, phishing, distribution de contenus illégaux).</li>
-                    <li>L'envoi de SPAM ou de courriels non sollicités.</li>
-                    <li>Des attaques par déni de service (DDoS).</li>
-                    <li>Le minage de cryptomonnaies (sauf autorisation explicite sur certains plans).</li>
-                </ul>
-                <p>Tout manquement à ces règles entraînera la résiliation immédiate du compte sans remboursement.</p>
-            </section>
+                <!-- 4. Utilisation acceptable -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-red-50 flex items-center justify-center text-red-600">
+                            <x-heroicon-o-no-symbol class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">4. Utilisation acceptable</h2>
+                    </div>
+                    <div class="pl-11 space-y-4">
+                        <p class="text-gray-600 leading-relaxed text-sm font-medium uppercase tracking-wider text-red-500">Activités strictement interdites :</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-red-50/50 border border-red-100 text-sm text-gray-700">
+                                <x-heroicon-o-x-mark class="size-4 text-red-500" />
+                                Activités illégales
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-red-50/50 border border-red-100 text-sm text-gray-700">
+                                <x-heroicon-o-x-mark class="size-4 text-red-500" />
+                                Envoi de SPAM
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-red-50/50 border border-red-100 text-sm text-gray-700">
+                                <x-heroicon-o-x-mark class="size-4 text-red-500" />
+                                Attaques DDoS
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-red-50/50 border border-red-100 text-sm text-gray-700">
+                                <x-heroicon-o-x-mark class="size-4 text-red-500" />
+                                Minage non autorisé
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 italic mt-2">Tout manquement entraînera la résiliation immédiate du compte sans remboursement.</p>
+                    </div>
+                </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">5. Responsabilité et Garantie</h2>
-                <p>Etercloud s'efforce de maintenir une disponibilité maximale de ses services. Cependant, nous ne pouvons garantir une absence totale d'interruptions. Etercloud ne pourra être tenu responsable des pertes de données ou des pertes de revenus liées à l'utilisation de nos services. Il appartient à l'utilisateur d'effectuer ses propres sauvegardes.</p>
-            </section>
+                <!-- 5. Responsabilité -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600">
+                            <x-heroicon-o-shield-exclamation class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">5. Responsabilité et Garantie</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed pl-11">
+                        Etercloud s'efforce de maintenir une disponibilité maximale. Cependant, nous ne pouvons garantir une absence totale d'interruptions. Il appartient à l'utilisateur d'effectuer ses propres sauvegardes.
+                    </p>
+                </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">6. Modification des conditions</h2>
-                <p>Etercloud se réserve le droit de modifier les présentes Conditions Générales d'Utilisation à tout moment afin de s'adapter aux évolutions législatives, réglementaires ou techniques de la plateforme.</p>
-                <div class="mt-4 p-4 rounded-lg bg-slate-50 border-l-4 border-[var(--primary)]">
-                    <p class="font-medium mb-2">Modalités de notification :</p>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li>Les utilisateurs seront informés de toute modification substantielle au moins <strong>30 jours</strong> avant leur entrée en vigueur.</li>
-                        <li>La notification sera effectuée par courrier électronique à l'adresse renseignée lors de l'inscription ou via une alerte sur le tableau de bord.</li>
-                        <li>Toute utilisation du service après l'entrée en vigueur des modifications vaut acceptation des nouvelles conditions.</li>
-                    </ul>
-                </div>
-                <p class="mt-4 italic text-sm text-gray-600">En cas de désaccord avec les modifications apportées, vous disposez du droit de résilier votre compte ou vos services sans pénalité avant la date d'entrée en vigueur des nouvelles conditions.</p>
-            </section>
+                <!-- 6. Modification -->
+                <section>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-8 rounded-lg bg-purple-50 flex items-center justify-center text-purple-600">
+                            <x-heroicon-o-arrow-path class="size-5" />
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">6. Modification des conditions</h2>
+                    </div>
+                    <div class="pl-11">
+                        <div class="p-6 rounded-2xl bg-amber-50 border border-amber-100">
+                            <p class="text-amber-800 font-bold mb-3 flex items-center gap-2">
+                                <x-heroicon-o-bell class="size-5" />
+                                Modalités de notification :
+                            </p>
+                            <ul class="space-y-3 text-sm text-amber-900/80">
+                                <li class="flex items-start gap-2">
+                                    <span class="font-bold text-amber-600">•</span>
+                                    <span>Notification au moins <strong>30 jours</strong> avant l'entrée en vigueur.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="font-bold text-amber-600">•</span>
+                                    <span>Par e-mail ou via le tableau de bord.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
-            <p class="text-sm text-gray-500 mt-12 pt-6 border-t">Dernière mise à jour : {{ date('d/m/Y') }}</p>
+            <div class="px-8 py-6 bg-gray-50 border-t border-gray-100 text-center">
+                <p class="text-sm text-gray-400">
+                    Dernière mise à jour : {{ date('d/m/Y') }}
+                </p>
+            </div>
         </div>
     </div>
 </div>

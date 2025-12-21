@@ -5,7 +5,8 @@
             <div>
                 <div class="text-lg font-semibold tracking-tight">{{ config('app.name') }}</div>
                 <p class="mt-2 text-sm opacity-70 leading-relaxed">
-                    Hébergement moderne de serveurs avec des performances fiables et une expérience simple.
+                    L'alternative à Aternos pour votre <strong>hébergement Minecraft gratuit</strong>.
+                    Profitez de vraies performances sans file d'attente et sans lag.
                 </p>
             </div>
 
@@ -24,7 +25,7 @@
                 <div class="text-sm font-semibold mb-3">Ressources</div>
                 <ul class="space-y-2 text-sm opacity-80">
                     <li><a href="#" class="transition hover:text-[var(--accent-foreground)]">Documentation</a></li>
-                    <li><a href="#" class="transition hover:text-[var(--accent-foreground)]">Statut</a></li>
+                    <li><a href="{{ route('status') }}" class="transition hover:text-[var(--accent-foreground)]">Statut</a></li>
                     <li><a href="#" class="transition hover:text-[var(--accent-foreground)]">API</a></li>
                 </ul>
             </div>
@@ -45,7 +46,7 @@
                 <ul class="space-y-2 text-sm opacity-80">
                     <li><a href="{{ route('legal.refund') }}" class="transition hover:text-[var(--accent-foreground)]">Remboursement</a></li>
                     <li><a href="/contact" class="transition hover:text-[var(--accent-foreground)]">Contact</a></li>
-                    <li><a href="mailto:support@etercloud.fr" class="transition hover:text-[var(--accent-foreground)]">Email Support</a></li>
+                    <li><a href="mailto:eternom@icloud.com" class="transition hover:text-[var(--accent-foreground)]">Email Support</a></li>
                 </ul>
             </div>
         </div>
