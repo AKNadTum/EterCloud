@@ -1,6 +1,6 @@
 <header
     id="main-header"
-    class="group/header sticky top-0 z-50 flex justify-center py-6 transition-all duration-500 ease-in-out data-[scrolled=true]:py-3"
+    class="group/header sticky top-0 z-50 flex justify-center py-4 transition-all duration-500 ease-in-out data-[scrolled=true]:py-2"
     data-scrolled="false"
 >
     <nav

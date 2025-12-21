@@ -12,30 +12,30 @@
 
 @php
     $popular = (bool) ($isPopular ?? false);
-    $cardBase = 'group relative h-full rounded-[calc(var(--radius)*1.5)] border p-6 flex flex-col transition-all duration-500 hover:shadow-xl';
+    $cardBase = 'group/card relative h-full rounded-[calc(var(--radius)*1.5)] border p-4 flex flex-col transition-all duration-500 hover:shadow-xl';
 
     if ($popular) {
-        $cardClasses = "$cardBase card-accent shadow-lg shadow-[var(--accent)]/10 ring-1 ring-[var(--accent)]/20";
+        $cardClasses = "$cardBase card-accent shadow-2xl shadow-[var(--accent-foreground)]/10 ring-2 ring-[var(--accent-foreground)]/20 scale-[1.01] z-10";
     } else {
-        $cardClasses = "$cardBase bg-[var(--control-background)] shadow-md hover:border-[var(--accent)]/40 hover:shadow-[var(--accent)]/10";
+        $cardClasses = "$cardBase bg-[var(--control-background)] shadow-md hover:border-[var(--accent)]/40 hover:shadow-[var(--accent)]/10 z-0";
     }
 @endphp
 
 <div {{ $attributes->merge(['class' => $cardClasses]) }}>
     {{-- Popular Badge --}}
     @if($popular)
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-            <x-ui.badge variant="accent" size="sm" class="shadow-lg px-2 py-0.5 uppercase tracking-wider font-bold text-[10px]">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-full flex justify-center">
+            <x-ui.badge variant="accent" size="sm" class="shadow-lg px-2 py-0.5 uppercase tracking-wider font-bold text-[9px]">
                 ⭐ Recommandé
             </x-ui.badge>
         </div>
     @endif
 
     {{-- Header Section --}}
-    <div class="mb-5">
-        <div class="flex items-start justify-between gap-2 mb-2 min-h-[3rem]">
+    <div class="mb-4">
+        <div class="flex items-start justify-between gap-2 mb-1.5 min-h-[2.5rem]">
             @if($title)
-                <h3 class="text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-[var(--accent-foreground)] line-clamp-2">
+                <h3 class="text-sm font-bold tracking-tight {{ $popular ? 'text-[var(--accent-foreground)]' : 'text-foreground' }} transition-colors group-hover/card:text-[var(--accent-foreground)] line-clamp-2">
                     {{ $title }}
                 </h3>
             @endif
@@ -51,26 +51,26 @@
         </div>
 
         {{-- Description --}}
-        <div class="min-h-[2.5rem] mb-3">
+        <div class="min-h-[2rem] mb-2">
             @if($description)
-                <p class="text-xs text-muted-foreground leading-relaxed line-clamp-2">{{ $description }}</p>
+                <p class="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">{{ $description }}</p>
             @endif
         </div>
 
         {{-- Price Display --}}
-        <div class="min-h-[2.5rem] flex flex-col justify-end">
+        <div class="min-h-[2rem] flex flex-col justify-end">
             @if($price)
                 <div class="flex items-baseline gap-1">
-                    <span class="text-2xl font-extrabold text-foreground">{{ $price }}</span>
+                    <span class="text-lg font-extrabold {{ $popular ? 'text-[var(--accent-foreground)]' : 'text-foreground' }}">{{ $price }}</span>
                     @if($period)
-                        <span class="text-xs font-medium text-muted-foreground/80">/ {{ $period }}</span>
+                        <span class="text-[10px] font-medium text-muted-foreground/80">/ {{ $period }}</span>
                     @endif
                 </div>
 
                 {{-- Right Meta below price if both exist --}}
                 @if(!empty($rightMeta))
-                    <div class="mt-1">
-                        <span class="text-[10px] text-muted-foreground italic" title="{{ $rightMeta }}">
+                    <div class="mt-0.5">
+                        <span class="text-[9px] text-muted-foreground italic" title="{{ $rightMeta }}">
                             {{ $rightMeta }}
                         </span>
                     </div>
@@ -81,14 +81,14 @@
 
     {{-- Features List --}}
     @if(!empty($features))
-        <div class="flex-1 mb-6">
-            <ul class="space-y-2">
+        <div class="flex-1 mb-4">
+            <ul class="space-y-1.5">
                 @foreach($features as $feature)
                     <li class="flex items-start gap-2 group/item">
-                        <div class="mt-0.5 size-4 rounded-full bg-[var(--accent)]/10 flex items-center justify-center shrink-0 transition-colors group-hover/item:bg-[var(--accent)]/20">
-                            <x-heroicon-o-check class="w-3 h-3 text-[var(--accent-foreground)]" aria-hidden="true" />
+                        <div class="mt-0.5 size-3.5 rounded-full bg-[var(--accent)]/10 flex items-center justify-center shrink-0 transition-colors group-hover/item:bg-[var(--accent)]/20">
+                            <x-heroicon-o-check class="w-2.5 h-2.5 text-[var(--accent-foreground)]" aria-hidden="true" />
                         </div>
-                        <span class="text-xs text-[var(--muted-foreground)] leading-snug transition-colors group-hover/item:text-[var(--foreground)]">{{ $feature }}</span>
+                        <span class="text-[11px] text-[var(--muted-foreground)] leading-snug transition-colors group-hover/item:text-[var(--foreground)]">{{ $feature }}</span>
                     </li>
                 @endforeach
             </ul>
@@ -96,7 +96,7 @@
     @endif
 
     {{-- CTA Area --}}
-    <div class="mt-auto pt-4">
+    <div class="mt-auto pt-3">
         @if (! $slot->isEmpty())
             {{ $slot }}
         @else
