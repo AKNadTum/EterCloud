@@ -8,7 +8,7 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">1. Éditeur du site</h2>
-                <p>Le site <strong>Etercloud</strong> est édité par <strong>Etercloud</strong>, dont le siège social est situé rue de l'Ardoise, Houyet, Belgique.</p>
+                <p>Le site <strong>Etercloud</strong> est édité par la société <strong>Eternom</strong>, dont le siège social est situé rue de l'Ardoise, Houyet, Belgique.</p>
             </section>
 
             <section class="mb-8">
@@ -18,20 +18,19 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">3. Hébergement</h2>
-                <p>Le site est hébergé par la société <strong>Hetzner</strong>.</p>
+                <p>Le site est hébergé par la société <strong>Laravel Cloud</strong>.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">4. Propriété intellectuelle</h2>
-                <p>L'ensemble du contenu de ce site (textes, images, logos, icônes) est la propriété exclusive de <strong>Etercloud</strong> ou de ses partenaires. Toute reproduction, représentation, modification ou adaptation de tout ou partie du site est strictement interdite sans autorisation écrite préalable.</p>
+                <p>L'ensemble du contenu de ce site (textes, images, logos, icônes) est la propriété exclusive de <strong>Eternom</strong> ou de ses partenaires. Toute reproduction, représentation, modification ou adaptation de tout ou partie du site est strictement interdite sans autorisation écrite préalable.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4 text-[var(--primary-foreground)]">5. Contact</h2>
                 <p>Pour toute question ou réclamation, vous pouvez nous contacter :</p>
                 <ul class="list-disc pl-5">
-                    <li>Par email : <a href="mailto:contact@etercloud.fr" class="text-[var(--primary-foreground)] hover:underline font-medium">contact@etercloud.fr</a></li>
-                    <li>Par courrier : Etercloud, rue de l'Ardoise, Houyet, Belgique.</li>
+                    <li>Par email : <a href="mailto:eternom@icloud.com" class="text-[var(--primary-foreground)] hover:underline font-medium">eternom@icloud.com</a></li>
                 </ul>
             </section>
 
