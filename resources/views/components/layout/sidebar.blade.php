@@ -53,13 +53,13 @@
 
 <aside class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm p-4 sticky top-24">
     <div class="mb-6 px-2 flex items-center gap-3">
-        <div class="size-8 rounded-lg bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)]">
+        <div class="size-8 rounded-lg bg-[var(--primary-foreground)]/10 flex items-center justify-center text-[var(--primary-foreground)]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                 <path d="M11.47 3.84a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.06l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 0 0 1.061 1.06l8.69-8.69Z" />
                 <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.43Z" />
             </svg>
         </div>
-        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Espace Client</h2>
+        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--foreground)]">Espace Client</h2>
     </div>
 
     <nav class="space-y-6">
@@ -67,8 +67,8 @@
             <div>
                 @if($section['title'])
                     <div class="px-3 mb-2 flex items-center gap-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]/50">{{ $section['title'] }}</span>
-                        <div class="h-px flex-1 bg-[var(--border)]/50"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]">{{ $section['title'] }}</span>
+                        <div class="h-px flex-1 bg-[var(--border)]"></div>
                     </div>
                 @endif
                 <ul class="flex flex-col gap-1">
@@ -79,9 +79,9 @@
                         <li>
                             <a href="{{ route($item['route']) }}"
                                class="group flex items-center justify-between gap-3 rounded-[var(--radius)] px-3 py-2 text-sm transition-all duration-200
-                                      {{ $active ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
+                                      {{ $active ? 'bg-[var(--primary-foreground)]/10 text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
                                 <span class="inline-flex items-center gap-3">
-                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-white/20' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
+                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-[var(--primary-foreground)]/20 text-[var(--primary-foreground)]' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="currentColor" class="size-4.5">
                                             <path d="{{ $item['icon'] }}" />
                                         </svg>

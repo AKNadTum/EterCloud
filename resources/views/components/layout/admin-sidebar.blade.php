@@ -80,13 +80,13 @@
 
 <aside class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm p-4 sticky top-24">
     <div class="mb-6 px-2 flex items-center gap-3">
-        <div class="size-8 rounded-lg bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)]">
+        <div class="size-8 rounded-lg bg-[var(--primary-foreground)]/10 flex items-center justify-center text-[var(--primary-foreground)]">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                 <path d="M16.5 7.5h-9v9h9v-9Z" />
                 <path fill-rule="evenodd" d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21a.75.75 0 0 1 0 1.5h-.75V11.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75H12.75V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3a.75.75 0 0 1 0-1.5h.75V12.75H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z" clip-rule="evenodd" />
             </svg>
         </div>
-        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Administration</h2>
+        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--foreground)]">Administration</h2>
     </div>
 
     <nav class="space-y-6">
@@ -94,8 +94,8 @@
             <div>
                 @if($section['title'])
                     <div class="px-3 mb-2 flex items-center gap-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]/50">{{ $section['title'] }}</span>
-                        <div class="h-px flex-1 bg-[var(--border)]/50"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]">{{ $section['title'] }}</span>
+                        <div class="h-px flex-1 bg-[var(--border)]"></div>
                     </div>
                 @endif
                 <ul class="flex flex-col gap-1">
@@ -106,9 +106,9 @@
                         <li>
                             <a href="{{ route($item['route']) }}"
                                class="group flex items-center justify-between gap-3 rounded-[var(--radius)] px-3 py-2 text-sm transition-all duration-200
-                                      {{ $active ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
+                                      {{ $active ? 'bg-[var(--primary-foreground)]/10 text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
                                 <span class="inline-flex items-center gap-3">
-                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-white/20' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
+                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-[var(--primary-foreground)]/20 text-[var(--primary-foreground)]' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="currentColor" class="size-4.5">
                                             <path d="{{ $item['icon'] }}" />
                                         </svg>

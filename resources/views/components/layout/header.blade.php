@@ -42,13 +42,13 @@
                             <p class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Menu Utilisateur</p>
                         </div>
 
-                        <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm font-medium">
-                            <x-heroicon-o-squares-2x2 class="size-4 opacity-70" />
+                        <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm font-medium group">
+                            <x-heroicon-o-squares-2x2 class="size-4 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)]" />
                             Tableau de bord
                         </a>
 
                         @if(auth()->user()->hasRole('admin'))
-                            <a href="{{ route('admin.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius)] hover:bg-[var(--primary)]/20 text-[var(--primary-foreground)] transition-colors text-sm font-bold">
+                            <a href="{{ route('admin.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-[var(--radius)] hover:bg-[var(--primary-foreground)]/10 text-[var(--primary-foreground)] transition-colors text-sm font-bold">
                                 <x-heroicon-o-shield-check class="size-4" />
                                 Administration
                             </a>
@@ -73,8 +73,8 @@
                                 ];
                             @endphp
                             @foreach($links as $link)
-                                <a href="{{ route($link['route']) }}" class="flex items-center gap-3 px-3 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm text-muted-foreground hover:text-foreground">
-                                    <x-dynamic-component :component="$link['icon']" class="size-4 opacity-70" />
+                                <a href="{{ route($link['route']) }}" class="flex items-center gap-3 px-3 py-2 rounded-[var(--radius)] hover:bg-[var(--secondary)] transition-colors text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] group">
+                                    <x-dynamic-component :component="$link['icon']" class="size-4 text-[var(--muted-foreground)] group-hover:text-[var(--foreground)]" />
                                     {{ $link['label'] }}
                                 </a>
                             @endforeach

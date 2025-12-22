@@ -36,12 +36,12 @@
 
 <aside class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm p-4 sticky top-24">
     <div class="mb-6 px-2 flex items-center gap-3">
-        <div class="size-8 rounded-lg bg-[var(--primary)]/10 flex items-center justify-center text-[var(--primary)]">
+        <div class="size-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                  <path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.012 4.587 2.674 6.192.232.226.277.428.178.715a3.375 3.375 0 01-1.464 1.787.75.75 0 00.419 1.396zM7.5 12.75a.75.75 0 100-1.5.75.75 0 000 1.5zm3.75 0a.75.75 0 100-1.5.75.75 0 000 1.5zm4.5 0a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
             </svg>
         </div>
-        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--muted-foreground)]">Staff Support</h2>
+        <h2 class="text-sm font-bold uppercase tracking-widest text-[var(--foreground)]">Staff Support</h2>
     </div>
 
     <nav class="space-y-6">
@@ -49,8 +49,8 @@
             <div>
                 @if($section['title'])
                     <div class="px-3 mb-2 flex items-center gap-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]/50">{{ $section['title'] }}</span>
-                        <div class="h-px flex-1 bg-[var(--border)]/50"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-foreground)]">{{ $section['title'] }}</span>
+                        <div class="h-px flex-1 bg-[var(--border)]"></div>
                     </div>
                 @endif
                 <ul class="flex flex-col gap-1">
@@ -61,9 +61,9 @@
                         <li>
                             <a href="{{ route($item['route']) }}"
                                class="group flex items-center justify-between gap-3 rounded-[var(--radius)] px-3 py-2 text-sm transition-all duration-200
-                                      {{ $active ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
+                                      {{ $active ? 'bg-blue-500/10 text-blue-400 font-bold shadow-sm' : 'text-[var(--muted-foreground)] hover:bg-[var(--secondary)] hover:text-[var(--foreground)]' }}">
                                 <span class="inline-flex items-center gap-3">
-                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-white/20' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
+                                    <div class="size-8 rounded-lg flex items-center justify-center transition-colors {{ $active ? 'bg-blue-500/20 text-blue-400' : 'bg-[var(--secondary)] group-hover:bg-[var(--control-background)] border border-[var(--border)]/50' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="currentColor" class="size-4.5">
                                             <path d="{{ $item['icon'] }}" />
                                         </svg>
