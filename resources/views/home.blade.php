@@ -61,25 +61,25 @@
                 <p class="mt-2 text-sm text-muted-foreground">Une expérience d'hébergement pensée pour la simplicité.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <x-card.info-card
+                <x-cards.info-card
                     variant="primary"
                     icon="heroicon-o-rocket-launch"
                     title="Pterodactyl"
                     description="Gère ton serveur avec le panel le plus puissant et intuitif du marché."
                 />
-                <x-card.info-card
+                <x-cards.info-card
                     variant="success"
                     icon="heroicon-o-sparkles"
                     title="Gratuit & Performant"
                     description="Une alternative à Aternos sans file d'attente."
                 />
-                <x-card.info-card
+                <x-cards.info-card
                     variant="accent"
                     icon="heroicon-o-swatch"
                     title="Moderne"
                     description="Une interface claire, rapide et optimisée pour tous tes appareils."
                 />
-                <x-card.info-card
+                <x-cards.info-card
                     variant="warning"
                     icon="heroicon-o-shield-check"
                     title="Sécurité"
@@ -123,9 +123,9 @@
                         <h2 class="text-2xl font-bold tracking-tight">Choisis ton plan</h2>
                         <p class="mt-2 text-sm text-muted-foreground">Une tarification transparente pour tous les besoins.</p>
                         <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-                            <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Sans engagement</x-ui.badge>
-                            <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Support inclus</x-ui.badge>
-                            <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
+                            <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Sans engagement</x-ui.feedback.badge>
+                            <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Support inclus</x-ui.feedback.badge>
+                            <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.feedback.badge>
                         </div>
                     </div>
                     <div class="relative group">
@@ -133,7 +133,7 @@
                             @for($r = 0; $r < 3; $r++)
                                 @foreach($plans as $plan)
                                     <div class="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px]">
-                                        <x-card.pricing-card
+                                        <x-cards.pricing-card
                                             :title="$plan->name"
                                             :price="$stripePrices[$plan->id]['price'] ?? null"
                                             :period="$stripePrices[$plan->id]['period'] ?? null"
@@ -164,7 +164,7 @@
                                                     </x-ui.button>
                                                 @endguest
                                             </div>
-                                        </x-card.pricing-card>
+                                        </x-cards.pricing-card>
                                     </div>
                                 @endforeach
 
@@ -175,7 +175,7 @@
 
                                 @for($i = 0; $i < $customCardsToAdd; $i++)
                                     <div class="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px]">
-                                        <x-card.pricing-card
+                                        <x-cards.pricing-card
                                             title="Sur mesure"
                                             price="Sur devis"
                                             description="Besoin d'une puissance supérieure ou d'une configuration spécifique ?"
@@ -187,7 +187,7 @@
                                                     Contactez-nous
                                                 </x-ui.button>
                                             </div>
-                                        </x-card.pricing-card>
+                                        </x-cards.pricing-card>
                                     </div>
                                 @endfor
                             @endfor
@@ -381,3 +381,7 @@
             </section>
     @endif
 @endsection
+
+
+
+

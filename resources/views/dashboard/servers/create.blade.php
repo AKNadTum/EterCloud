@@ -61,10 +61,10 @@
                     </div>
                 </div>
 
-                <x-ui.alert variant="default" class="bg-[var(--secondary)] border-[var(--border)]">
+                <x-ui.feedback.alert variant="default" class="bg-[var(--secondary)] border-[var(--border)]">
                     <x-heroicon-o-information-circle class="size-5 text-gray-400" />
-                    <x-ui.alert-title class="text-[var(--foreground)]">Ressources incluses dans votre plan</x-ui.alert-title>
-                    <x-ui.alert-description class="text-[var(--foreground)]">
+                    <x-ui.feedback.alert-title class="text-[var(--foreground)]">Ressources incluses dans votre plan</x-ui.feedback.alert-title>
+                    <x-ui.feedback.alert-description class="text-[var(--foreground)]">
                         <ul class="list-disc space-y-1 pl-5">
                             <li>Instances : {{ $plan->server_limit }} serveur{{ $plan->server_limit > 1 ? 's' : '' }}</li>
                             <li>Stockage : {{ $plan->disk / 1024 }} GB</li>
@@ -73,8 +73,8 @@
                             <li>CPU : {{ $plan->cpu > 0 ? $plan->cpu . '%' : 'Illimité' }}</li>
                             <li>RAM : {{ $plan->memory > 0 ? ($plan->memory / 1024) . ' GB' : 'Illimitée' }}</li>
                         </ul>
-                    </x-ui.alert-description>
-                </x-ui.alert>
+                    </x-ui.feedback.alert-description>
+                </x-ui.feedback.alert>
 
                 <div class="pt-4">
                     <x-ui.button type="submit" class="w-full">
@@ -118,4 +118,8 @@
         }
     </script>
 @endsection
+
+
+
+
 

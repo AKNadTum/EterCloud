@@ -44,15 +44,15 @@
                                         value="{{ old('email', auth()->user()->email) }}"
                                         class="flex-1 w-full" />
                             @if(auth()->user()->hasVerifiedEmail())
-                                <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.feedback.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-check-circle class="size-3 mr-1" />
                                     Vérifié
-                                </x-ui.badge>
+                                </x-ui.feedback.badge>
                             @else
-                                <x-ui.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.feedback.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
                                     Non vérifié
-                                </x-ui.badge>
+                                </x-ui.feedback.badge>
                             @endif
                         </div>
                     </div>
@@ -174,9 +174,9 @@
                                 <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">Statut de l'abonnement</div>
                                 <div class="flex items-center gap-3 bg-[var(--secondary)] p-3 rounded-lg border border-[var(--border)]">
                                     @if($subscription)
-                                        <x-ui.badge variant="success" size="sm">
+                                        <x-ui.feedback.badge variant="success" size="sm">
                                             {{ ucfirst(str_replace('_',' ', $subscription->status)) }}
-                                        </x-ui.badge>
+                                        </x-ui.feedback.badge>
                                         @if($currentPlan)
                                             <span class="text-sm font-medium text-[var(--foreground)]">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
                                         @endif
@@ -198,13 +198,13 @@
                         </div>
                     @else
                         <div class="space-y-4">
-                            <x-ui.alert variant="info" class="p-4">
+                            <x-ui.feedback.alert variant="info" class="p-4">
                                 <x-heroicon-o-information-circle class="size-5" />
-                                <x-ui.alert-description class="italic text-sm">
+                                <x-ui.feedback.alert-description class="italic text-sm">
                                     Vous n'avez pas encore de compte de facturation Stripe lié.
                                     Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
-                                </x-ui.alert-description>
-                            </x-ui.alert>
+                                </x-ui.feedback.alert-description>
+                            </x-ui.feedback.alert>
 
                             <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">
                                 @csrf
@@ -258,3 +258,7 @@
         </div>
     </div>
 @endsection
+
+
+
+

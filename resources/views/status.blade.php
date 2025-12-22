@@ -13,12 +13,12 @@
             </div>
 
             @if(isset($error) && $error)
-                <x-ui.alert variant="destructive" class="mb-8">
+                <x-ui.feedback.alert variant="destructive" class="mb-8">
                     <x-heroicon-o-exclamation-triangle class="size-5" />
-                    <x-ui.alert-description>
+                    <x-ui.feedback.alert-description>
                         {{ $error }}
-                    </x-ui.alert-description>
-                </x-ui.alert>
+                    </x-ui.feedback.alert-description>
+                </x-ui.feedback.alert>
             @else
                 <!-- État Global -->
                 <div class="mb-12">
@@ -32,7 +32,7 @@
                                 <p class="text-sm text-muted-foreground font-medium">Dernière vérification : {{ $last_updated->diffForHumans() }}</p>
                             </div>
                         </div>
-                        <x-ui.badge variant="success" size="lg" class="px-6 py-2 text-sm uppercase tracking-wider font-black">Opérationnel</x-ui.badge>
+                        <x-ui.feedback.badge variant="success" size="lg" class="px-6 py-2 text-sm uppercase tracking-wider font-black">Opérationnel</x-ui.feedback.badge>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                                             Opérationnel
                                         </div>
                                     @else
-                                        <x-ui.badge variant="warning" size="sm">Incident</x-ui.badge>
+                                        <x-ui.feedback.badge variant="warning" size="sm">Incident</x-ui.feedback.badge>
                                     @endif
                                 </div>
                             @endforeach
@@ -142,9 +142,9 @@
                                             </div>
                                         </div>
                                         @if($isMaintenance)
-                                            <x-ui.badge variant="warning" size="sm" class="font-bold">Maintenance</x-ui.badge>
+                                            <x-ui.feedback.badge variant="warning" size="sm" class="font-bold">Maintenance</x-ui.feedback.badge>
                                         @else
-                                            <x-ui.badge variant="success" size="sm" class="font-bold">Online</x-ui.badge>
+                                            <x-ui.feedback.badge variant="success" size="sm" class="font-bold">Online</x-ui.feedback.badge>
                                         @endif
                                     </div>
                                     <div class="p-5 space-y-4 flex-grow">
@@ -205,3 +205,7 @@
         </div>
     </div>
 @endsection
+
+
+
+

@@ -91,7 +91,7 @@
 
                                 @isset($item['wip'])
                                     @if($item['wip'])
-                                        <x-ui.badge variant="accent" size="sm" class="text-[9px] px-1.5 py-0 uppercase font-bold tracking-tighter">WIP</x-ui.badge>
+                                        <x-ui.feedback.badge variant="accent" size="sm" class="text-[9px] px-1.5 py-0 uppercase font-bold tracking-tighter">WIP</x-ui.feedback.badge>
                                     @endif
                                 @endisset
                             </a>
@@ -102,3 +102,7 @@
         @endforeach
     </nav>
 </aside>
+
+
+
+

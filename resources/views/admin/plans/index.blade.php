@@ -24,7 +24,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-[var(--foreground)]">{{ $plan->name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)] font-mono">{{ $plan->price_stripe_id }}</td>
                 <td class="px-6 py-4">
-                    <x-plan.feature-list :plan="$plan" class="!space-y-1" />
+                    <x-features.plan.feature-list :plan="$plan" class="!space-y-1" />
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <x-ui.button href="{{ route('admin.plans.edit', $plan) }}" variant="ghost" size="sm">
@@ -48,4 +48,8 @@
         </x-slot>
     </x-ui.table>
 @endsection
+
+
+
+
 

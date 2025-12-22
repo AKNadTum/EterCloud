@@ -20,7 +20,7 @@
 
         {{-- Cartes de statistiques --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <x-dashboard.stat-card
+            <x-cards.stat-card
                 title="Serveurs actifs"
                 :value="$serversCount"
                 icon="heroicon-o-server"
@@ -30,7 +30,7 @@
                 :badge-text="$serversCount > 0 ? 'Actifs' : null"
             />
 
-            <x-dashboard.stat-card
+            <x-cards.stat-card
                 title="Abonnement actuel"
                 :value="$plan ? $plan->name : 'Aucun abonnement'"
                 icon="heroicon-o-credit-card"
@@ -40,7 +40,7 @@
                 :badge-text="$plan ? 'Premium' : 'Gratuit'"
             />
 
-            <x-dashboard.stat-card
+            <x-cards.stat-card
                 title="Besoin d'aide ?"
                 value="Support technique"
                 icon="heroicon-o-question-mark-circle"
@@ -59,7 +59,7 @@
 
             <div class="grid grid-cols-1 gap-4">
                 @forelse($servers as $server)
-                    <x-server.list-item :server="$server" />
+                    <x-features.server.list-item :server="$server" />
                 @empty
                     <div class="bg-[var(--muted)] border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
                         <div class="mx-auto size-12 rounded-full bg-[var(--secondary)] flex items-center justify-center text-[var(--muted-foreground)] mb-4">
@@ -102,4 +102,8 @@
         </div>
     </div>
 @endsection
+
+
+
+
 

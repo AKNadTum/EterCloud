@@ -45,17 +45,17 @@
 
                     <div class="min-h-[60vh]">
                         @if (session('success'))
-                            <x-ui.alert variant="success" dismissible="true" class="mb-6">
+                            <x-ui.feedback.alert variant="success" dismissible="true" class="mb-6">
                                 <x-heroicon-o-check-circle class="size-5" />
-                                <x-ui.alert-description>{{ session('success') }}</x-ui.alert-description>
-                            </x-ui.alert>
+                                <x-ui.feedback.alert-description>{{ session('success') }}</x-ui.feedback.alert-description>
+                            </x-ui.feedback.alert>
                         @endif
 
                         @if (session('error'))
-                            <x-ui.alert variant="error" dismissible="true" class="mb-6">
+                            <x-ui.feedback.alert variant="error" dismissible="true" class="mb-6">
                                 <x-heroicon-o-exclamation-circle class="size-5" />
-                                <x-ui.alert-description>{{ session('error') }}</x-ui.alert-description>
-                            </x-ui.alert>
+                                <x-ui.feedback.alert-description>{{ session('error') }}</x-ui.feedback.alert-description>
+                            </x-ui.feedback.alert>
                         @endif
 
                         @yield('content')
@@ -66,3 +66,7 @@
     </main>
 </body>
 </html>
+
+
+
+

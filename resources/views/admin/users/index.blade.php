@@ -23,15 +23,15 @@
             <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center gap-3">
-                        <x-user.avatar :user="$user" size="sm" />
+                        <x-features.user.avatar :user="$user" size="sm" />
                         <span class="text-sm font-semibold text-[var(--foreground)]">{{ $user->name }}</span>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">{{ $user->email }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">
-                    <x-ui.badge variant="subtle">
+                    <x-ui.feedback.badge variant="subtle">
                         {{ $user->role?->name ?? 'Aucun' }}
-                    </x-ui.badge>
+                    </x-ui.feedback.badge>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <x-ui.button href="{{ route('admin.users.edit', $user) }}" variant="ghost" size="sm">
@@ -55,4 +55,8 @@
         </x-slot>
     </x-ui.table>
 @endsection
+
+
+
+
 
