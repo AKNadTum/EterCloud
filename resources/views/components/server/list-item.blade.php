@@ -2,21 +2,21 @@
 
 @php($s = $server)
 
-<div {{ $attributes->merge(['class' => 'bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-4 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow']) }}>
+<div {{ $attributes->merge(['class' => 'bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-4 flex items-center justify-between shadow-sm hover:shadow-md transition-shadow']) }}>
     <div class="flex items-center gap-4">
-        <div class="size-10 rounded bg-gray-50 flex items-center justify-center text-gray-400 border border-gray-100">
+        <div class="size-10 rounded bg-[var(--secondary)] flex items-center justify-center text-[var(--muted-foreground)] border border-[var(--border)]">
             <x-heroicon-o-server class="size-5" />
         </div>
         <div>
             <div class="flex items-center gap-2">
-                <span class="font-bold text-gray-900">{{ $s['name'] }}</span>
+                <span class="font-bold text-[var(--foreground)]">{{ $s['name'] }}</span>
                 @if (!empty($s['is_demo']))
                     <x-ui.badge variant="accent" size="sm">DÉMO</x-ui.badge>
                 @endif
             </div>
-            <div class="text-xs text-gray-500 flex items-center gap-2">
+            <div class="text-xs text-[var(--muted-foreground)] flex items-center gap-2">
                 <span>{{ $s['location_name'] ?? 'Localisation inconnue' }}</span>
-                <span class="size-1 rounded-full bg-gray-300"></span>
+                <span class="size-1 rounded-full bg-[var(--border)]"></span>
                 <span>{{ $s['node_name'] ?? 'Node' }}</span>
             </div>
         </div>
@@ -29,7 +29,7 @@
             </x-ui.button>
         @endif
 
-        <x-ui.button href="{{ route('dashboard.servers') }}" variant="ghost" size="sm" class="text-gray-400 hover:text-gray-600">
+        <x-ui.button href="{{ route('dashboard.servers') }}" variant="ghost" size="sm" class="text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
             <x-heroicon-o-cog-6-tooth class="size-4" />
         </x-ui.button>
     </div>

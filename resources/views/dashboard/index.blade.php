@@ -82,7 +82,7 @@
                 <div class="relative z-10">
                     <h3 class="text-lg font-bold">Consultez notre documentation</h3>
                     <p class="text-blue-100 mt-2 text-sm max-w-[250px]">Apprenez à configurer vos serveurs et à optimiser vos performances.</p>
-                    <x-ui.button href="#" variant="outline" size="sm" class="mt-4 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                    <x-ui.button href="#" variant="outline" size="sm" class="mt-4 bg-[var(--control-background)]/10 border-white/20 text-white hover:bg-[var(--control-background)]/20">
                         Explorer la doc
                     </x-ui.button>
                 </div>
@@ -93,12 +93,13 @@
                 <div class="relative z-10">
                     <h3 class="text-lg font-bold">Besoin d'un plan supérieur ?</h3>
                     <p class="text-gray-400 mt-2 text-sm max-w-[250px]">Découvrez nos offres haute performance pour vos projets les plus ambitieux.</p>
-                    <x-ui.button href="{{ route('plans.index') }}" variant="outline" size="sm" class="mt-4 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                    <x-ui.button href="{{ route('plans.index') }}" variant="outline" size="sm" class="mt-4 bg-[var(--control-background)]/10 border-white/20 text-white hover:bg-[var(--control-background)]/20">
                         Voir les tarifs
                     </x-ui.button>
                 </div>
-                <x-heroicon-o-sparkles class="absolute -right-4 -bottom-4 size-32 text-gray-700/30 group-hover:scale-110 transition-transform duration-500" />
+                <x-heroicon-o-sparkles class="absolute -right-4 -bottom-4 size-32 text-[var(--foreground)]/30 group-hover:scale-110 transition-transform duration-500" />
             </div>
         </div>
     </div>
 @endsection
+

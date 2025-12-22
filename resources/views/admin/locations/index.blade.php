@@ -13,19 +13,19 @@
 
     <x-ui.table>
         <x-slot name="head">
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nom (Local)</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID Pterodactyl</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Code (Short)</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description (Long)</th>
-            <th class="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Nom (Local)</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">ID Pterodactyl</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Code (Short)</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Description (Long)</th>
+            <th class="px-6 py-3 text-right text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Actions</th>
         </x-slot>
 
         @foreach ($locations as $location)
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{{ $location->name }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $location->ptero_id_location }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-mono">{{ $location->ptero_short ?? 'N/A' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $location->ptero_long ?? 'N/A' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-[var(--foreground)]">{{ $location->name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">{{ $location->ptero_id_location }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)] font-mono">{{ $location->ptero_short ?? 'N/A' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">{{ $location->ptero_long ?? 'N/A' }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <x-ui.button href="{{ route('admin.locations.edit', $location) }}" variant="ghost" size="sm">
                         Modifier
@@ -50,3 +50,4 @@
         @endif
     </x-ui.table>
 @endsection
+

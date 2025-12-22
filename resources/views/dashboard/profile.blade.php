@@ -4,22 +4,22 @@
 
 @section('dashboard')
     <div class="space-y-4">
-        <div class="rounded-lg border border-border bg-white p-4">
-            <div class="text-sm text-gray-500">Informations du compte</div>
+        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
+            <div class="text-sm text-[var(--muted-foreground)]">Informations du compte</div>
             <form method="POST" action="{{ route('dashboard.profile.update') }}" class="mt-4 space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="first_name" class="block text-sm font-medium text-gray-700">Prénom</label>
+                        <label for="first_name" class="block text-sm font-medium text-[var(--foreground)]">Prénom</label>
                         <x-ui.input id="first_name" name="first_name" type="text"
                                     :invalid="$errors->has('first_name')"
                                     value="{{ old('first_name', auth()->user()->first_name) }}"
                                     class="mt-1" />
                     </div>
                     <div>
-                        <label for="last_name" class="block text-sm font-medium text-gray-700">Nom de famille</label>
+                        <label for="last_name" class="block text-sm font-medium text-[var(--foreground)]">Nom de famille</label>
                         <x-ui.input id="last_name" name="last_name" type="text"
                                     :invalid="$errors->has('last_name')"
                                     value="{{ old('last_name', auth()->user()->last_name) }}"
@@ -29,15 +29,15 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
+                        <label for="name" class="block text-sm font-medium text-[var(--foreground)]">Nom complet</label>
                         <x-ui.input id="name" name="name" type="text"
                                     :invalid="$errors->has('name')"
                                     value="{{ old('name', auth()->user()->name) }}"
                                     class="mt-1" />
-                        <p class="mt-1 text-xs text-gray-500">Si laissé vide, il peut être composé automatiquement depuis prénom et nom.</p>
+                        <p class="mt-1 text-xs text-[var(--muted-foreground)]">Si laissé vide, il peut être composé automatiquement depuis prénom et nom.</p>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Adresse e‑mail</label>
+                        <label for="email" class="block text-sm font-medium text-[var(--foreground)]">Adresse e‑mail</label>
                         <div class="mt-1 flex flex-col sm:flex-row items-start sm:items-center gap-2">
                             <x-ui.input id="email" name="email" type="email" required
                                         :invalid="$errors->has('email')"
@@ -66,8 +66,8 @@
             </form>
 
             @if (! auth()->user()->hasVerifiedEmail())
-                <div class="mt-6 p-4 rounded-lg bg-amber-50 border border-amber-200 animate-in fade-in slide-in-from-top-2 duration-300">
-                    <div class="flex items-start gap-3 text-amber-800">
+                <div class="mt-6 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div class="flex items-start gap-3 text-amber-500">
                         <x-heroicon-o-information-circle class="size-5 shrink-0 mt-0.5" />
                         <div class="text-sm">
                             <p class="font-bold">Votre adresse e-mail n'est pas encore vérifiée.</p>
@@ -76,7 +76,7 @@
                     </div>
                     <form method="POST" action="{{ route('verification.send') }}" class="mt-4">
                         @csrf
-                        <x-ui.button type="submit" variant="outline" size="sm" class="bg-white hover:bg-amber-100 border-amber-300 text-amber-700 shadow-sm">
+                        <x-ui.button type="submit" variant="outline" size="sm" class="bg-amber-500/10 hover:bg-amber-500/20 border-amber-500/30 text-amber-500 shadow-sm">
                             <x-heroicon-o-paper-airplane class="size-3.5 mr-2" />
                             Renvoyer l'e-mail de vérification
                         </x-ui.button>
@@ -85,11 +85,11 @@
             @endif
         </div>
 
-        <div class="rounded-lg border border-border bg-white p-4">
-            <div class="text-sm text-gray-500">Pterodactyl</div>
+        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
+            <div class="text-sm text-[var(--muted-foreground)]">Pterodactyl</div>
             @php($pid = auth()->user()->pterodactyl_user_id)
             <div class="mt-4">
-                <div class="text-sm text-gray-700 flex items-center gap-2">
+                <div class="text-sm text-[var(--foreground)] flex items-center gap-2">
                     @if ($pid)
                         <span class="h-2 w-2 rounded-full bg-green-500"></span>
                         <span>Compte lié (ID: {{ $pid }})</span>
@@ -102,20 +102,20 @@
                 @if ($pid && isset($ptero) && is_array($ptero))
                     <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
-                            <div class="text-gray-500">Email</div>
-                            <div class="font-medium">{{ $ptero['email'] ?? '—' }}</div>
+                            <div class="text-[var(--muted-foreground)]">Email</div>
+                            <div class="font-medium text-[var(--foreground)]">{{ $ptero['email'] ?? '—' }}</div>
                         </div>
                         <div>
-                            <div class="text-gray-500">Nom d'utilisateur</div>
-                            <div class="font-medium">{{ $ptero['username'] ?? '—' }}</div>
+                            <div class="text-[var(--muted-foreground)]">Nom d'utilisateur</div>
+                            <div class="font-medium text-[var(--foreground)]">{{ $ptero['username'] ?? '—' }}</div>
                         </div>
                         <div>
-                            <div class="text-gray-500">Prénom</div>
-                            <div class="font-medium">{{ $ptero['first_name'] ?? '—' }}</div>
+                            <div class="text-[var(--muted-foreground)]">Prénom</div>
+                            <div class="font-medium text-[var(--foreground)]">{{ $ptero['first_name'] ?? '—' }}</div>
                         </div>
                         <div>
-                            <div class="text-gray-500">Nom</div>
-                            <div class="font-medium">{{ $ptero['last_name'] ?? '—' }}</div>
+                            <div class="text-[var(--muted-foreground)]">Nom</div>
+                            <div class="font-medium text-[var(--foreground)]">{{ $ptero['last_name'] ?? '—' }}</div>
                         </div>
                     </div>
                 @endif
@@ -125,11 +125,11 @@
 
                     @if (! $pid)
                         <div>
-                            <label for="ptero_password" class="block text-sm font-medium text-gray-700">Mot de passe du compte (optionnel)</label>
+                            <label for="ptero_password" class="block text-sm font-medium text-[var(--foreground)]">Mot de passe du compte (optionnel)</label>
                             <x-ui.input id="ptero_password" name="ptero_password" type="password"
                                         :invalid="$errors->has('ptero_password')"
                                         class="mt-1" />
-                            <p class="mt-1 text-xs text-gray-500">Utilisé uniquement si un compte doit être créé sur le panel. Le mot de passe n'est pas conservé.</p>
+                            <p class="mt-1 text-xs text-[var(--muted-foreground)]">Utilisé uniquement si un compte doit être créé sur le panel. Le mot de passe n'est pas conservé.</p>
                             @error('ptero_password')
                                 <p class="text-xs text-rose-600 mt-1">{{ $message }}</p>
                             @enderror
@@ -143,10 +143,10 @@
             </div>
         </div>
 
-        <div class="rounded-lg border border-border bg-white p-4">
+        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
             <details class="group">
                 <summary class="list-none cursor-pointer flex items-center justify-between">
-                    <div class="text-sm text-gray-500">Facturation</div>
+                    <div class="text-sm text-[var(--muted-foreground)]">Facturation</div>
                     <div class="flex items-center gap-2 text-xs text-[var(--link)] font-medium bg-[var(--primary)]/50 px-3 py-1 rounded-full hover:bg-[var(--primary)] transition-colors">
                         <span class="group-open:hidden">Afficher les informations</span>
                         <span class="hidden group-open:inline">Masquer les informations</span>
@@ -163,25 +163,25 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Customer ID</div>
-                                <div class="font-mono text-xs bg-gray-50 p-2 rounded border border-gray-100 break-all select-all">{{ $customer->id }}</div>
+                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Customer ID</div>
+                                <div class="font-mono text-xs bg-[var(--secondary)] p-2 rounded border border-[var(--border)] break-all select-all text-[var(--foreground)]">{{ $customer->id }}</div>
                             </div>
                             <div>
-                                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Email (Stripe)</div>
-                                <div class="font-medium p-2">{{ $customer->email ?? auth()->user()->email }}</div>
+                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Email (Stripe)</div>
+                                <div class="font-medium p-2 text-[var(--foreground)]">{{ $customer->email ?? auth()->user()->email }}</div>
                             </div>
                             <div class="md:col-span-2">
-                                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Statut de l'abonnement</div>
-                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">Statut de l'abonnement</div>
+                                <div class="flex items-center gap-3 bg-[var(--secondary)] p-3 rounded-lg border border-[var(--border)]">
                                     @if($subscription)
                                         <x-ui.badge variant="success" size="sm">
                                             {{ ucfirst(str_replace('_',' ', $subscription->status)) }}
                                         </x-ui.badge>
                                         @if($currentPlan)
-                                            <span class="text-sm font-medium">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
+                                            <span class="text-sm font-medium text-[var(--foreground)]">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
                                         @endif
                                     @else
-                                        <div class="flex items-center gap-2 text-gray-400 italic">
+                                        <div class="flex items-center gap-2 text-[var(--muted-foreground)] italic">
                                             <x-heroicon-o-x-circle class="size-4" />
                                             Aucun abonnement actif
                                         </div>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-8 pt-4 border-t border-gray-100 flex justify-end">
+                        <div class="mt-8 pt-4 border-t border-[var(--border)] flex justify-end">
                             <x-ui.button href="{{ route('billing.overview') }}" variant="outline" size="sm">
                                 <x-heroicon-o-arrow-top-right-on-square class="size-4 mr-2" />
                                 Gérer sur le portail Stripe
@@ -222,27 +222,27 @@
             </details>
         </div>
 
-        <div class="rounded-lg border border-border bg-white p-4">
-            <div class="text-sm text-gray-500">Sécurité</div>
+        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
+            <div class="text-sm text-[var(--muted-foreground)]">Sécurité</div>
             <form method="POST" action="{{ route('dashboard.profile.password') }}" class="mt-4 space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label for="current_password" class="block text-sm font-medium text-gray-700">Mot de passe actuel</label>
+                        <label for="current_password" class="block text-sm font-medium text-[var(--foreground)]">Mot de passe actuel</label>
                         <x-ui.input id="current_password" name="current_password" type="password" required
                                     :invalid="$errors->has('current_password')"
                                     class="mt-1" />
                     </div>
                     <div>
-                        <label for="password" class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
+                        <label for="password" class="block text-sm font-medium text-[var(--foreground)]">Nouveau mot de passe</label>
                         <x-ui.input id="password" name="password" type="password" required
                                     :invalid="$errors->has('password')"
                                     class="mt-1" />
                     </div>
                     <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer le nouveau mot de passe</label>
+                        <label for="password_confirmation" class="block text-sm font-medium text-[var(--foreground)]">Confirmer le nouveau mot de passe</label>
                         <x-ui.input id="password_confirmation" name="password_confirmation" type="password" required
                                     :invalid="$errors->has('password_confirmation')"
                                     class="mt-1" />

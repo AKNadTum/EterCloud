@@ -21,7 +21,7 @@
             <div class="space-y-1">
                 <h2 class="text-lg font-semibold">Vos serveurs</h2>
                 @if ($plan)
-                    <p class="text-sm text-gray-500">
+                    <p class="text-sm text-[var(--muted-foreground)]">
                         Utilisation : <x-ui.badge variant="subtle" size="sm">{{ $realServersCount }} / {{ $plan->server_limit }}</x-ui.badge> serveurs (Plan {{ $plan->name }})
                     </p>
                 @endif
@@ -35,11 +35,11 @@
         @php($list = $servers ?? [])
         @if (empty($list))
             <x-ui.card padded="true" class="text-center py-12">
-                <div class="mx-auto size-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 mb-4">
+                <div class="mx-auto size-12 rounded-full bg-[var(--secondary)] flex items-center justify-center text-gray-400 mb-4">
                     <x-heroicon-o-server class="size-6" />
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900">Aucun serveur</h3>
-                <p class="text-gray-500 mt-1 max-w-sm mx-auto">Vous n'avez pas encore de serveur. Commencez par en créer un pour lancer votre projet.</p>
+                <h3 class="text-lg font-semibold text-[var(--foreground)]">Aucun serveur</h3>
+                <p class="text-[var(--muted-foreground)] mt-1 max-w-sm mx-auto">Vous n'avez pas encore de serveur. Commencez par en créer un pour lancer votre projet.</p>
                 <x-ui.button href="{{ route('dashboard.servers.create') }}" class="mt-6" size="sm">
                     Créer mon premier serveur
                 </x-ui.button>
@@ -53,3 +53,4 @@
         @endif
     </div>
 @endsection
+

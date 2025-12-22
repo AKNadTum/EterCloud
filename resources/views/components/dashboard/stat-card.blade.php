@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'bg-white border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow']) }}>
+<div {{ $attributes->merge(['class' => 'bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm hover:shadow-md transition-shadow']) }}>
     <div class="flex items-center justify-between">
         <div @class(['size-12 rounded-lg flex items-center justify-center', $getColorClasses()])>
             <x-dynamic-component :component="$icon" class="size-6" />
@@ -10,15 +10,16 @@
         @endif
     </div>
     <div class="mt-4">
-        <div class="text-sm font-medium text-gray-500">{{ $title }}</div>
-        <div class="text-3xl font-bold text-gray-900 mt-1">{{ $value }}</div>
+        <div class="text-sm font-medium text-[var(--muted-foreground)]">{{ $title }}</div>
+        <div class="text-3xl font-bold text-[var(--foreground)] mt-1">{{ $value }}</div>
     </div>
     @if($href && $linkText)
-        <div class="mt-4 pt-4 border-t border-gray-50">
-            <a href="{{ $href }}" @class(['text-sm font-semibold flex items-center hover:underline', str_contains($getColorClasses(), 'text-blue-600') ? 'text-blue-600' : (str_contains($getColorClasses(), 'text-purple-600') ? 'text-purple-600' : 'text-emerald-600')])>
+        <div class="mt-4 pt-4 border-t border-[var(--border)]">
+            <a href="{{ $href }}" @class(['text-sm font-semibold flex items-center hover:underline', str_contains($getColorClasses(), 'text-[var(--link)]') ? 'text-[var(--link)]' : (str_contains($getColorClasses(), 'text-purple-600') ? 'text-purple-600' : 'text-emerald-600')])>
                 {{ $linkText }}
                 <x-heroicon-o-arrow-right class="size-3 ml-1" />
             </a>
         </div>
     @endif
 </div>
+

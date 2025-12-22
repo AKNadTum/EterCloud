@@ -11,23 +11,23 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
                 </x-ui.button>
-                <h2 class="text-xl font-semibold text-gray-900">Nouveau serveur</h2>
+                <h2 class="text-xl font-semibold text-[var(--foreground)]">Nouveau serveur</h2>
             </div>
             @if ($plan)
-                <div class="text-sm text-gray-500">
+                <div class="text-sm text-[var(--muted-foreground)]">
                     Plan : <strong>{{ $plan->name }}</strong>
                 </div>
             @endif
         </div>
 
-        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-6 shadow-sm">
             <form method="POST" action="{{ route('dashboard.servers.store') }}" class="space-y-5">
                 @csrf
 
                 <div class="space-y-1.5">
                     <label for="name" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nom du serveur</label>
                     <x-ui.input type="text" name="name" id="name" required maxlength="80" placeholder="Mon serveur Minecraft" />
-                    <p class="text-xs text-gray-500">Choisissez un nom reconnaissable pour votre serveur.</p>
+                    <p class="text-xs text-[var(--muted-foreground)]">Choisissez un nom reconnaissable pour votre serveur.</p>
                 </div>
 
                 <div class="space-y-1.5">
@@ -38,7 +38,7 @@
                             <option value="{{ $location->ptero_id_location }}">{{ $location->display_name }}</option>
                         @endforeach
                     </select>
-                    <p class="text-xs text-gray-500">Disponible selon votre plan actuel : <strong>{{ $plan->name }}</strong>.</p>
+                    <p class="text-xs text-[var(--muted-foreground)]">Disponible selon votre plan actuel : <strong>{{ $plan->name }}</strong>.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -61,10 +61,10 @@
                     </div>
                 </div>
 
-                <x-ui.alert variant="default" class="bg-gray-50 border-gray-200">
+                <x-ui.alert variant="default" class="bg-[var(--secondary)] border-[var(--border)]">
                     <x-heroicon-o-information-circle class="size-5 text-gray-400" />
-                    <x-ui.alert-title class="text-gray-800">Ressources incluses dans votre plan</x-ui.alert-title>
-                    <x-ui.alert-description class="text-gray-700">
+                    <x-ui.alert-title class="text-[var(--foreground)]">Ressources incluses dans votre plan</x-ui.alert-title>
+                    <x-ui.alert-description class="text-[var(--foreground)]">
                         <ul class="list-disc space-y-1 pl-5">
                             <li>Instances : {{ $plan->server_limit }} serveur{{ $plan->server_limit > 1 ? 's' : '' }}</li>
                             <li>Stockage : {{ $plan->disk / 1024 }} GB</li>
@@ -118,3 +118,4 @@
         }
     </script>
 @endsection
+

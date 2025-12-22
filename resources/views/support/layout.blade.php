@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@
 
                     <div class="min-h-[60vh]">
                         @if (session('status'))
-                            <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-xl text-sm mb-6">
+                            <div class="bg-emerald-50 border border-emerald-200 text-emerald-500 px-4 py-3 rounded-xl text-sm mb-6">
                                 {{ session('status') }}
                             </div>
                         @endif
@@ -58,3 +58,4 @@
     </main>
 </body>
 </html>
+

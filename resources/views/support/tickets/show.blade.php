@@ -41,11 +41,11 @@
                 @endif
                 @php
                     $statusColors = [
-                        'open' => 'bg-emerald-100 text-emerald-700',
-                        'pending' => 'bg-amber-100 text-amber-700',
-                        'user_replied' => 'bg-blue-100 text-blue-700',
-                        'closed' => 'bg-gray-100 text-gray-700',
-                        'suspended' => 'bg-purple-100 text-purple-700',
+                        'open' => 'bg-emerald-500/10 text-emerald-500',
+                        'pending' => 'bg-amber-500/10 text-amber-500',
+                        'user_replied' => 'bg-blue-500/10 text-blue-500',
+                        'closed' => 'bg-[var(--secondary)] text-[var(--foreground)]',
+                        'suspended' => 'bg-purple-500/10 text-purple-500',
                     ];
                     $statusLabels = [
                         'open' => 'Ouvert',
@@ -55,7 +55,7 @@
                         'suspended' => 'Suspendu',
                     ];
                 @endphp
-                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-gray-100 text-gray-700' }}">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-[var(--secondary)] text-[var(--foreground)]' }}">
                     {{ $statusLabels[$ticket->status] ?? $ticket->status }}
                 </span>
             </div>
@@ -67,9 +67,9 @@
                 <div class="space-y-6">
                     @foreach($ticket->messages as $message)
                         <div class="flex {{ $message->is_support_reply ? 'justify-end' : 'justify-start' }}">
-                            <div class="max-w-[85%] {{ $message->is_support_reply ? 'bg-blue-600 text-white' : 'bg-white border border-[var(--border)] text-[var(--foreground)]' }} rounded-2xl px-6 py-4 shadow-sm">
+                            <div class="max-w-[85%] {{ $message->is_support_reply ? 'bg-blue-600 text-white' : 'bg-[var(--control-background)] border border-[var(--border)] text-[var(--foreground)]' }} rounded-2xl px-6 py-4 shadow-sm">
                                 <div class="flex items-center justify-between gap-4 mb-2">
-                                    <span class="text-xs font-bold uppercase tracking-wider {{ $message->is_support_reply ? 'text-blue-100' : 'text-blue-600' }}">
+                                    <span class="text-xs font-bold uppercase tracking-wider {{ $message->is_support_reply ? 'text-blue-100' : 'text-[var(--link)]' }}">
                                         {{ $message->is_support_reply ? 'Moi (Support)' : $message->user->display_name }}
                                     </span>
                                     <span class="text-[10px] {{ $message->is_support_reply ? 'text-blue-200' : 'text-[var(--muted-foreground)]' }}">
@@ -107,7 +107,7 @@
             <div class="space-y-6">
                 <div class="bg-[var(--control-background)] rounded-2xl p-6 shadow-sm border border-[var(--border)]">
                     <h3 class="font-bold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                        <x-heroicon-o-information-circle class="size-5 text-blue-600" />
+                        <x-heroicon-o-information-circle class="size-5 text-[var(--link)]" />
                         Détails
                     </h3>
                     <div class="space-y-4">
@@ -130,13 +130,13 @@
                 </div>
 
                 @if(auth()->user()->hasPermission('support.assign'))
-                    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-                        <h3 class="font-bold text-blue-900 mb-2">Assignation</h3>
-                        <p class="text-xs text-blue-700 mb-4">Attribuez ce ticket à un membre de l'équipe support.</p>
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6">
+                        <h3 class="font-bold text-blue-500 mb-2">Assignation</h3>
+                        <p class="text-xs text-[var(--muted-foreground)] mb-4">Attribuez ce ticket à un membre de l'équipe support.</p>
                         <form action="{{ route('support.tickets.assign', $ticket) }}" method="POST" class="space-y-4">
                             @csrf
                             <div>
-                                <select name="agent_id" class="w-full rounded-xl border border-blue-200 bg-white px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                                <select name="agent_id" class="w-full rounded-xl border border-blue-500/30 bg-[var(--control-background)] px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-[var(--foreground)]">
                                     <option value="">Sélectionner un agent</option>
                                     @foreach($supportMembers as $member)
                                         <option value="{{ $member->id }}" {{ $ticket->assigned_to == $member->id ? 'selected' : '' }}>
@@ -155,3 +155,4 @@
         </div>
     </div>
 @endsection
+

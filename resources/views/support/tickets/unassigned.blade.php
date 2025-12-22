@@ -7,7 +7,7 @@
         <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm overflow-hidden">
             <div class="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between">
                 <h2 class="font-bold text-[var(--foreground)]">File d'attente</h2>
-                <span class="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
+                <span class="px-3 py-1 bg-amber-500/10 text-amber-500 text-xs font-bold rounded-full">
                     {{ $tickets->count() }} ticket(s) en attente
                 </span>
             </div>
@@ -35,7 +35,7 @@
                                 <td class="px-6 py-4">
                                     @php
                                         $priorityColors = [
-                                            'low' => 'text-gray-500',
+                                            'low' => 'text-[var(--muted-foreground)]',
                                             'medium' => 'text-blue-500',
                                             'high' => 'text-rose-600 font-bold',
                                         ];
@@ -77,3 +77,4 @@
         </div>
     </div>
 @endsection
+

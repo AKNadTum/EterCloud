@@ -155,7 +155,7 @@
                     <div class="relative z-10">
                         <h3 class="text-lg font-extrabold mb-1">Documentation Admin</h3>
                         <p class="text-blue-100 text-sm mb-4">Besoin d'aide pour gérer votre infrastructure ?</p>
-                        <x-ui.button variant="secondary" size="sm" class="bg-white text-blue-600 hover:bg-blue-50 font-bold">
+                        <x-ui.button variant="secondary" size="sm" class="bg-[var(--control-background)] text-[var(--link)] hover:bg-blue-50 font-bold">
                             Consulter les guides
                         </x-ui.button>
                     </div>
@@ -165,3 +165,4 @@
         </div>
     </div>
 @endsection
+

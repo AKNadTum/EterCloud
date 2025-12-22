@@ -5,17 +5,17 @@
 @section('content')
     <div class="space-y-6">
         @if($unassignedCount > 0)
-            <div class="bg-amber-50 border border-amber-200 p-6 rounded-[var(--radius-lg)] flex items-center justify-between">
+            <div class="bg-amber-500/10 border border-amber-500/20 p-6 rounded-[var(--radius-lg)] flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <div class="size-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center">
+                    <div class="size-12 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center">
                         <x-heroicon-o-exclamation-triangle class="size-6" />
                     </div>
                     <div>
-                        <h3 class="font-bold text-amber-900">Tickets non assignés</h3>
-                        <p class="text-sm text-amber-700">Il y a actuellement {{ $unassignedCount }} ticket(s) en attente d'attribution.</p>
+                        <h3 class="font-bold text-amber-500">Tickets non assignés</h3>
+                        <p class="text-sm text-amber-500/80">Il y a actuellement {{ $unassignedCount }} ticket(s) en attente d'attribution.</p>
                     </div>
                 </div>
-                <x-ui.button href="{{ route('support.tickets.unassigned') }}" variant="primary" class="bg-amber-600 hover:bg-amber-700">
+                <x-ui.button href="{{ route('support.tickets.unassigned') }}" variant="primary" class="bg-amber-600 hover:bg-amber-700 text-white">
                     Voir les tickets
                 </x-ui.button>
             </div>
@@ -49,11 +49,11 @@
                                 <td class="px-6 py-4">
                                     @php
                                         $statusColors = [
-                                            'open' => 'bg-emerald-100 text-emerald-700',
-                                            'pending' => 'bg-amber-100 text-amber-700',
-                                            'user_replied' => 'bg-blue-100 text-blue-700',
-                                            'closed' => 'bg-gray-100 text-gray-700',
-                                            'suspended' => 'bg-purple-100 text-purple-700',
+                                            'open' => 'bg-emerald-500/10 text-emerald-500',
+                                            'pending' => 'bg-amber-500/10 text-amber-500',
+                                            'user_replied' => 'bg-blue-500/10 text-blue-500',
+                                            'closed' => 'bg-[var(--secondary)]0/10 text-[var(--muted-foreground)]',
+                                            'suspended' => 'bg-purple-500/10 text-purple-500',
                                         ];
                                         $statusLabels = [
                                             'open' => 'Ouvert',
@@ -63,7 +63,7 @@
                                             'suspended' => 'Suspendu',
                                         ];
                                     @endphp
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-gray-100 text-gray-700' }}">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-[var(--secondary)]0/10 text-[var(--muted-foreground)]' }}">
                                         {{ $statusLabels[$ticket->status] ?? $ticket->status }}
                                     </span>
                                 </td>
@@ -86,3 +86,4 @@
         </div>
     </div>
 @endsection
+

@@ -13,16 +13,16 @@
 
     <x-ui.table>
         <x-slot name="head">
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nom</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Stripe ID</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Configuration</th>
-            <th class="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Nom</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Stripe ID</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Configuration</th>
+            <th class="px-6 py-3 text-right text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Actions</th>
         </x-slot>
 
         @foreach ($plans as $plan)
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{{ $plan->name }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-mono">{{ $plan->price_stripe_id }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-[var(--foreground)]">{{ $plan->name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)] font-mono">{{ $plan->price_stripe_id }}</td>
                 <td class="px-6 py-4">
                     <x-plan.feature-list :plan="$plan" class="!space-y-1" />
                 </td>
@@ -48,3 +48,4 @@
         </x-slot>
     </x-ui.table>
 @endsection
+

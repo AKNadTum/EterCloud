@@ -13,10 +13,10 @@
 
     <x-ui.table>
         <x-slot name="head">
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nom</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
-            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Rôle</th>
-            <th class="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Nom</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Rôle</th>
+            <th class="px-6 py-3 text-right text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">Actions</th>
         </x-slot>
 
         @foreach ($users as $user)
@@ -24,11 +24,11 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center gap-3">
                         <x-user.avatar :user="$user" size="sm" />
-                        <span class="text-sm font-semibold text-gray-900">{{ $user->name }}</span>
+                        <span class="text-sm font-semibold text-[var(--foreground)]">{{ $user->name }}</span>
                     </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ $user->email }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">{{ $user->email }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--muted-foreground)]">
                     <x-ui.badge variant="subtle">
                         {{ $user->role?->name ?? 'Aucun' }}
                     </x-ui.badge>
@@ -55,3 +55,4 @@
         </x-slot>
     </x-ui.table>
 @endsection
+

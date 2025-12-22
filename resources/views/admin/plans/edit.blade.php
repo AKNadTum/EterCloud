@@ -16,7 +16,7 @@
 
                 <div class="md:col-span-2">
                     <x-ui.form.group label="Description" name="description">
-                        <textarea name="description" id="description" rows="3" class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:ring-offset-2 transition-colors @error('description') border-red-500 @enderror">{{ old('description', $plan->description) }}</textarea>
+                        <textarea name="description" id="description" rows="3" class="w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-3 py-2 text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)] focus:ring-offset-2 transition-colors @error('description') border-red-500 @enderror">{{ old('description', $plan->description) }}</textarea>
                     </x-ui.form.group>
                 </div>
 
@@ -70,7 +70,7 @@
                                     <input type="checkbox" name="locations[]" value="{{ $location->id }}"
                                         {{ in_array($location->id, old('locations', $plan->locations->pluck('id')->toArray())) ? 'checked' : '' }}
                                         class="size-4 rounded border-[var(--border)] text-[var(--primary)] focus:ring-[var(--ring)] transition-colors cursor-pointer">
-                                    <span class="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+                                    <span class="text-sm text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] transition-colors">
                                         {{ $location->display_name ?? $location->name ?? $location->ptero_id_location }}
                                     </span>
                                 </label>
@@ -93,3 +93,4 @@
         </x-ui.card>
     </form>
 @endsection
+
