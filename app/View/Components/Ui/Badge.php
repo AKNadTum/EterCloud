@@ -17,10 +17,15 @@ class Badge extends Component
     private const VARIANTS = [
         'subtle' => 'bg-[var(--secondary)] text-[var(--secondary-foreground)]',
         'primary' => 'bg-[var(--primary)] text-[var(--primary-foreground)]',
+        'primary-subtle' => 'bg-blue-500/10 text-blue-400',
         'accent' => 'bg-[var(--accent)] text-[var(--accent-foreground)]',
+        'accent-subtle' => 'bg-purple-500/10 text-purple-400',
         'destructive' => 'bg-[var(--destructive)] text-[var(--destructive-foreground)]',
+        'destructive-subtle' => 'bg-red-500/10 text-red-400',
         'success' => 'bg-[var(--success)] text-[var(--success-foreground)]',
+        'success-subtle' => 'bg-emerald-500/10 text-emerald-400',
         'warning' => 'bg-[var(--warning)] text-[var(--warning-foreground)]',
+        'warning-subtle' => 'bg-amber-500/10 text-amber-400',
         'outline' => 'border border-[var(--border)] text-[var(--foreground)]',
     ];
 

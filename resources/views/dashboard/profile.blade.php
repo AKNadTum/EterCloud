@@ -44,12 +44,12 @@
                                         value="{{ old('email', auth()->user()->email) }}"
                                         class="flex-1 w-full" />
                             @if(auth()->user()->hasVerifiedEmail())
-                                <x-ui.badge variant="success" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-check-circle class="size-3 mr-1" />
                                     Vérifié
                                 </x-ui.badge>
                             @else
-                                <x-ui.badge variant="warning" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
                                     Non vérifié
                                 </x-ui.badge>

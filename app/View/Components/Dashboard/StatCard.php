@@ -32,12 +32,25 @@ class StatCard extends Component
 
     public function getColorClasses(): string
     {
+        $colors = match($this->color) {
+            'purple' => ['bg-purple-500/10', 'text-purple-400'],
+            'emerald' => ['bg-emerald-500/10', 'text-emerald-400'],
+            'orange' => ['bg-orange-500/10', 'text-orange-400'],
+            'red' => ['bg-red-500/10', 'text-red-400'],
+            default => ['bg-blue-500/10', 'text-blue-400'],
+        };
+
+        return implode(' ', $colors);
+    }
+
+    public function getTextColorClass(): string
+    {
         return match($this->color) {
-            'purple' => 'bg-purple-50 text-purple-600',
-            'emerald' => 'bg-emerald-50 text-emerald-600',
-            'orange' => 'bg-orange-50 text-orange-600',
-            'red' => 'bg-red-50 text-red-600',
-            default => 'bg-blue-50 text-blue-600',
+            'purple' => 'text-purple-400',
+            'emerald' => 'text-emerald-400',
+            'orange' => 'text-orange-400',
+            'red' => 'text-red-400',
+            default => 'text-blue-400',
         };
     }
 }

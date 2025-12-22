@@ -15,7 +15,7 @@
     </div>
     @if($href && $linkText)
         <div class="mt-4 pt-4 border-t border-[var(--border)]">
-            <a href="{{ $href }}" @class(['text-sm font-semibold flex items-center hover:underline', str_contains($getColorClasses(), 'text-[var(--link)]') ? 'text-[var(--link)]' : (str_contains($getColorClasses(), 'text-purple-600') ? 'text-purple-600' : 'text-emerald-600')])>
+            <a href="{{ $href }}" @class(['text-sm font-semibold flex items-center hover:underline', $getTextColorClass()])>
                 {{ $linkText }}
                 <x-heroicon-o-arrow-right class="size-3 ml-1" />
             </a>
