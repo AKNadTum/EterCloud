@@ -44,8 +44,8 @@ class TicketController extends Controller
 
         $ticket = $this->supportService->createTicket($request->user(), $ticketData);
 
-        return redirect()->route('dashboard.tickets.show', $ticket)
-            ->with('status', 'Votre ticket a été créé avec succès.');
+        return redirect()->route('home')
+            ->with('status', 'Votre question a été envoyée avec succès.');
     }
 
     public function show(Ticket $ticket)

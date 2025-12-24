@@ -20,7 +20,7 @@
     <x-layout.header />
 
     <main class="min-h-screen">
-        <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-24">
+        <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 pt-24 relative z-50">
             @if (session('success'))
                 <x-ui.feedback.alert variant="success" dismissible="true" class="mb-6 animate-in fade-in slide-in-from-top-4 duration-500">
                     <x-heroicon-o-check-circle class="size-5" />
