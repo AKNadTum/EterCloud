@@ -31,3 +31,7 @@
     <h3 class="text-lg font-bold mb-2">{{ $title }}</h3>
     <p class="text-xs text-muted-foreground leading-relaxed">{{ $description }}</p>
 </div>
+
+
+
+

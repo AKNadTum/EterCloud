@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Ui\Feedback;
+namespace App\View\Components\Ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -10,6 +10,7 @@ class Alert extends Component
 {
     public string $variant;
     public bool $dismissible;
+    public ?string $title;
     public string $computedClasses;
 
     private const BASE_CLASSES = 'relative w-full rounded-[var(--radius-lg)] border p-4 [&>svg~*]:pl-7 [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-[var(--foreground)]';
@@ -28,10 +29,11 @@ class Alert extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $variant = 'default', bool $dismissible = false)
+    public function __construct(string $variant = 'default', bool $dismissible = false, ?string $title = null)
     {
         $this->variant = $variant;
         $this->dismissible = $dismissible;
+        $this->title = $title;
         $this->computedClasses = $this->buildClasses();
     }
 
@@ -53,6 +55,6 @@ class Alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.feedback.alert');
+        return view('components.ui.alert');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Ui\Feedback;
+namespace App\View\Components\Ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -10,6 +10,7 @@ class Badge extends Component
 {
     public string $variant;
     public string $size;
+    public ?string $status;
     public string $computedClasses;
 
     private const BASE = 'inline-flex items-center gap-1 rounded-[var(--radius)] font-medium select-none';
@@ -35,11 +36,36 @@ class Badge extends Component
         'lg' => 'text-sm px-3 py-1.5',
     ];
 
-    public function __construct(string $variant = 'subtle', string $size = 'md')
+    public function __construct(string $variant = 'subtle', string $size = 'md', ?string $status = null)
     {
-        $this->variant = $variant;
+        $this->status = $status;
+        $this->variant = $status ? $this->getVariantFromStatus($status) : $variant;
         $this->size = $size;
         $this->computedClasses = $this->buildClasses();
+    }
+
+    private function getVariantFromStatus(string $status): string
+    {
+        return match (strtolower($status)) {
+            'active', 'running' => 'success',
+            'suspended', 'stopped', 'offline' => 'destructive',
+            'installing', 'pending' => 'warning',
+            default => 'subtle',
+        };
+    }
+
+    public function getLabel(): string
+    {
+        if (!$this->status) return '';
+
+        return match (strtolower($this->status)) {
+            'active', 'running' => 'Actif',
+            'suspended' => 'Suspendu',
+            'installing' => 'Installation',
+            'offline', 'stopped' => 'Hors-ligne',
+            'pending' => 'En attente',
+            default => ucfirst($this->status),
+        };
     }
 
     private function buildClasses(): string
@@ -52,6 +78,6 @@ class Badge extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.ui.feedback.badge');
+        return view('components.ui.badge');
     }
 }

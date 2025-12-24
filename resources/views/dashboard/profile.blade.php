@@ -10,32 +10,32 @@
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <x-ui.forms.input-field name="first_name" label="Prénom" :value="auth()->user()->first_name" />
-                    <x-ui.forms.input-field name="last_name" label="Nom de famille" :value="auth()->user()->last_name" />
+                    <x-ui.input name="first_name" label="Prénom" :value="auth()->user()->first_name" />
+                    <x-ui.input name="last_name" label="Nom de famille" :value="auth()->user()->last_name" />
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <x-ui.forms.input-field name="name" label="Nom complet" :value="auth()->user()->name" description="Si laissé vide, il peut être composé automatiquement depuis prénom et nom." />
+                    <x-ui.input name="name" label="Nom complet" :value="auth()->user()->name" description="Si laissé vide, il peut être composé automatiquement depuis prénom et nom." />
 
-                    <x-ui.forms.group label="Adresse e‑mail" name="email" required>
+                    <x-ui.input label="Adresse e‑mail" name="email" required>
                         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                             <x-ui.input id="email" name="email" type="email" required
                                         :invalid="$errors->has('email')"
                                         value="{{ old('email', auth()->user()->email) }}"
                                         class="flex-1 w-full" />
                             @if(auth()->user()->hasVerifiedEmail())
-                                <x-ui.feedback.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-check-circle class="size-3 mr-1" />
                                     Vérifié
-                                </x-ui.feedback.badge>
+                                </x-ui.badge>
                             @else
-                                <x-ui.feedback.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                <x-ui.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
                                     <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
                                     Non vérifié
-                                </x-ui.feedback.badge>
+                                </x-ui.badge>
                             @endif
                         </div>
-                    </x-ui.forms.group>
+                    </x-ui.input>
                 </div>
 
                 <div class="pt-2">
@@ -103,7 +103,7 @@
                     @csrf
 
                     @if (! $pid)
-                        <x-ui.forms.input-field
+                        <x-ui.input
                             name="ptero_password"
                             type="password"
                             label="Mot de passe du compte (optionnel)"
@@ -122,7 +122,7 @@
             <x-slot name="header">
                 <div class="flex items-center justify-between">
                     <div class="text-sm font-semibold text-[var(--foreground)]">Facturation</div>
-                    <x-ui.feedback.badge variant="accent-subtle" size="sm">Stripe</x-ui.feedback.badge>
+                    <x-ui.badge variant="accent-subtle" size="sm">Stripe</x-ui.badge>
                 </div>
             </x-slot>
 
@@ -145,9 +145,9 @@
                             <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">Statut de l'abonnement</div>
                             <div class="flex items-center gap-3 bg-[var(--secondary)] p-3 rounded-lg border border-[var(--border)]">
                                 @if($subscription)
-                                    <x-ui.feedback.badge variant="success" size="sm">
+                                    <x-ui.badge variant="success" size="sm">
                                         {{ ucfirst(str_replace('_',' ', $subscription->status)) }}
-                                    </x-ui.feedback.badge>
+                                    </x-ui.badge>
                                     @if($currentPlan)
                                         <span class="text-sm font-medium text-[var(--foreground)]">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
                                     @endif
@@ -169,13 +169,13 @@
                     </div>
                 @else
                     <div class="space-y-4">
-                        <x-ui.feedback.alert variant="info" class="p-4">
+                        <x-ui.alert variant="info" class="p-4">
                             <x-heroicon-o-information-circle class="size-5" />
-                            <x-ui.feedback.alert-description class="italic text-sm">
+                            <x-ui.alert-description class="italic text-sm">
                                 Vous n'avez pas encore de compte de facturation Stripe lié.
                                 Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
-                            </x-ui.feedback.alert-description>
-                        </x-ui.feedback.alert>
+                            
+                        </x-ui.alert>
 
                         <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">
                             @csrf
@@ -198,9 +198,9 @@
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <x-ui.forms.input-field name="current_password" type="password" label="Mot de passe actuel" required />
-                    <x-ui.forms.input-field name="password" type="password" label="Nouveau mot de passe" required />
-                    <x-ui.forms.input-field name="password_confirmation" type="password" label="Confirmer le nouveau mot de passe" required />
+                    <x-ui.input name="current_password" type="password" label="Mot de passe actuel" required />
+                    <x-ui.input name="password" type="password" label="Nouveau mot de passe" required />
+                    <x-ui.input name="password_confirmation" type="password" label="Confirmer le nouveau mot de passe" required />
                 </div>
 
                 <div class="pt-2">
@@ -212,6 +212,10 @@
         </x-ui.card>
     </div>
 @endsection
+
+
+
+
 
 
 

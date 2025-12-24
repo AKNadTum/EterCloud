@@ -1,23 +1,23 @@
 <x-layout.auth title="Mot de passe oublié" subtitle="Entrez votre adresse e‑mail et nous vous enverrons un lien de réinitialisation.">
     @if (session('status'))
-        <x-ui.feedback.alert variant="info" dismissible="true" class="mb-4">
-            <x-ui.feedback.alert-description>
+        <x-ui.alert variant="info" dismissible="true" class="mb-4">
+            
                 {{ session('status') }}
-            </x-ui.feedback.alert-description>
-        </x-ui.feedback.alert>
+            
+        </x-ui.alert>
     @endif
 
     @if ($errors->any())
-        <x-ui.feedback.alert variant="error" dismissible="true" class="mb-6">
+        <x-ui.alert variant="error" dismissible="true" class="mb-6">
             <x-heroicon-s-x-circle class="size-5 shrink-0" />
-            <x-ui.feedback.alert-description>
+            
                 <ul class="list-disc pl-5 space-y-1">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-            </x-ui.feedback.alert-description>
-        </x-ui.feedback.alert>
+            
+        </x-ui.alert>
     @endif
 
     <form method="POST" action="{{ route('password.email') }}" class="space-y-6" novalidate>
@@ -52,6 +52,10 @@
         </div>
     </x-slot:footer>
 </x-layout.auth>
+
+
+
+
 
 
 

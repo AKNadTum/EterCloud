@@ -1,3 +1,9 @@
+@props([
+    'variant' => 'default',
+    'dismissible' => false,
+    'title' => null,
+])
+
 <div
     role="alert"
     @if($dismissible)
@@ -5,6 +11,12 @@
     @endif
     {{ $attributes->merge(['class' => $computedClasses . ($dismissible ? ' pr-10' : '')]) }}
 >
+    @if($title || isset($titleSlot))
+        <h5 class="mb-1 font-medium leading-none tracking-tight">
+            {{ $title ?? $titleSlot }}
+        </h5>
+    @endif
+
     {{ $slot }}
 
     @if($dismissible)

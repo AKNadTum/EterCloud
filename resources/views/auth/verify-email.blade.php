@@ -1,10 +1,10 @@
 <x-layout.auth title="Vérification de l'e-mail" subtitle="Un lien de vérification vous a été envoyé.">
     @if (session('status') == 'verification-link-sent')
-        <x-ui.feedback.alert variant="info" dismissible="true" class="mb-4">
-            <x-ui.feedback.alert-description>
+        <x-ui.alert variant="info" dismissible="true" class="mb-4">
+            
                 Un nouveau lien de vérification a été envoyé à l'adresse e-mail que vous avez fournie lors de l'inscription.
-            </x-ui.feedback.alert-description>
-        </x-ui.feedback.alert>
+            
+        </x-ui.alert>
     @endif
 
     <div class="text-sm text-muted-foreground mb-6">
@@ -27,6 +27,10 @@
         </form>
     </div>
 </x-layout.auth>
+
+
+
+
 
 
 

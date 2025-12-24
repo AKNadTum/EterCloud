@@ -29,14 +29,18 @@
             <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Localisations disponibles</div>
             <div class="flex flex-wrap gap-2">
                 @foreach($plan->locations as $loc)
-                    <x-ui.feedback.badge variant="subtle" size="sm">
+                    <x-ui.badge variant="subtle" size="sm">
                         {{ $loc->display_name ?? $loc->name ?? $loc->ptero_id_location }}
-                    </x-ui.feedback.badge>
+                    </x-ui.badge>
                 @endforeach
             </div>
         </li>
     @endif
 </ul>
+
+
+
+
 
 
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\View\Components\Features\User;
+namespace App\View\Components\Features;
 
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Avatar extends Component
+class UserAvatar extends Component
 {
     /**
      * Create a new component instance.
@@ -23,7 +23,7 @@ class Avatar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.features.user.avatar');
+        return view('components.features.user-avatar');
     }
 
     public function getInitials(): string

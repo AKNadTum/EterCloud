@@ -5,16 +5,16 @@
 @section('dashboard')
     <div class="space-y-6">
         @if (!($linked ?? false))
-            <x-ui.feedback.alert variant="warning" dismissible="true" class="mb-6">
+            <x-ui.alert variant="warning" dismissible="true" class="mb-6">
                 <x-heroicon-o-exclamation-triangle class="size-5" />
-                <x-ui.feedback.alert-title>Aucun compte Pterodactyl lié</x-ui.feedback.alert-title>
-                <x-ui.feedback.alert-description class="space-y-4">
+                <x-slot:titleSlot>Aucun compte Pterodactyl lié</x-slot:titleSlot>
+                <x-ui.alert-description class="space-y-4">
                     <p>Pour récupérer vos serveurs, liez votre compte Pterodactyl depuis votre profil.</p>
                     <x-ui.button variant="outline" size="sm" href="{{ route('dashboard.profile') }}">
                         Aller au profil
                     </x-ui.button>
-                </x-ui.feedback.alert-description>
-            </x-ui.feedback.alert>
+                
+            </x-ui.alert>
         @endif
 
         <div class="flex items-center justify-between">
@@ -22,7 +22,7 @@
                 <h2 class="text-lg font-semibold">Vos serveurs</h2>
                 @if ($plan)
                     <p class="text-sm text-[var(--muted-foreground)]">
-                        Utilisation : <x-ui.feedback.badge variant="subtle" size="sm">{{ $realServersCount }} / {{ $plan->server_limit }}</x-ui.feedback.badge> serveurs (Plan {{ $plan->name }})
+                        Utilisation : <x-ui.badge variant="subtle" size="sm">{{ $realServersCount }} / {{ $plan->server_limit }}</x-ui.badge> serveurs (Plan {{ $plan->name }})
                     </p>
                 @endif
             </div>
@@ -53,6 +53,10 @@
         @endif
     </div>
 @endsection
+
+
+
+
 
 
 

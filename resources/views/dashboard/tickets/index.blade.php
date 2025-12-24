@@ -18,12 +18,12 @@
         </div>
 
         @if(session('status'))
-            <x-ui.feedback.alert variant="success" class="mb-6">
+            <x-ui.alert variant="success" class="mb-6">
                 <x-heroicon-o-check-circle class="size-5" />
-                <x-ui.feedback.alert-description>
+                
                     {{ session('status') }}
-                </x-ui.feedback.alert-description>
-            </x-ui.feedback.alert>
+                
+            </x-ui.alert>
         @endif
 
         <x-ui.table>
@@ -58,9 +58,9 @@
                                 'suspended' => 'Suspendu',
                             ];
                         @endphp
-                        <x-ui.feedback.badge :variant="$statusVariants[$ticket->status] ?? 'subtle'" size="sm" class="font-bold uppercase tracking-tighter">
+                        <x-ui.badge :variant="$statusVariants[$ticket->status] ?? 'subtle'" size="sm" class="font-bold uppercase tracking-tighter">
                             {{ $statusLabels[$ticket->status] ?? $ticket->status }}
-                        </x-ui.feedback.badge>
+                        </x-ui.badge>
                     </td>
                     <td class="px-6 py-4">
                         @php
@@ -75,9 +75,9 @@
                                 'low' => 'Basse',
                             ];
                         @endphp
-                        <x-ui.feedback.badge :variant="$priorityVariants[$ticket->priority] ?? 'subtle'" size="sm" class="font-bold">
+                        <x-ui.badge :variant="$priorityVariants[$ticket->priority] ?? 'subtle'" size="sm" class="font-bold">
                             {{ $priorityLabels[$ticket->priority] ?? $ticket->priority }}
-                        </x-ui.feedback.badge>
+                        </x-ui.badge>
                     </td>
                     <td class="px-6 py-4 text-sm text-[var(--muted-foreground)]">
                         {{ $ticket->last_reply_at ? \Carbon\Carbon::parse($ticket->last_reply_at)->diffForHumans() : $ticket->created_at->diffForHumans() }}
@@ -104,6 +104,10 @@
         </x-ui.table>
     </div>
 @endsection
+
+
+
+
 
 
 

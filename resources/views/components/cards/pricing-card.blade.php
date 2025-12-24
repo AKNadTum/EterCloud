@@ -25,9 +25,9 @@
     {{-- Popular Badge --}}
     @if($popular)
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-full flex justify-center">
-            <x-ui.feedback.badge variant="accent" size="sm" class="shadow-lg px-2 py-0.5 uppercase tracking-wider font-bold text-[9px]">
+            <x-ui.badge variant="accent" size="sm" class="shadow-lg px-2 py-0.5 uppercase tracking-wider font-bold text-[9px]">
                 ⭐ Recommandé
-            </x-ui.feedback.badge>
+            </x-ui.badge>
         </div>
     @endif
 
@@ -111,6 +111,10 @@
         @endif
     </div>
 </div>
+
+
+
+
 
 
 

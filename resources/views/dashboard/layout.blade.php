@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ config('app.name', 'EterCloud') }} · Dashboard</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-    <!-- Styles / Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased">
+<x-layout.master :title="($__env->yieldContent('title') ?: 'Tableau de bord') . ' · Dashboard'">
     <main class="min-h-screen">
         <div class="container-custom py-8">
             <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
@@ -52,8 +37,11 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+</x-layout.master>
+
+
+
+
 
 
 

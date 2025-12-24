@@ -11,6 +11,11 @@ class Input extends Component
     public string $type;
     public string $size;
     public bool $invalid;
+    public ?string $label;
+    public ?string $name;
+    public bool $required;
+    public ?string $description;
+    public ?string $error;
     public string $computedClasses;
 
     private const BASE_CLASSES = 'w-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--control-background)] px-3 text-sm text-[var(--control-foreground)] placeholder:text-[var(--muted-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 ring-offset-[var(--background)] disabled:cursor-not-allowed disabled:opacity-50 transition-colors';
@@ -28,10 +33,20 @@ class Input extends Component
         string $type = 'text',
         string $size = 'default',
         bool $invalid = false,
+        ?string $label = null,
+        ?string $name = null,
+        bool $required = false,
+        ?string $description = null,
+        ?string $error = null,
     ) {
         $this->type = $type;
         $this->size = $size;
         $this->invalid = $invalid;
+        $this->label = $label;
+        $this->name = $name;
+        $this->required = $required;
+        $this->description = $description;
+        $this->error = $error;
         $this->computedClasses = $this->buildClasses();
     }
 

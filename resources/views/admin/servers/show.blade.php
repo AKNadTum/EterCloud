@@ -28,9 +28,9 @@
                 <dt class="text-sm font-medium text-[var(--muted-foreground)]">Statut</dt>
                 <dd class="text-sm">
                     @if($server['attributes']['suspended'])
-                        <x-ui.feedback.badge variant="destructive">Suspendu</x-ui.feedback.badge>
+                        <x-ui.badge variant="destructive">Suspendu</x-ui.badge>
                     @else
-                        <x-ui.feedback.badge variant="success">Actif</x-ui.feedback.badge>
+                        <x-ui.badge variant="success">Actif</x-ui.badge>
                     @endif
                 </dd>
             </dl>
@@ -88,6 +88,10 @@
         </form>
     </div>
 @endsection
+
+
+
+
 
 
 

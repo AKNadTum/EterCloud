@@ -14,7 +14,7 @@
         </div>
         <div class="shrink-0 flex flex-col items-end gap-2">
             @if (!empty($s['is_demo']))
-                <x-ui.feedback.badge variant="accent" size="sm">DÉMO</x-ui.feedback.badge>
+                <x-ui.badge variant="accent" size="sm">DÉMO</x-ui.badge>
             @endif
             @if (!empty($s['location_name']))
                 <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-[var(--secondary)] px-1.5 py-0.5 rounded">
@@ -51,6 +51,10 @@
         </form>
     </div>
 </div>
+
+
+
+
 
 
 

@@ -13,12 +13,12 @@
             </div>
 
             @if(isset($error) && $error)
-                <x-ui.feedback.alert variant="destructive" class="mb-8">
+                <x-ui.alert variant="destructive" class="mb-8">
                     <x-heroicon-o-exclamation-triangle class="size-5" />
-                    <x-ui.feedback.alert-description>
+                    
                         {{ $error }}
-                    </x-ui.feedback.alert-description>
-                </x-ui.feedback.alert>
+                    
+                </x-ui.alert>
             @else
                 <!-- État Global -->
                 <div class="mb-12">
@@ -30,7 +30,7 @@
                                 <p class="text-sm text-muted-foreground font-medium">Dernière vérification : {{ $last_updated->diffForHumans() }}</p>
                             </div>
                         </div>
-                        <x-ui.feedback.badge variant="success" size="lg" class="px-6 py-2 text-sm uppercase tracking-wider font-black">Opérationnel</x-ui.feedback.badge>
+                        <x-ui.badge variant="success" size="lg" class="px-6 py-2 text-sm uppercase tracking-wider font-black">Opérationnel</x-ui.badge>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                                             Opérationnel
                                         </div>
                                     @else
-                                        <x-ui.feedback.badge variant="warning" size="sm">Incident</x-ui.feedback.badge>
+                                        <x-ui.badge variant="warning" size="sm">Incident</x-ui.badge>
                                     @endif
                                 </div>
                             @endforeach
@@ -130,6 +130,10 @@
         </div>
     </div>
 @endsection
+
+
+
+
 
 
 

@@ -1,15 +1,15 @@
 <x-layout.auth title="Réinitialiser le mot de passe" subtitle="Choisissez votre nouveau mot de passe">
     @if ($errors->any())
-        <x-ui.feedback.alert variant="error" dismissible="true" class="mb-6">
+        <x-ui.alert variant="error" dismissible="true" class="mb-6">
             <x-heroicon-s-x-circle class="size-5 shrink-0" />
-            <x-ui.feedback.alert-description>
+            
                 <ul class="list-disc pl-5 space-y-1">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-            </x-ui.feedback.alert-description>
-        </x-ui.feedback.alert>
+            
+        </x-ui.alert>
     @endif
 
     <form method="POST" action="{{ route('password.update') }}" class="space-y-6">
@@ -46,6 +46,10 @@
         </x-ui.button>
     </form>
 </x-layout.auth>
+
+
+
+
 
 
 

@@ -11,7 +11,7 @@
             <div class="flex items-center gap-2">
                 <span class="font-bold text-[var(--foreground)]">{{ $s['name'] }}</span>
                 @if (!empty($s['is_demo']))
-                    <x-ui.feedback.badge variant="accent" size="sm">DÉMO</x-ui.feedback.badge>
+                    <x-ui.badge variant="accent" size="sm">DÉMO</x-ui.badge>
                 @endif
             </div>
             <div class="text-xs text-[var(--muted-foreground)] flex items-center gap-2">
@@ -34,6 +34,10 @@
         </x-ui.button>
     </div>
 </div>
+
+
+
+
 
 
 

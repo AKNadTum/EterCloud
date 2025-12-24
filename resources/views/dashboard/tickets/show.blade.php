@@ -31,9 +31,9 @@
                         'suspended' => 'Suspendu',
                     ];
                 @endphp
-                <x-ui.feedback.badge :variant="$statusVariants[$ticket->status] ?? 'subtle'" size="lg" class="font-bold">
+                <x-ui.badge :variant="$statusVariants[$ticket->status] ?? 'subtle'" size="lg" class="font-bold">
                     {{ $statusLabels[$ticket->status] ?? $ticket->status }}
-                </x-ui.feedback.badge>
+                </x-ui.badge>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
                 {{-- Messages --}}
                 <div class="space-y-6">
                     @foreach($ticket->messages as $message)
-                        <x-features.ticket.message-bubble
+                        <x-features.ticket-message-bubble
                             :message="$message->message"
                             :is-support="$message->is_support_reply"
                             :user-name="$message->user->display_name"
@@ -112,9 +112,9 @@
                                         'low' => 'Basse',
                                     ];
                                 @endphp
-                                <x-ui.feedback.badge :variant="$priorityVariants[$ticket->priority] ?? 'subtle'" size="sm" class="font-bold">
+                                <x-ui.badge :variant="$priorityVariants[$ticket->priority] ?? 'subtle'" size="sm" class="font-bold">
                                     {{ $priorityLabels[$ticket->priority] ?? $ticket->priority }}
-                                </x-ui.feedback.badge>
+                                </x-ui.badge>
                             </p>
                         </div>
                         <div>
@@ -148,6 +148,10 @@
         </div>
     </div>
 @endsection
+
+
+
+
 
 
 

@@ -84,12 +84,12 @@
     @if(isset($plans) && $plans->count() > 0)
         <x-ui.section id="plans" class="scroll-mt-24" title="Choisis ton plan" subtitle="Une tarification transparente pour tous les besoins." containerClass="container-custom">
             <div class="flex flex-wrap items-center justify-center gap-2 mb-8 -mt-4">
-                <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Sans engagement</x-ui.feedback.badge>
-                <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Support inclus</x-ui.feedback.badge>
-                <x-ui.feedback.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.feedback.badge>
+                <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Sans engagement</x-ui.badge>
+                <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Support inclus</x-ui.badge>
+                <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
             </div>
 
-            <x-features.plan.carousel :plans="$plans" :stripe-prices="$stripePrices" />
+            <x-features.plan-carousel :plans="$plans" :stripe-prices="$stripePrices" />
 
             <div class="mt-8 text-center">
                 <p class="text-sm text-muted-foreground">
@@ -113,6 +113,10 @@
         />
     @endif
 @endsection
+
+
+
+
 
 
 

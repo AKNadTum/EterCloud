@@ -59,7 +59,7 @@
 
             <div class="grid grid-cols-1 gap-4">
                 @forelse($servers as $server)
-                    <x-features.server.list-item :server="$server" />
+                    <x-features.server-list-item :server="$server" />
                 @empty
                     <div class="bg-[var(--muted)] border-2 border-dashed border-[var(--border)] rounded-xl p-8 text-center">
                         <div class="mx-auto size-12 rounded-full bg-[var(--secondary)] flex items-center justify-center text-[var(--muted-foreground)] mb-4">
@@ -102,6 +102,10 @@
         </div>
     </div>
 @endsection
+
+
+
+
 
 
 

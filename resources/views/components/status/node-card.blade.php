@@ -8,9 +8,9 @@
             </div>
         </div>
         @if($isMaintenance)
-            <x-ui.feedback.badge variant="warning" size="sm" class="font-bold">Maintenance</x-ui.feedback.badge>
+            <x-ui.badge variant="warning" size="sm" class="font-bold">Maintenance</x-ui.badge>
         @else
-            <x-ui.feedback.badge variant="success" size="sm" class="font-bold">Online</x-ui.feedback.badge>
+            <x-ui.badge variant="success" size="sm" class="font-bold">Online</x-ui.badge>
         @endif
     </div>
     <div class="p-5 space-y-4 flex-grow">
@@ -45,3 +45,7 @@
         </div>
     </div>
 </div>
+
+
+
+

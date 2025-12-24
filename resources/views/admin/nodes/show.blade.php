@@ -22,9 +22,9 @@
                 <dt class="text-sm font-medium text-[var(--muted-foreground)]">Maintenance</dt>
                 <dd class="text-sm">
                     @if($node['attributes']['maintenance_mode'])
-                        <x-ui.feedback.badge variant="warning">Activé</x-ui.feedback.badge>
+                        <x-ui.badge variant="warning">Activé</x-ui.badge>
                     @else
-                        <x-ui.feedback.badge variant="success">Désactivé</x-ui.feedback.badge>
+                        <x-ui.badge variant="success">Désactivé</x-ui.badge>
                     @endif
                 </dd>
             </dl>
@@ -52,6 +52,10 @@
         <x-ui.button href="{{ route('admin.nodes.index') }}" variant="outline">Retour à la liste</x-ui.button>
     </div>
 @endsection
+
+
+
+
 
 
 

@@ -20,3 +20,7 @@
         <div class="text-sm leading-relaxed whitespace-pre-wrap">{{ $message }}</div>
     </div>
 </div>
+
+
+
+

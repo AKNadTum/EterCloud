@@ -1,5 +1,5 @@
 <span {{ $attributes->merge(['class' => $computedClasses]) }}>
-    {{ $slot }}
+    {{ $status ? $getLabel() : $slot }}
 </span>
 
 
