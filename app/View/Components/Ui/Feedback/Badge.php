@@ -17,15 +17,15 @@ class Badge extends Component
     private const VARIANTS = [
         'subtle' => 'bg-[var(--secondary)] text-[var(--secondary-foreground)]',
         'primary' => 'bg-[var(--primary)] text-[var(--primary-foreground)]',
-        'primary-subtle' => 'bg-blue-500/10 text-blue-400',
+        'primary-subtle' => 'bg-[var(--primary)]/20 text-[var(--primary-foreground)]',
         'accent' => 'bg-[var(--accent)] text-[var(--accent-foreground)]',
-        'accent-subtle' => 'bg-purple-500/10 text-purple-400',
+        'accent-subtle' => 'bg-[var(--accent)]/20 text-[var(--accent-foreground)]',
         'destructive' => 'bg-[var(--destructive)] text-[var(--destructive-foreground)]',
-        'destructive-subtle' => 'bg-red-500/10 text-red-400',
+        'destructive-subtle' => 'bg-[var(--destructive)]/20 text-[var(--destructive-foreground)]',
         'success' => 'bg-[var(--success)] text-[var(--success-foreground)]',
-        'success-subtle' => 'bg-emerald-500/10 text-emerald-400',
+        'success-subtle' => 'bg-[var(--success)]/20 text-[var(--success-foreground)]',
         'warning' => 'bg-[var(--warning)] text-[var(--warning-foreground)]',
-        'warning-subtle' => 'bg-amber-500/10 text-amber-400',
+        'warning-subtle' => 'bg-[var(--warning)]/20 text-[var(--warning-foreground)]',
         'outline' => 'border border-[var(--border)] text-[var(--foreground)]',
     ];
 

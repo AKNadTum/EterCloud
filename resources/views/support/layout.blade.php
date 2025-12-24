@@ -33,7 +33,7 @@
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="hidden sm:flex items-center gap-3 glass px-4 py-1.5 rounded-full text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-widest border-[var(--border)]/50">
-                                <div class="size-2 rounded-full bg-blue-500"></div>
+                                <div class="size-2 rounded-full bg-[var(--primary-foreground)]"></div>
                                 Support: {{ auth()->user()->name ?? auth()->user()->email }}
                             </div>
                             <x-ui.button href="{{ route('dashboard.index') }}" variant="outline" size="sm" class="rounded-full">

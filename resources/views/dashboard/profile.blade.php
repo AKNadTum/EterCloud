@@ -4,41 +4,21 @@
 
 @section('dashboard')
     <div class="space-y-4">
-        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
-            <div class="text-sm text-[var(--muted-foreground)]">Informations du compte</div>
-            <form method="POST" action="{{ route('dashboard.profile.update') }}" class="mt-4 space-y-4">
+        <x-ui.card title="Informations du compte">
+            <form method="POST" action="{{ route('dashboard.profile.update') }}" class="space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="first_name" class="block text-sm font-medium text-[var(--foreground)]">Prénom</label>
-                        <x-ui.input id="first_name" name="first_name" type="text"
-                                    :invalid="$errors->has('first_name')"
-                                    value="{{ old('first_name', auth()->user()->first_name) }}"
-                                    class="mt-1" />
-                    </div>
-                    <div>
-                        <label for="last_name" class="block text-sm font-medium text-[var(--foreground)]">Nom de famille</label>
-                        <x-ui.input id="last_name" name="last_name" type="text"
-                                    :invalid="$errors->has('last_name')"
-                                    value="{{ old('last_name', auth()->user()->last_name) }}"
-                                    class="mt-1" />
-                    </div>
+                    <x-ui.forms.input-field name="first_name" label="Prénom" :value="auth()->user()->first_name" />
+                    <x-ui.forms.input-field name="last_name" label="Nom de famille" :value="auth()->user()->last_name" />
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-[var(--foreground)]">Nom complet</label>
-                        <x-ui.input id="name" name="name" type="text"
-                                    :invalid="$errors->has('name')"
-                                    value="{{ old('name', auth()->user()->name) }}"
-                                    class="mt-1" />
-                        <p class="mt-1 text-xs text-[var(--muted-foreground)]">Si laissé vide, il peut être composé automatiquement depuis prénom et nom.</p>
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-[var(--foreground)]">Adresse e‑mail</label>
-                        <div class="mt-1 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <x-ui.forms.input-field name="name" label="Nom complet" :value="auth()->user()->name" description="Si laissé vide, il peut être composé automatiquement depuis prénom et nom." />
+
+                    <x-ui.forms.group label="Adresse e‑mail" name="email" required>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                             <x-ui.input id="email" name="email" type="email" required
                                         :invalid="$errors->has('email')"
                                         value="{{ old('email', auth()->user()->email) }}"
@@ -55,7 +35,7 @@
                                 </x-ui.feedback.badge>
                             @endif
                         </div>
-                    </div>
+                    </x-ui.forms.group>
                 </div>
 
                 <div class="pt-2">
@@ -66,8 +46,8 @@
             </form>
 
             @if (! auth()->user()->hasVerifiedEmail())
-                <div class="mt-6 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 animate-in fade-in slide-in-from-top-2 duration-300">
-                    <div class="flex items-start gap-3 text-amber-500">
+                <div class="mt-6 p-4 rounded-lg bg-[var(--warning)]/10 border border-[var(--warning)]/20 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div class="flex items-start gap-3 text-[var(--warning-foreground)]">
                         <x-heroicon-o-information-circle class="size-5 shrink-0 mt-0.5" />
                         <div class="text-sm">
                             <p class="font-bold">Votre adresse e-mail n'est pas encore vérifiée.</p>
@@ -76,25 +56,24 @@
                     </div>
                     <form method="POST" action="{{ route('verification.send') }}" class="mt-4">
                         @csrf
-                        <x-ui.button type="submit" variant="outline" size="sm" class="bg-amber-500/10 hover:bg-amber-500/20 border-amber-500/30 text-amber-500 shadow-sm">
+                        <x-ui.button type="submit" variant="outline" size="sm" class="bg-[var(--warning)]/10 hover:bg-[var(--warning)]/20 border-[var(--warning)]/30 text-[var(--warning-foreground)] shadow-sm">
                             <x-heroicon-o-paper-airplane class="size-3.5 mr-2" />
                             Renvoyer l'e-mail de vérification
                         </x-ui.button>
                     </form>
                 </div>
             @endif
-        </div>
+        </x-ui.card>
 
-        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
-            <div class="text-sm text-[var(--muted-foreground)]">Pterodactyl</div>
+        <x-ui.card title="Pterodactyl">
             @php($pid = auth()->user()->pterodactyl_user_id)
-            <div class="mt-4">
+            <div class="mt-2">
                 <div class="text-sm text-[var(--foreground)] flex items-center gap-2">
                     @if ($pid)
-                        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                        <span class="h-2 w-2 rounded-full bg-[var(--success-foreground)]"></span>
                         <span>Compte lié (ID: {{ $pid }})</span>
                     @else
-                        <span class="h-2 w-2 rounded-full bg-gray-400"></span>
+                        <span class="h-2 w-2 rounded-full bg-[var(--muted-foreground)]"></span>
                         <span>Aucun compte lié</span>
                     @endif
                 </div>
@@ -124,16 +103,12 @@
                     @csrf
 
                     @if (! $pid)
-                        <div>
-                            <label for="ptero_password" class="block text-sm font-medium text-[var(--foreground)]">Mot de passe du compte (optionnel)</label>
-                            <x-ui.input id="ptero_password" name="ptero_password" type="password"
-                                        :invalid="$errors->has('ptero_password')"
-                                        class="mt-1" />
-                            <p class="mt-1 text-xs text-[var(--muted-foreground)]">Utilisé uniquement si un compte doit être créé sur le panel. Le mot de passe n'est pas conservé.</p>
-                            @error('ptero_password')
-                                <p class="text-xs text-rose-600 mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <x-ui.forms.input-field
+                            name="ptero_password"
+                            type="password"
+                            label="Mot de passe du compte (optionnel)"
+                            description="Utilisé uniquement si un compte doit être créé sur le panel. Le mot de passe n'est pas conservé."
+                        />
                     @endif
 
                     <x-ui.button type="submit">
@@ -141,112 +116,91 @@
                     </x-ui.button>
                 </form>
             </div>
-        </div>
+        </x-ui.card>
 
-        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
-            <details class="group">
-                <summary class="list-none cursor-pointer flex items-center justify-between">
-                    <div class="text-sm text-[var(--muted-foreground)]">Facturation</div>
-                    <div class="flex items-center gap-2 text-xs text-[var(--link)] font-medium bg-[var(--primary)]/50 px-3 py-1 rounded-full hover:bg-[var(--primary)] transition-colors">
-                        <span class="group-open:hidden">Afficher les informations</span>
-                        <span class="hidden group-open:inline">Masquer les informations</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-3 transition-transform group-open:rotate-180">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                        </svg>
-                    </div>
-                </summary>
-                <div class="mt-6 text-sm">
-                    @if(isset($billing) && is_array($billing) && isset($billing['customer']) && $billing['customer'] !== null)
-                        @php($customer = $billing['customer'])
-                        @php($subscription = $billing['subscription'] ?? null)
-                        @php($currentPlan = $billing['plan'] ?? null)
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Customer ID</div>
-                                <div class="font-mono text-xs bg-[var(--secondary)] p-2 rounded border border-[var(--border)] break-all select-all text-[var(--foreground)]">{{ $customer->id }}</div>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Email (Stripe)</div>
-                                <div class="font-medium p-2 text-[var(--foreground)]">{{ $customer->email ?? auth()->user()->email }}</div>
-                            </div>
-                            <div class="md:col-span-2">
-                                <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">Statut de l'abonnement</div>
-                                <div class="flex items-center gap-3 bg-[var(--secondary)] p-3 rounded-lg border border-[var(--border)]">
-                                    @if($subscription)
-                                        <x-ui.feedback.badge variant="success" size="sm">
-                                            {{ ucfirst(str_replace('_',' ', $subscription->status)) }}
-                                        </x-ui.feedback.badge>
-                                        @if($currentPlan)
-                                            <span class="text-sm font-medium text-[var(--foreground)]">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
-                                        @endif
-                                    @else
-                                        <div class="flex items-center gap-2 text-[var(--muted-foreground)] italic">
-                                            <x-heroicon-o-x-circle class="size-4" />
-                                            Aucun abonnement actif
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 pt-4 border-t border-[var(--border)] flex justify-end">
-                            <x-ui.button href="{{ route('billing.overview') }}" variant="outline" size="sm">
-                                <x-heroicon-o-arrow-top-right-on-square class="size-4 mr-2" />
-                                Gérer sur le portail Stripe
-                            </x-ui.button>
-                        </div>
-                    @else
-                        <div class="space-y-4">
-                            <x-ui.feedback.alert variant="info" class="p-4">
-                                <x-heroicon-o-information-circle class="size-5" />
-                                <x-ui.feedback.alert-description class="italic text-sm">
-                                    Vous n'avez pas encore de compte de facturation Stripe lié.
-                                    Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
-                                </x-ui.feedback.alert-description>
-                            </x-ui.feedback.alert>
-
-                            <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">
-                                @csrf
-                                <x-ui.button type="submit">
-                                    Lier / Créer mon compte Stripe
-                                </x-ui.button>
-                            </form>
-
-                            @error('stripe')
-                                <p class="text-xs text-rose-600 mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    @endif
+        <x-ui.card>
+            <x-slot name="header">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm font-semibold text-[var(--foreground)]">Facturation</div>
+                    <x-ui.feedback.badge variant="accent-subtle" size="sm">Stripe</x-ui.feedback.badge>
                 </div>
-            </details>
-        </div>
+            </x-slot>
 
-        <div class="rounded-lg border border-[var(--border)] bg-[var(--control-background)] p-4">
-            <div class="text-sm text-[var(--muted-foreground)]">Sécurité</div>
+            <div class="text-sm">
+                @if(isset($billing) && is_array($billing) && isset($billing['customer']) && $billing['customer'] !== null)
+                    @php($customer = $billing['customer'])
+                    @php($subscription = $billing['subscription'] ?? null)
+                    @php($currentPlan = $billing['plan'] ?? null)
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Customer ID</div>
+                            <div class="font-mono text-xs bg-[var(--secondary)] p-2 rounded border border-[var(--border)] break-all select-all text-[var(--foreground)]">{{ $customer->id }}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-1">Email (Stripe)</div>
+                            <div class="font-medium p-2 text-[var(--foreground)]">{{ $customer->email ?? auth()->user()->email }}</div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <div class="text-xs font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">Statut de l'abonnement</div>
+                            <div class="flex items-center gap-3 bg-[var(--secondary)] p-3 rounded-lg border border-[var(--border)]">
+                                @if($subscription)
+                                    <x-ui.feedback.badge variant="success" size="sm">
+                                        {{ ucfirst(str_replace('_',' ', $subscription->status)) }}
+                                    </x-ui.feedback.badge>
+                                    @if($currentPlan)
+                                        <span class="text-sm font-medium text-[var(--foreground)]">Plan actuel : <span class="text-[var(--accent-foreground)]">{{ $currentPlan->name }}</span></span>
+                                    @endif
+                                @else
+                                    <div class="flex items-center gap-2 text-[var(--muted-foreground)] italic">
+                                        <x-heroicon-o-x-circle class="size-4" />
+                                        Aucun abonnement actif
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-[var(--border)] flex justify-end">
+                        <x-ui.button href="{{ route('billing.overview') }}" variant="outline" size="sm">
+                            <x-heroicon-o-arrow-top-right-on-square class="size-4 mr-2" />
+                            Gérer sur le portail Stripe
+                        </x-ui.button>
+                    </div>
+                @else
+                    <div class="space-y-4">
+                        <x-ui.feedback.alert variant="info" class="p-4">
+                            <x-heroicon-o-information-circle class="size-5" />
+                            <x-ui.feedback.alert-description class="italic text-sm">
+                                Vous n'avez pas encore de compte de facturation Stripe lié.
+                                Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
+                            </x-ui.feedback.alert-description>
+                        </x-ui.feedback.alert>
+
+                        <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">
+                            @csrf
+                            <x-ui.button type="submit">
+                                Lier / Créer mon compte Stripe
+                            </x-ui.button>
+                        </form>
+
+                        @error('stripe')
+                            <p class="text-xs text-[var(--destructive-foreground)] mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                @endif
+            </div>
+        </x-ui.card>
+
+        <x-ui.card title="Sécurité">
             <form method="POST" action="{{ route('dashboard.profile.password') }}" class="mt-4 space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label for="current_password" class="block text-sm font-medium text-[var(--foreground)]">Mot de passe actuel</label>
-                        <x-ui.input id="current_password" name="current_password" type="password" required
-                                    :invalid="$errors->has('current_password')"
-                                    class="mt-1" />
-                    </div>
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-[var(--foreground)]">Nouveau mot de passe</label>
-                        <x-ui.input id="password" name="password" type="password" required
-                                    :invalid="$errors->has('password')"
-                                    class="mt-1" />
-                    </div>
-                    <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-[var(--foreground)]">Confirmer le nouveau mot de passe</label>
-                        <x-ui.input id="password_confirmation" name="password_confirmation" type="password" required
-                                    :invalid="$errors->has('password_confirmation')"
-                                    class="mt-1" />
-                    </div>
+                    <x-ui.forms.input-field name="current_password" type="password" label="Mot de passe actuel" required />
+                    <x-ui.forms.input-field name="password" type="password" label="Nouveau mot de passe" required />
+                    <x-ui.forms.input-field name="password_confirmation" type="password" label="Confirmer le nouveau mot de passe" required />
                 </div>
 
                 <div class="pt-2">
@@ -255,7 +209,7 @@
                     </x-ui.button>
                 </div>
             </form>
-        </div>
+        </x-ui.card>
     </div>
 @endsection
 

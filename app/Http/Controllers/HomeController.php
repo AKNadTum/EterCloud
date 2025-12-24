@@ -60,6 +60,70 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('plans', 'stripePrices'));
+        return view('home', array_merge(compact('plans', 'stripePrices'), [
+            'features' => $this->getFeatures(),
+            'faqItems' => $this->getFaqItems(),
+            'steps' => $this->getSteps(),
+        ]));
+    }
+
+    private function getFeatures(): array
+    {
+        return [
+            ['variant' => 'primary', 'icon' => 'heroicon-o-rocket-launch', 'title' => 'Pterodactyl', 'description' => 'Gère ton serveur avec le panel le plus puissant et intuitif du marché.'],
+            ['variant' => 'success', 'icon' => 'heroicon-o-sparkles', 'title' => 'Gratuit & Performant', 'description' => 'Une alternative à Aternos sans file d\'attente.'],
+            ['variant' => 'accent', 'icon' => 'heroicon-o-swatch', 'title' => 'Moderne', 'description' => 'Une interface claire, rapide et optimisée pour tous tes appareils.'],
+            ['variant' => 'warning', 'icon' => 'heroicon-o-shield-check', 'title' => 'Sécurité', 'description' => 'Sauvegardes automatiques et protection DDoS pour ton esprit tranquille.'],
+        ];
+    }
+
+    private function getFaqItems(): array
+    {
+        return [
+            [
+                'variant' => 'card-primary',
+                'question' => 'Pourquoi choisir EterCloud comme alternative à Aternos ?',
+                'answer' => 'Contrairement à d\'autres hébergeurs gratuits comme Aternos, EterCloud mise sur de vraies performances dès le plan gratuit. Nous garantissons une expérience <strong>sans file d\'attente</strong> et <strong>sans lag</strong>, idéale pour jouer avec tes amis dans les meilleures conditions.'
+            ],
+            [
+                'variant' => 'card-success',
+                'question' => 'Le plan gratuit est-il vraiment gratuit ?',
+                'answer' => 'Oui, absolument. Le plan gratuit est conçu pour te permettre de tester notre infrastructure sans aucun frais caché ni limite de temps. Tu peux passer à un plan supérieur à tout moment.'
+            ],
+            [
+                'variant' => 'card-accent',
+                'question' => 'Puis-je importer mes serveurs existants ?',
+                'answer' => 'Bien sûr ! Notre interface te permet de téléverser tes fichiers via le gestionnaire de fichiers intégré ou via SFTP. Tes mondes et configurations seront prêts en quelques minutes.'
+            ],
+            [
+                'variant' => 'card-success',
+                'question' => 'Quel est le délai de mise en ligne ?',
+                'answer' => 'Une fois qu\'on déploie un serveur, celui-ci est en ligne en quelques secondes.'
+            ],
+        ];
+    }
+
+    private function getSteps(): array
+    {
+        return [
+            [
+                'step' => 1,
+                'title' => 'Compte',
+                'description' => 'Inscris-toi en quelques secondes, sans carte bancaire requise.',
+                'variant' => 'primary'
+            ],
+            [
+                'step' => 2,
+                'title' => 'Déploiement',
+                'description' => 'Choisis ton plan et ton serveur se configure automatiquement.',
+                'variant' => 'accent'
+            ],
+            [
+                'step' => 3,
+                'title' => 'Aventure',
+                'description' => 'Rejoins ton serveur avec tes amis et commence à bâtir ton monde.',
+                'variant' => 'success'
+            ],
+        ];
     }
 }

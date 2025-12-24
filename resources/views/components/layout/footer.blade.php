@@ -1,5 +1,5 @@
 <footer class="mt-12 border-t bg-[var(--background)]/90 backdrop-blur-md">
-    <div class="w-full px-4 py-10 mx-auto" style="max-width: 85%;">
+    <div class="container-custom py-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             <!-- Brand -->
             <div>

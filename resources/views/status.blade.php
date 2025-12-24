@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pt-24 pb-12">
-        <div class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <div class="text-center mb-12">
                 <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
                     État de l'infrastructure
@@ -24,9 +24,7 @@
                 <div class="mb-12">
                     <div class="bg-[var(--control-background)] rounded-[var(--radius-lg)] shadow-sm border border-[var(--border)] p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
-                            <div class="size-16 rounded-full bg-[var(--success)] flex items-center justify-center">
-                                <x-heroicon-o-check-circle class="size-10 text-[var(--success-foreground)]" />
-                            </div>
+                            <x-ui.icon-circle variant="success" icon="heroicon-o-check-circle" size="lg" />
                             <div>
                                 <h2 class="text-2xl font-bold">Tous les systèmes sont opérationnels</h2>
                                 <p class="text-sm text-muted-foreground font-medium">Dernière vérification : {{ $last_updated->diffForHumans() }}</p>
@@ -39,27 +37,21 @@
                 <!-- Statistiques Globales -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
-                        <div class="size-12 rounded-xl bg-[var(--primary)] flex items-center justify-center">
-                            <x-heroicon-o-server-stack class="size-6 text-[var(--primary-foreground)]" />
-                        </div>
+                        <x-ui.icon-circle variant="primary" icon="heroicon-o-server-stack" size="md" />
                         <div>
                             <div class="text-muted-foreground text-xs font-bold uppercase tracking-wider">Nodes Actifs</div>
                             <div class="text-2xl font-black">{{ $stats['total_nodes'] }}</div>
                         </div>
                     </div>
                     <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
-                        <div class="size-12 rounded-xl bg-[var(--accent)] flex items-center justify-center">
-                            <x-heroicon-o-cpu-chip class="size-6 text-[var(--accent-foreground)]" />
-                        </div>
+                        <x-ui.icon-circle variant="accent" icon="heroicon-o-cpu-chip" size="md" />
                         <div>
                             <div class="text-muted-foreground text-xs font-bold uppercase tracking-wider">Serveurs Hébergés</div>
                             <div class="text-2xl font-black">{{ $stats['total_servers'] }}</div>
                         </div>
                     </div>
                     <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-6 shadow-sm flex items-center gap-4">
-                        <div class="size-12 rounded-xl bg-[var(--success)] flex items-center justify-center">
-                            <x-heroicon-o-circle-stack class="size-6 text-[var(--success-foreground)]" />
-                        </div>
+                        <x-ui.icon-circle variant="success" icon="heroicon-o-circle-stack" size="md" />
                         <div>
                             <div class="text-muted-foreground text-xs font-bold uppercase tracking-wider">Disque Occupé</div>
                             <div class="text-2xl font-black">{{ round($stats['used_disk'] / 1024, 1) }} <span class="text-sm font-normal text-muted-foreground">/ {{ round($stats['total_disk'] / 1024, 1) }} GB</span></div>
@@ -111,74 +103,7 @@
                         </h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach($nodes as $node)
-                                @php
-                                    $attr = $node['attributes'] ?? [];
-                                    $location = $attr['relationships']['location']['attributes'] ?? ['short' => 'Unknown', 'long' => 'Unknown'];
-                                    $isMaintenance = $attr['maintenance_mode'] ?? false;
-
-                                    // Calcul cohérent du nombre de serveurs
-                                    $serversRel = $attr['relationships']['servers'] ?? null;
-                                    $totalServers = $serversRel ? ($serversRel['meta']['pagination']['total'] ?? count($serversRel['data'] ?? [])) : 0;
-
-                                    $diskUsed = $attr['allocated_resources']['disk'] ?? 0;
-                                    $diskTotal = $attr['disk'] ?? 0;
-                                    $diskPercent = ($diskTotal > 0) ? min(($diskUsed / $diskTotal) * 100, 100) : 0;
-
-                                    $cpuUsed = $attr['allocated_resources']['cpu'] ?? 0;
-                                    $cpuTotal = $attr['cpu'] ?? 0;
-                                    $isCpuUnlimited = $cpuTotal <= 0;
-                                    $cpuPercent = !$isCpuUnlimited ? min(($cpuUsed / $cpuTotal) * 100, 100) : 0;
-                                @endphp
-
-                                <div class="bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm overflow-hidden flex flex-col">
-                                    <div class="p-5 border-b border-[var(--border)] bg-muted/20 flex items-center justify-between">
-                                        <div class="flex items-center gap-3">
-                                            <div class="size-8 rounded-lg bg-[var(--primary)] flex items-center justify-center border border-[var(--primary)]/30">
-                                                <x-heroicon-o-server class="size-5 text-[var(--primary-foreground)]" />
-                                            </div>
-                                            <div>
-                                                <div class="font-black text-sm text-[var(--foreground)]">{{ $attr['name'] ?? 'Unknown Node' }}</div>
-                                                <div class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">{{ $location['long'] }} ({{ $location['short'] }}) — {{ $attr['fqdn'] ?? 'N/A' }}</div>
-                                            </div>
-                                        </div>
-                                        @if($isMaintenance)
-                                            <x-ui.feedback.badge variant="warning" size="sm" class="font-bold">Maintenance</x-ui.feedback.badge>
-                                        @else
-                                            <x-ui.feedback.badge variant="success" size="sm" class="font-bold">Online</x-ui.feedback.badge>
-                                        @endif
-                                    </div>
-                                    <div class="p-5 space-y-4 flex-grow">
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <div class="space-y-1.5">
-                                                <div class="flex justify-between text-[10px] font-black uppercase text-muted-foreground tracking-tighter">
-                                                    <span>Stockage</span>
-                                                    <span>{{ round($diskPercent) }}%</span>
-                                                </div>
-                                                <div class="h-2 w-full bg-[var(--secondary)] rounded-full overflow-hidden border border-[var(--border)]">
-                                                    <div class="h-full bg-[var(--primary-foreground)] transition-all duration-500" style="width: {{ $diskPercent }}%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="space-y-1.5">
-                                                <div class="flex justify-between text-[10px] font-black uppercase text-muted-foreground tracking-tighter">
-                                                    <span>CPU</span>
-                                                    <span>{{ $isCpuUnlimited ? 'Illimité' : round($cpuPercent) . '%' }}</span>
-                                                </div>
-                                                <div class="h-2 w-full bg-[var(--secondary)] rounded-full overflow-hidden border border-[var(--border)]">
-                                                    <div class="h-full bg-[var(--accent-foreground)] transition-all duration-500" style="width: {{ $isCpuUnlimited ? 100 : $cpuPercent }}%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center justify-between pt-2 border-t border-[var(--border)]/50">
-                                            <div class="text-xs font-bold text-[var(--foreground)] flex items-center gap-1.5">
-                                                <x-heroicon-o-cpu-chip class="size-3.5 text-[var(--primary-foreground)]" />
-                                                <span>{{ $totalServers }} serveurs</span>
-                                            </div>
-                                            <div class="text-[10px] font-black text-muted-foreground uppercase tracking-tighter">
-                                                {{ round($diskTotal/1024) }}GB Stockage
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-status.node-card :node="$node" />
                             @endforeach
                         </div>
                     </div>

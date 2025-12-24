@@ -89,6 +89,11 @@
     @apply glass rounded-[var(--radius-lg)] shadow-[var(--shadow)];
 }
 
+@utility container-custom {
+    @apply mx-auto px-4 w-full;
+    max-width: 1400px;
+}
+
 @layer components {
     .card-primary {
         @apply bg-[var(--control-background)] border-[var(--primary-foreground)]/30 shadow-md shadow-[var(--primary)]/10;

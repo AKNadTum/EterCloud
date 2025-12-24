@@ -21,7 +21,7 @@
                 <!-- 1. Droit de rétractation -->
                 <section>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="size-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                        <div class="size-8 rounded-lg bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary-foreground)]">
                             <x-heroicon-o-scale class="size-5" />
                         </div>
                         <h2 class="text-2xl font-bold">1. Droit de rétractation</h2>

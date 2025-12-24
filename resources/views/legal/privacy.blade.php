@@ -34,7 +34,7 @@
                 <!-- 2. Données collectées -->
                 <section>
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="size-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                        <div class="size-8 rounded-lg bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary-foreground)]">
                             <x-heroicon-o-document-magnifying-glass class="size-5" />
                         </div>
                         <h2 class="text-2xl font-bold">2. Données collectées</h2>

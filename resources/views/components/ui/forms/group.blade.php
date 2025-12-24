@@ -1,3 +1,11 @@
+@props([
+    'label' => null,
+    'name' => null,
+    'required' => false,
+    'description' => null,
+    'error' => null,
+])
+
 <div {{ $attributes->merge(['class' => 'space-y-2']) }}>
     @if($label)
         <label @if($name) for="{{ $name }}" @endif class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

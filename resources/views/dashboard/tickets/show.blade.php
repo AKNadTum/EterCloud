@@ -6,7 +6,7 @@
     <div class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="flex items-center gap-4">
-                <a href="{{ route('dashboard.tickets.index') }}" class="p-2 rounded-lg bg-[var(--secondary)] text-[var(--muted-foreground)] hover:bg-gray-200 transition-colors">
+                <a href="{{ route('dashboard.tickets.index') }}" class="p-2 rounded-lg bg-[var(--secondary)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors border border-[var(--border)]">
                     <x-heroicon-o-arrow-left class="size-5" />
                 </a>
                 <div>
@@ -16,12 +16,12 @@
             </div>
             <div>
                 @php
-                    $statusColors = [
-                        'open' => 'bg-emerald-500/10 text-emerald-500',
-                        'pending' => 'bg-blue-500/10 text-blue-500',
-                        'user_replied' => 'bg-amber-500/10 text-amber-500',
-                        'closed' => 'bg-[var(--secondary)] text-[var(--foreground)]',
-                        'suspended' => 'bg-purple-500/10 text-purple-500',
+                    $statusVariants = [
+                        'open' => 'success-subtle',
+                        'pending' => 'primary-subtle',
+                        'user_replied' => 'warning-subtle',
+                        'closed' => 'subtle',
+                        'suspended' => 'destructive-subtle',
                     ];
                     $statusLabels = [
                         'open' => 'Ouvert',
@@ -31,51 +31,40 @@
                         'suspended' => 'Suspendu',
                     ];
                 @endphp
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold {{ $statusColors[$ticket->status] ?? 'bg-[var(--secondary)] text-[var(--foreground)]' }}">
+                <x-ui.feedback.badge :variant="$statusVariants[$ticket->status] ?? 'subtle'" size="lg" class="font-bold">
                     {{ $statusLabels[$ticket->status] ?? $ticket->status }}
-                </span>
+                </x-ui.feedback.badge>
             </div>
         </div>
 
-        @if(session('status'))
-            <div class="bg-emerald-50 border border-emerald-200 text-emerald-500 px-4 py-3 rounded-xl text-sm">
-                {{ session('status') }}
-            </div>
-        @endif
+        <x-layout.notifications />
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-6">
                 {{-- Messages --}}
                 <div class="space-y-6">
                     @foreach($ticket->messages as $message)
-                        <div class="flex {{ $message->is_support_reply ? 'justify-start' : 'justify-end' }}">
-                            <div class="max-w-[85%] {{ $message->is_support_reply ? 'bg-[var(--control-background)] border border-[var(--border)] text-[var(--foreground)]' : 'bg-blue-600 text-white' }} rounded-2xl px-6 py-4 shadow-sm">
-                                <div class="flex items-center justify-between gap-4 mb-2">
-                                    <span class="text-xs font-bold uppercase tracking-wider {{ $message->is_support_reply ? 'text-[var(--link)]' : 'text-blue-100' }}">
-                                        {{ $message->is_support_reply ? 'Support EterCloud' : $message->user->display_name }}
-                                    </span>
-                                    <span class="text-[10px] {{ $message->is_support_reply ? 'text-gray-400' : 'text-blue-200' }}">
-                                        {{ $message->created_at->diffForHumans() }}
-                                    </span>
-                                </div>
-                                <div class="text-sm leading-relaxed whitespace-pre-wrap">{{ $message->message }}</div>
-                            </div>
-                        </div>
+                        <x-features.ticket.message-bubble
+                            :message="$message->message"
+                            :is-support="$message->is_support_reply"
+                            :user-name="$message->user->display_name"
+                            :date="$message->created_at->diffForHumans()"
+                        />
                     @endforeach
                 </div>
 
                 {{-- Reply Form --}}
                 @if($ticket->status !== 'closed')
-                    <div class="bg-[var(--control-background)] rounded-2xl p-6 shadow-sm border border-[var(--border)]">
+                    <x-ui.card>
                         <form action="{{ route('dashboard.tickets.reply', $ticket) }}" method="POST" class="space-y-4">
                             @csrf
                             <div class="space-y-2">
                                 <label for="message" class="text-sm font-bold text-[var(--foreground)]">Votre réponse</label>
                                 <textarea id="message" name="message" rows="4"
-                                          class="w-full rounded-xl border border-[var(--border)] bg-[var(--secondary)] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                                          class="w-full rounded-xl border border-[var(--border)] bg-[var(--secondary)] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)] transition-all resize-none text-[var(--foreground)]"
                                           placeholder="Écrivez votre message ici..." required></textarea>
                                 @error('message')
-                                    <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                                    <p class="text-xs text-[var(--destructive-foreground)] mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="flex justify-end">
@@ -84,10 +73,10 @@
                                 </x-ui.button>
                             </div>
                         </form>
-                    </div>
+                    </x-ui.card>
                 @else
-                    <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-2xl p-8 text-center">
-                        <x-heroicon-o-lock-closed class="size-8 text-gray-400 mx-auto mb-3" />
+                    <div class="bg-[var(--secondary)]/50 border border-[var(--border)] border-dashed rounded-2xl p-8 text-center">
+                        <x-heroicon-o-lock-closed class="size-8 text-[var(--muted-foreground)] mx-auto mb-3" />
                         <h4 class="font-bold text-[var(--foreground)]">Ce ticket est fermé</h4>
                         <p class="text-sm text-[var(--muted-foreground)] mt-1 mb-4">Vous ne pouvez plus envoyer de messages sur ce ticket.</p>
                         <form action="{{ route('dashboard.tickets.reopen', $ticket) }}" method="POST">
@@ -102,20 +91,20 @@
 
             {{-- Sidebar Info --}}
             <div class="space-y-6">
-                <div class="bg-[var(--control-background)] rounded-2xl p-6 shadow-sm border border-[var(--border)]">
+                <x-ui.card>
                     <h3 class="font-bold text-[var(--foreground)] mb-4 flex items-center gap-2">
-                        <x-heroicon-o-information-circle class="size-5 text-[var(--link)]" />
+                        <x-ui.icon-circle variant="accent" icon="heroicon-o-information-circle" size="xs" />
                         Informations
                     </h3>
                     <div class="space-y-4">
                         <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Priorité</p>
+                            <p class="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-widest">Priorité</p>
                             <p class="mt-1">
                                 @php
-                                    $priorityColors = [
-                                        'high' => 'bg-rose-100 text-rose-700 border-rose-200',
-                                        'medium' => 'bg-amber-500/10 text-amber-500 border-amber-200',
-                                        'low' => 'bg-slate-100 text-slate-700 border-slate-200',
+                                    $priorityVariants = [
+                                        'high' => 'destructive-subtle',
+                                        'medium' => 'warning-subtle',
+                                        'low' => 'subtle',
                                     ];
                                     $priorityLabels = [
                                         'high' => 'Haute',
@@ -123,34 +112,37 @@
                                         'low' => 'Basse',
                                     ];
                                 @endphp
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold border {{ $priorityColors[$ticket->priority] ?? 'bg-[var(--secondary)] text-[var(--foreground)]' }}">
+                                <x-ui.feedback.badge :variant="$priorityVariants[$ticket->priority] ?? 'subtle'" size="sm" class="font-bold">
                                     {{ $priorityLabels[$ticket->priority] ?? $ticket->priority }}
-                                </span>
+                                </x-ui.feedback.badge>
                             </p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Agent assigné</p>
+                            <p class="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-widest">Agent assigné</p>
                             <p class="text-sm font-semibold text-[var(--foreground)]">
                                 {{ $ticket->assignedTo ? $ticket->assignedTo->display_name : 'En attente...' }}
                             </p>
                         </div>
                         <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Dernière mise à jour</p>
+                            <p class="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-widest">Dernière mise à jour</p>
                             <p class="text-sm font-semibold text-[var(--foreground)]">
                                 {{ $ticket->last_reply_at ? \Carbon\Carbon::parse($ticket->last_reply_at)->diffForHumans() : $ticket->created_at->diffForHumans() }}
                             </p>
                         </div>
                     </div>
-                </div>
+                </x-ui.card>
 
-                <div class="bg-blue-600 rounded-2xl p-6 text-white shadow-lg shadow-blue-200">
-                    <h3 class="font-bold mb-2">Besoin d'aide urgente ?</h3>
-                    <p class="text-xs text-blue-100 leading-relaxed mb-4">
-                        Nos agents font de leur mieux pour vous répondre rapidement. Le délai moyen est de moins de 24h.
-                    </p>
-                    <x-ui.button href="#" variant="outline" size="sm" class="w-full justify-center bg-[var(--control-background)]/10 border-white/20 text-white hover:bg-[var(--control-background)]/20">
-                        Documentation
-                    </x-ui.button>
+                <div class="card-accent border rounded-2xl p-6 text-[var(--foreground)] shadow-lg shadow-[var(--accent)]/10 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <h3 class="font-bold mb-2">Besoin d'aide urgente ?</h3>
+                        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed mb-4">
+                            Nos agents font de leur mieux pour vous répondre rapidement. Le délai moyen est de moins de 24h.
+                        </p>
+                        <x-ui.button href="#" variant="outline" size="sm" class="w-full justify-center">
+                            Documentation
+                        </x-ui.button>
+                    </div>
+                    <x-heroicon-o-bolt class="absolute -right-4 -bottom-4 size-24 text-[var(--accent-foreground)]/5 group-hover:scale-110 transition-transform duration-500" />
                 </div>
             </div>
         </div>

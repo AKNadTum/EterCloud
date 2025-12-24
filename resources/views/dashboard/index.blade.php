@@ -78,7 +78,7 @@
 
         {{-- Liens Utiles / Doc --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="card-primary border rounded-xl p-6 text-[var(--foreground)] overflow-hidden relative group">
+            <x-ui.card class="card-primary border-none group overflow-hidden" padded="true">
                 <div class="relative z-10">
                     <h3 class="text-lg font-bold">Consultez notre documentation</h3>
                     <p class="text-[var(--muted-foreground)] mt-2 text-sm max-w-[250px]">Apprenez à configurer vos serveurs et à optimiser vos performances.</p>
@@ -87,9 +87,9 @@
                     </x-ui.button>
                 </div>
                 <x-heroicon-o-book-open class="absolute -right-4 -bottom-4 size-32 text-[var(--primary-foreground)]/5 group-hover:scale-110 transition-transform duration-500" />
-            </div>
+            </x-ui.card>
 
-            <div class="card-accent border rounded-xl p-6 text-[var(--foreground)] overflow-hidden relative group">
+            <x-ui.card class="card-accent border-none group overflow-hidden" padded="true">
                 <div class="relative z-10">
                     <h3 class="text-lg font-bold">Besoin d'un plan supérieur ?</h3>
                     <p class="text-[var(--muted-foreground)] mt-2 text-sm max-w-[250px]">Découvrez nos offres haute performance pour vos projets les plus ambitieux.</p>
@@ -98,7 +98,7 @@
                     </x-ui.button>
                 </div>
                 <x-heroicon-o-sparkles class="absolute -right-4 -bottom-4 size-32 text-[var(--accent-foreground)]/5 group-hover:scale-110 transition-transform duration-500" />
-            </div>
+            </x-ui.card>
         </div>
     </div>
 @endsection

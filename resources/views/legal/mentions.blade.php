@@ -20,7 +20,7 @@
             <!-- 1. Éditeur du site -->
             <div class="glass-card p-8">
                 <div class="flex items-start gap-4">
-                    <div class="shrink-0 size-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
+                    <div class="shrink-0 size-10 rounded-xl bg-[var(--primary)]/20 flex items-center justify-center text-[var(--primary-foreground)]">
                         <x-heroicon-o-building-office class="size-6" />
                     </div>
                     <div>
