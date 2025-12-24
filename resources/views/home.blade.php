@@ -89,7 +89,7 @@
                 <x-ui.badge variant="subtle" class="px-2 py-0.5 text-[9px] uppercase font-bold tracking-widest">Paiement sécurisé</x-ui.badge>
             </div>
 
-            <x-features.plan-carousel :plans="$plans" :stripe-prices="$stripePrices" />
+            <x-features.plan-grid :plans="$plans" :stripe-prices="$stripePrices" />
 
             <div class="mt-8 text-center">
                 <p class="text-sm text-muted-foreground">
