@@ -37,7 +37,7 @@
                                         $priorityColors = [
                                             'low' => 'text-[var(--muted-foreground)]',
                                             'medium' => 'text-blue-500',
-                                            'high' => 'text-rose-600 font-bold',
+                                            'high' => 'text-rose-500 font-bold',
                                         ];
                                     @endphp
                                     <span class="text-xs capitalize {{ $priorityColors[$ticket->priority] }}">

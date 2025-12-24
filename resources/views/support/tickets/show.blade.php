@@ -18,7 +18,7 @@
                 @if($ticket->status !== 'closed' && $ticket->status !== 'suspended')
                     <form action="{{ route('support.tickets.suspend', $ticket) }}" method="POST">
                         @csrf
-                        <x-ui.button type="submit" variant="outline" size="sm" class="text-amber-600 border-amber-200 hover:bg-amber-50">
+                        <x-ui.button type="submit" variant="outline" size="sm" class="text-amber-500 border-amber-500/20 hover:bg-amber-500/10">
                             Suspendre
                         </x-ui.button>
                     </form>
@@ -26,7 +26,7 @@
                 @if($ticket->status === 'closed' || $ticket->status === 'suspended')
                     <form action="{{ route('support.tickets.reopen', $ticket) }}" method="POST">
                         @csrf
-                        <x-ui.button type="submit" variant="outline" size="sm" class="text-emerald-600 border-emerald-200 hover:bg-emerald-50">
+                        <x-ui.button type="submit" variant="outline" size="sm" class="text-emerald-500 border-emerald-500/20 hover:bg-emerald-500/10">
                             {{ $ticket->status === 'suspended' ? 'Reprendre' : 'Réouvrir' }}
                         </x-ui.button>
                     </form>
@@ -34,7 +34,7 @@
                 @if($ticket->status !== 'closed')
                     <form action="{{ route('support.tickets.close', $ticket) }}" method="POST">
                         @csrf
-                        <x-ui.button type="submit" variant="outline" size="sm" class="text-rose-600 border-rose-200 hover:bg-rose-50">
+                        <x-ui.button type="submit" variant="outline" size="sm" class="text-rose-500 border-rose-500/20 hover:bg-rose-500/10">
                             Fermer
                         </x-ui.button>
                     </form>
@@ -44,7 +44,7 @@
                         'open' => 'bg-emerald-500/10 text-emerald-500',
                         'pending' => 'bg-amber-500/10 text-amber-500',
                         'user_replied' => 'bg-blue-500/10 text-blue-500',
-                        'closed' => 'bg-[var(--secondary)] text-[var(--foreground)]',
+                        'closed' => 'bg-[var(--secondary)] text-[var(--muted-foreground)]',
                         'suspended' => 'bg-purple-500/10 text-purple-500',
                     ];
                     $statusLabels = [
@@ -55,7 +55,7 @@
                         'suspended' => 'Suspendu',
                     ];
                 @endphp
-                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-[var(--secondary)] text-[var(--foreground)]' }}">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase {{ $statusColors[$ticket->status] ?? 'bg-[var(--secondary)] text-[var(--muted-foreground)]' }}">
                     {{ $statusLabels[$ticket->status] ?? $ticket->status }}
                 </span>
             </div>
@@ -130,8 +130,8 @@
                 </div>
 
                 @if(auth()->user()->hasPermission('support.assign'))
-                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6">
-                        <h3 class="font-bold text-blue-500 mb-2">Assignation</h3>
+                    <div class="bg-blue-500/5 border border-blue-500/10 rounded-2xl p-6">
+                        <h3 class="font-bold text-blue-400 mb-2">Assignation</h3>
                         <p class="text-xs text-[var(--muted-foreground)] mb-4">Attribuez ce ticket à un membre de l'équipe support.</p>
                         <form action="{{ route('support.tickets.assign', $ticket) }}" method="POST" class="space-y-4">
                             @csrf
