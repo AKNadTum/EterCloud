@@ -2,50 +2,50 @@
 
 @section('content')
     <!-- HERO -->
-    <section class="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24 -mt-[88px]">
+    <section class="relative overflow-hidden pt-20 pb-12 md:pt-32 md:pb-24 -mt-[88px]">
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/20 to-transparent -z-10"></div>
         <x-layout.container>
             <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-                <div class="space-y-8">
+                <div class="space-y-8 text-center md:text-left">
                     <div class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[var(--primary-foreground)] bg-[var(--primary)]/50 px-3 py-1 rounded-full border border-[var(--primary-foreground)]/10">
                         <span>Hébergement Minecraft Gratuit</span>
                     </div>
                     <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
                         Hébergement <span class="text-[var(--accent-foreground)]">Minecraft Gratuit</span> : Performance & Simplicité
                     </h1>
-                    <p class="text-base md:text-lg max-w-2xl text-muted-foreground leading-relaxed">
+                    <p class="text-base md:text-lg max-w-2xl mx-auto md:mx-0 text-muted-foreground leading-relaxed">
                         Découvrez la meilleure <strong>alternative à Aternos</strong>.
                         Un plan gratuit avec de vraies performances en phase de lancement : <strong>sans file d'attente</strong> et <strong>sans lag</strong>.
                         Crée ton serveur Minecraft gratuit avec des performances optimales dès maintenant.
                     </p>
-                    <div class="flex flex-wrap items-center gap-4">
-                        <x-ui.button href="{{ route('auth.login') }}" size="lg" class="shadow-lg shadow-[var(--primary)]/20 px-10">Commencer</x-ui.button>
-                        <x-ui.button href="{{ route('home') }}#plans" variant="outline" size="lg" class="px-8">Voir les plans</x-ui.button>
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                        <x-ui.button href="{{ route('auth.login') }}" size="lg" class="w-full sm:w-auto shadow-lg shadow-[var(--primary)]/20 px-10">Commencer</x-ui.button>
+                        <x-ui.button href="{{ route('home') }}#plans" variant="outline" size="lg" class="w-full sm:w-auto px-8">Voir les plans</x-ui.button>
                     </div>
 
-                    <div class="flex flex-wrap items-center gap-6 pt-4 text-xs font-medium text-muted-foreground/80">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-6 pt-4 text-xs font-medium text-muted-foreground/80">
                         <div class="flex items-center gap-2">
                             <x-heroicon-o-bolt class="size-4 text-[var(--success-foreground)]" />
-                            <span>Mise en ligne instantanée</span>
+                            <span>Instantanné</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <x-heroicon-o-cpu-chip class="size-4 text-[var(--accent-foreground)]" />
-                            <span>Propulsé par Pterodactyl</span>
+                            <span>Pterodactyl</span>
                         </div>
                         <div class="flex items-center gap-2">
                             <x-heroicon-o-gift class="size-4 text-[var(--primary-foreground)]" />
-                            <span>Plan gratuit inclus</span>
+                            <span>Plan gratuit</span>
                         </div>
                     </div>
                 </div>
-                <div class="hidden md:block relative">
+                <div class="relative mt-8 md:mt-0">
                     <div class="absolute -inset-4 bg-[var(--accent)]/20 blur-3xl rounded-full -z-10 animate-pulse"></div>
-                    <div class="glass-card p-2 rounded-[var(--radius-xl)] rotate-1 hover:rotate-0 transition-transform duration-500 overflow-hidden">
+                    <div class="glass-card p-2 rounded-[var(--radius-xl)] rotate-1 hover:rotate-0 transition-transform duration-500 overflow-hidden max-w-md mx-auto md:max-w-none">
                         <img
                             src="/images/hero_image.png"
                             alt="Aperçu du panneau"
                             loading="lazy"
-                            class="w-full h-full object-cover rounded-[var(--radius-lg)]"
+                            class="w-full h-auto object-cover rounded-[var(--radius-lg)]"
                         />
                     </div>
                 </div>

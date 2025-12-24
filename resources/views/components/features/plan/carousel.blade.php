@@ -4,10 +4,10 @@
 ])
 
 <div {{ $attributes->merge(['class' => 'relative group']) }}>
-    <div id="plans-carousel" class="flex overflow-x-auto gap-4 no-scrollbar pt-6 pb-6 mx-auto mask-horizontal" style="max-width: 1400px;">
+    <div id="plans-carousel" class="flex overflow-x-auto gap-4 no-scrollbar pt-6 pb-6 px-4 md:px-0 mx-auto mask-horizontal snap-x snap-mandatory md:snap-none" style="max-width: 1400px;">
         @for($r = 0; $r < 3; $r++)
             @foreach($plans as $plan)
-                <div class="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px]">
+                <div class="flex-shrink-0 w-[80vw] sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px] snap-center">
                     <x-cards.pricing-card
                         :title="$plan->name"
                         :price="$stripePrices[$plan->id]['price'] ?? null"
@@ -49,7 +49,7 @@
             @endphp
 
             @for($i = 0; $i < $customCardsToAdd; $i++)
-                <div class="flex-shrink-0 w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px]">
+                <div class="flex-shrink-0 w-[80vw] sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1.25rem)] lg:w-[calc(25%-1.25rem)] min-w-[240px] max-w-[280px] snap-center">
                     <x-cards.pricing-card
                         title="Sur mesure"
                         price="Sur devis"
