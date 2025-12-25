@@ -17,24 +17,28 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <x-ui.input name="name" label="Nom complet" :value="auth()->user()->name" description="Si laissé vide, il peut être composé automatiquement depuis prénom et nom." />
 
-                    <x-ui.input label="Adresse e‑mail" name="email" required>
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                            <x-ui.input id="email" name="email" type="email" required
-                                        :invalid="$errors->has('email')"
-                                        value="{{ old('email', auth()->user()->email) }}"
-                                        class="flex-1 w-full" />
-                            @if(auth()->user()->hasVerifiedEmail())
-                                <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
-                                    <x-heroicon-s-check-circle class="size-3 mr-1" />
-                                    Vérifié
-                                </x-ui.badge>
-                            @else
-                                <x-ui.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
-                                    <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
-                                    Non vérifié
-                                </x-ui.badge>
-                            @endif
-                        </div>
+                    <x-ui.input name="email" required>
+                        <x-slot:label>
+                            <div class="flex items-center gap-2">
+                                <span>Adresse e‑mail</span>
+                                @if(auth()->user()->hasVerifiedEmail())
+                                    <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                        <x-heroicon-s-check-circle class="size-3 mr-1" />
+                                        Vérifié
+                                    </x-ui.badge>
+                                @else
+                                    <x-ui.badge variant="warning-subtle" size="sm" class="shrink-0 whitespace-nowrap">
+                                        <x-heroicon-s-exclamation-triangle class="size-3 mr-1" />
+                                        Non vérifié
+                                    </x-ui.badge>
+                                @endif
+                            </div>
+                        </x-slot:label>
+
+                        <x-ui.input id="email" name="email" type="email" required
+                                    :invalid="$errors->has('email')"
+                                    value="{{ old('email', auth()->user()->email) }}"
+                                    class="w-full" />
                     </x-ui.input>
                 </div>
 
@@ -171,10 +175,10 @@
                     <div class="space-y-4">
                         <x-ui.alert variant="info" class="p-4">
                             <x-heroicon-o-information-circle class="size-5" />
-                            
+
                                 Vous n'avez pas encore de compte de facturation Stripe lié.
                                 Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
-                            
+
                         </x-ui.alert>
 
                         <form method="POST" action="{{ route('dashboard.profile.stripe.link') }}">

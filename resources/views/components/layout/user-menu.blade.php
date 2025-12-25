@@ -19,7 +19,7 @@
          x-transition:leave-start="opacity-100 scale-100"
          x-transition:leave-end="opacity-0 scale-95"
          class="absolute right-0 mt-2 w-60 bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] p-1.5 z-50 shadow-2xl"
-         style="display: none;"
+         x-cloak
     >
         <div class="px-3 py-2 mb-1">
             <p class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Menu Utilisateur</p>

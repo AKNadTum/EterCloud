@@ -19,7 +19,11 @@
                         Crée ton serveur Minecraft gratuit avec des performances optimales dès maintenant.
                     </p>
                     <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
-                        <x-ui.button href="{{ route('auth.login') }}" size="lg" class="w-full sm:w-auto shadow-lg shadow-[var(--primary)]/20 px-10">Commencer</x-ui.button>
+                        @auth
+                            <x-ui.button href="{{ route('dashboard.index') }}" size="lg" class="w-full sm:w-auto shadow-lg shadow-[var(--primary)]/20 px-10">Accéder au Dashboard</x-ui.button>
+                        @else
+                            <x-ui.button href="{{ route('auth.login') }}" size="lg" class="w-full sm:w-auto shadow-lg shadow-[var(--primary)]/20 px-10">Commencer</x-ui.button>
+                        @endauth
                         <x-ui.button href="{{ route('home') }}#plans" variant="outline" size="lg" class="w-full sm:w-auto px-8">Voir les plans</x-ui.button>
                     </div>
 
@@ -106,8 +110,8 @@
         <x-layout.cta-block
             title='Prêt à lancer ton <span class="text-[var(--accent-foreground)]">aventure</span> ?'
             subtitle="Rejoins des centaines de joueurs qui nous font déjà confiance pour leur hébergement Minecraft."
-            buttonText="Créer mon compte"
-            :buttonHref="route('auth.login')"
+            :buttonText="auth()->check() ? 'Mon Dashboard' : 'Créer mon compte'"
+            :buttonHref="auth()->check() ? route('dashboard.index') : route('auth.login')"
             secondaryButtonText="Contactez-nous"
             secondaryButtonHref="/contact"
         />

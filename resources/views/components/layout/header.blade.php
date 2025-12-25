@@ -3,7 +3,7 @@
     x-data="{ scrolled: false, mobileMenuOpen: false }"
     x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
     :data-scrolled="scrolled"
-    class="group/header sticky top-0 z-50 flex justify-center py-4 transition-all duration-500 ease-in-out data-[scrolled=true]:py-2"
+    class="group/header sticky top-0 z-[60] flex justify-center py-4 transition-all duration-500 ease-in-out data-[scrolled=true]:py-2"
 >
     @php
         $navLinks = [
