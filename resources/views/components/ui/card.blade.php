@@ -1,3 +1,10 @@
+@props([
+    'title' => null,
+    'description' => null,
+    'padded' => false,
+    'footer' => null,
+])
+
 <div {{ $attributes->merge(['class' => 'bg-[var(--control-background)] border border-[var(--border)] rounded-[var(--radius-lg)] shadow-sm overflow-hidden']) }}>
     @if($title || $description || isset($header))
         <div class="px-6 py-4 border-b border-[var(--border)]">
@@ -24,6 +31,7 @@
         </div>
     @endif
 </div>
+
 
 
 

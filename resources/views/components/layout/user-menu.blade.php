@@ -1,3 +1,5 @@
+@props([])
+
 <div x-data="{ open: false }" @click.away="open = false" {{ $attributes->merge(['class' => 'relative']) }}>
     <button @click="open = !open" class="list-none cursor-pointer focus:outline-none">
         <div class="flex items-center gap-2 pl-3 pr-2 py-1.5 border border-[var(--border)] rounded-full bg-[var(--control-background)]/50 backdrop-blur-sm hover:bg-[var(--secondary)] transition-colors shadow-sm">
@@ -72,6 +74,7 @@
         </form>
     </div>
 </div>
+
 
 
 

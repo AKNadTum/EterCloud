@@ -8,7 +8,7 @@
             <x-ui.alert variant="warning" dismissible="true" class="mb-6">
                 <x-heroicon-o-exclamation-triangle class="size-5" />
                 <x-slot:titleSlot>Aucun compte Pterodactyl lié</x-slot:titleSlot>
-                <x-ui.alert-description class="space-y-4">
+                
                     <p>Pour récupérer vos serveurs, liez votre compte Pterodactyl depuis votre profil.</p>
                     <x-ui.button variant="outline" size="sm" href="{{ route('dashboard.profile') }}">
                         Aller au profil
@@ -53,6 +53,7 @@
         @endif
     </div>
 @endsection
+
 
 
 

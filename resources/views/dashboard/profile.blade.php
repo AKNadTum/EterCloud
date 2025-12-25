@@ -171,7 +171,7 @@
                     <div class="space-y-4">
                         <x-ui.alert variant="info" class="p-4">
                             <x-heroicon-o-information-circle class="size-5" />
-                            <x-ui.alert-description class="italic text-sm">
+                            
                                 Vous n'avez pas encore de compte de facturation Stripe lié.
                                 Un compte Stripe est requis pour souscrire à un abonnement et gérer vos serveurs.
                             
@@ -212,6 +212,7 @@
         </x-ui.card>
     </div>
 @endsection
+
 
 
 

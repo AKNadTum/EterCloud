@@ -1,8 +1,7 @@
-@props([
-    'variant' => 'default',
-    'dismissible' => false,
-    'title' => null,
-])
+@php
+    $title = $title ?? null;
+    $dismissible = $dismissible ?? false;
+@endphp
 
 <div
     role="alert"
@@ -33,6 +32,7 @@
         </button>
     @endif
 </div>
+
 
 
 

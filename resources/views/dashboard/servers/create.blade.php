@@ -64,7 +64,7 @@
                 <x-ui.alert variant="default" class="bg-[var(--secondary)] border-[var(--border)]">
                     <x-heroicon-o-information-circle class="size-5 text-gray-400" />
                     <x-slot:titleSlot class="text-[var(--foreground)]">Ressources incluses dans votre plan</x-slot:titleSlot>
-                    <x-ui.alert-description class="text-[var(--foreground)]">
+                    
                         <ul class="list-disc space-y-1 pl-5">
                             <li>Instances : {{ $plan->server_limit }} serveur{{ $plan->server_limit > 1 ? 's' : '' }}</li>
                             <li>Stockage : {{ $plan->disk / 1024 }} GB</li>
@@ -118,6 +118,7 @@
         }
     </script>
 @endsection
+
 
 
 
