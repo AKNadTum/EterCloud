@@ -4,7 +4,7 @@
 
 <div @if($label || $description || $name) class="space-y-2" @endif>
     @if($label)
-        <label @if($name) for="{{ $name }}" @endif class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        <label @if($name) for="{{ $name }}" @endif class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-1">
             {{ $label }}
             @if($required)
                 <span class="text-destructive">*</span>

@@ -17,9 +17,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <x-ui.input name="name" label="Nom complet" :value="auth()->user()->name" description="Si laissé vide, il peut être composé automatiquement depuis prénom et nom." />
 
-                    <x-ui.input name="email" required>
+                    <x-ui.input id="email" name="email" type="email" required
+                                :invalid="$errors->has('email')"
+                                value="{{ old('email', auth()->user()->email) }}"
+                                class="w-full">
                         <x-slot:label>
-                            <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center gap-2">
                                 <span>Adresse e‑mail</span>
                                 @if(auth()->user()->hasVerifiedEmail())
                                     <x-ui.badge variant="success-subtle" size="sm" class="shrink-0 whitespace-nowrap">
@@ -32,13 +35,8 @@
                                         Non vérifié
                                     </x-ui.badge>
                                 @endif
-                            </div>
+                            </span>
                         </x-slot:label>
-
-                        <x-ui.input id="email" name="email" type="email" required
-                                    :invalid="$errors->has('email')"
-                                    value="{{ old('email', auth()->user()->email) }}"
-                                    class="w-full" />
                     </x-ui.input>
                 </div>
 
