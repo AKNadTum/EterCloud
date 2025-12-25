@@ -3,8 +3,8 @@
     'stripePrices' => []
 ])
 
-<div {{ $attributes->merge(['class' => 'mx-auto w-full']) }} style="max-width: 1400px;">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+<div {{ $attributes->merge(['class' => 'mx-auto w-full']) }} style="max-width: 1100px;">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
         @foreach($plans as $plan)
             <div class="w-full max-w-[320px]">
                 <x-cards.pricing-card
